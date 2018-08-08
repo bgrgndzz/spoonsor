@@ -34,6 +34,7 @@ app.set('trust proxy', 1);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(session({
@@ -47,9 +48,9 @@ app.use(session({
 app.use(morgan('combined', {'stream': logger.stream}));
 
 // security
-const store = new expressBrute.MemoryStore();
-const bruteforce = new expressBrute(store);
-app.use(bruteforce.prevent);
+// const store = new expressBrute.MemoryStore();
+// const bruteforce = new expressBrute(store);
+// app.use(bruteforce.prevent);
 app.use(helmet());
 
 // routing

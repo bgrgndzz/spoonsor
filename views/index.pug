@@ -2,7 +2,50 @@ doctype html
 html(lang="tr")
   head
     title Spoonsor
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700|PT+Serif:400,700")
     link(rel="stylesheet", href="/css/shared.css")
     link(rel="stylesheet", href="/css/index.css")
+    script(async, src="/js/index.js")
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    script(async, src="https://www.googletagmanager.com/gtag/js?id=UA-123574708-1")
+    script.
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-123574708-1');
   body
-    h1 Hello World!
+    .header
+      .header-wrapper
+        ul.nav.nav--page
+          li
+            a(href="#") Sponsorlar
+          li
+            a(href="#") Sponsor Arayanlar
+        img.logo(src="/res/images/logo.svg")
+        ul.nav.nav--auth
+          li.button-wrapper.login-wrapper
+            a.button.button--login(href="#") Giriş Yap
+          li.button-wrapper.register-wrapper
+            a.button.button--register(href="#") Kaydol
+    .content
+      .content-box.content-box--main#main
+        .background
+          img.background-image.background-image--left(src="/res/images/sol.svg")
+          img.background-image.background-image--left(src="/res/images/sag.svg")
+        .main-content
+          img.logo(src="/res/images/logo.svg")
+          .description
+            h1 Sponsor Bulmanın En Kolay Yolu
+            h2 Sponsorlar. Sponsor Arayanlar. Tek Platform.
+          .call-to-action
+            a.button.button--call-to-action(href="#") Sponsor Bul
+            a.link.link--call-to-action(href="#") Sponsor Ol
+
+        .brands
+          ul
+            li MARKA
+            li MARKA
+            li MARKA
+            li MARKA
+            li MARKA
+            li MARKA
