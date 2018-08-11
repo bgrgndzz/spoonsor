@@ -19,12 +19,13 @@ html(lang="tr")
   body
     .header
       .header-wrapper
-        if headerType === 'landing'
+        if headerType === 'landing' || headerType === 'login'
           ul.nav.nav--page
             li
               a.link(href="#") Sponsorlar
-            li
-              a.link.link--highlighted(href="#nasil") Nasıl Çalışır
+            if headerType === 'landing'
+              li
+                a.link.link--highlighted(href="#nasil") Nasıl Çalışır
           img.logo(src="/res/images/logo.svg")
           ul.nav.nav--auth
             li.button-wrapper.login-wrapper
