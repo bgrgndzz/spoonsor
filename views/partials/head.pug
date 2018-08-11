@@ -5,6 +5,7 @@ html(lang="tr")
     link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700|PT+Serif:400,700")
     link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css")
     link(rel="stylesheet", href="/css/shared.css")
+    link(rel="stylesheet", href=`/css/header/header-${headerType}.css`)
     link(rel="stylesheet", href=`/css/${page}.css`)
     each include in includes
       script(async, src=`/js/${include}.js`)
