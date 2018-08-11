@@ -1,0 +1,32 @@
+doctype html
+html(lang="tr")
+  head
+    title Spoonsor | #{title}
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700|PT+Serif:400,700")
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css")
+    link(rel="stylesheet", href="/css/shared.css")
+    link(rel="stylesheet", href=`/css/${page}.css`)
+    each include in includes
+      script(async, src=`/js/${include}.js`)
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    script(async, src="https://www.googletagmanager.com/gtag/js?id=UA-123574708-1")
+    script.
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-123574708-1');
+  body
+    .header
+      .header-wrapper
+        ul.nav.nav--page
+          li
+            a.link(href="#") Sponsorlar
+          li
+            a.link.link--highlighted(href="#nasil") Nasıl Çalışır
+        img.logo(src="/res/images/logo.svg")
+        ul.nav.nav--auth
+          li.button-wrapper.login-wrapper
+            a.button.button--login(href="#") Giriş Yap
+          li.button-wrapper.register-wrapper
+            a.button.button--register(href="#") Kaydol
+    .content

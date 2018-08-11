@@ -1,136 +1,103 @@
-doctype html
-html(lang="tr")
-  head
-    title Spoonsor
-    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700|PT+Serif:400,700")
-    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css")
-    link(rel="stylesheet", href="/css/shared.css")
-    link(rel="stylesheet", href="/css/index.css")
-    script(async, src="/js/index.js")
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    script(async, src="https://www.googletagmanager.com/gtag/js?id=UA-123574708-1")
-    script.
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-123574708-1');
-  body
-    .header
-      .header-wrapper
-        ul.nav.nav--page
-          li
-            a.link(href="#") Sponsorlar
-          li
-            a.link.link--highlighted(href="#nasil") Nasıl Çalışır
-        img.logo(src="/res/images/logo.svg")
-        ul.nav.nav--auth
-          li.button-wrapper.login-wrapper
-            a.button.button--login(href="#") Giriş Yap
-          li.button-wrapper.register-wrapper
-            a.button.button--register(href="#") Kaydol
-    .content
-      .content-box.content-box--ana#ana
-        .background
-          img.background-image.background-image--left(src="/res/images/sol.svg")
-          img.background-image.background-image--right(src="/res/images/sag.svg")
-        .ana-content
-          img.logo(src="/res/images/logo.svg")
-          .description
-            h1 Sponsor Bulmanın En Kolay Yolu
-            h2 Sponsorlar. Sponsor Arayanlar. Tek Platform.
-          .call-to-action
-            a.button.button--call-to-action(href="#") Sponsor Bul
-            a.link.link--call-to-action(href="#") Sponsor Ol
-        .brands
-          ul
-            li MARKA
-            li MARKA
-            li MARKA
-            li MARKA
-            li MARKA
-            li MARKA
-      .content-box.content-box--nedir#nedir
-        .background
-          img.background-image(src="/res/images/nedir.svg")
-        .nedir-content
-          .description
-            h3 Sponsor Arayanlar ile Sponsorları Buluşturan Platform
-            p Spoonsor'un geniş sponsor ağı, aradığınız her sponsora en kolay erişim imkanını sunar.
-      .content-box.content-box--nasil#nasil
-        .description
-          h3 Nasıl Çalışır?
-          p Hızlı. Kolay. Efektif.
-        .nasil-box-wrapper 
-          .nasil-box.nasil-box--1
-            h4.nasil-heading Dosyanı Doldur
-            p.nasil-description Sponsorluk ihtiyacın doğrultusunda bilgilerini gir.
-            img.nasil-arrow(src="/res/images/arrow-left.svg")
-          img.nasil-image(src="/res/images/nasil.svg")
-          .nasil-box.nasil-box--2
-            h4.nasil-heading İletişime Geç
-            p.nasil-description Sistemdeki sponsorlarla tek tıkta mesajlaşmaya başla.
-            img.nasil-arrow(src="/res/images/arrow-right.svg")
-      .content-box.content-box--neden#neden
-        .neden-content
-          .description
-            h3 
-              | Neden 
-              strong Spoonsor
-              | ?
-          .neden-box-wrapper
-            .neden-box
-              img.neden-image(src="/res/images/hizli.svg")
-              h4.neden-heading Hızlı Süreç
-              p.neden-description Spoonsor, sponsorlarla birebir iletişim sağlayarak sponsor bulma sürecini hızlandırır.
-            .neden-box
-              img.neden-image(src="/res/images/uygun.svg")
-              h4.neden-heading Uygun Eşleşme
-              p.neden-description Spononsor, etkinlikle ilgili girdiğiniz bilgilere göre size en uygun sponsoru sunar.
-            .neden-box
-              img.neden-image(src="/res/images/garanti.svg")
-              h4.neden-heading Sponsor Bulma Garantisi
-              p.neden-description Spoonsor, etkinlik gerçekleşene kadar sponsor bulmanızı garantiler.
-      .content-box.content-box--testimonials#testimonials
-        .background
-          img.background-image.background-image--left(src="/res/images/sol2.svg")
-          img.background-image.background-image--right(src="/res/images/sag2.svg")
-        .testimonials-content
-          .testimonial.animated
-            .testimonial-person
-              .testimonial-person-image(style="background-image:url('https://placehold.it/500x500')")
-              h4.testimonial-person-name a
-              span.testimonial-person-event Fuckup Nights
-            p.testimonial-paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor cum amet iure natus ipsam eligendi praesentium illum hic, quo corrupti quasi minima quaerat tempora veniam adipisci vero sed omnis libero.
-          .testimonial.animated.testimonial__hidden
-            .testimonial-person
-              .testimonial-person-image(style="background-image:url('https://placehold.it/500x500')")
-              h4.testimonial-person-name b
-              span.testimonial-person-event Fuckup Nights
-            p.testimonial-paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor cum amet iure natus ipsam eligendi praesentium illum hic, quo corrupti quasi minima quaerat tempora veniam adipisci vero sed omnis libero.
-          .testimonial.animated.testimonial__hidden
-            .testimonial-person
-              .testimonial-person-image(style="background-image:url('https://placehold.it/500x500')")
-              h4.testimonial-person-name c
-              span.testimonial-person-event Fuckup Nights
-            p.testimonial-paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor cum amet iure natus ipsam eligendi praesentium illum hic, quo corrupti quasi minima quaerat tempora veniam adipisci vero sed omnis libero.
-      .content-box.content-box--veriler#veriler
-        .background
-          img.background-image(src="/res/images/veriler.svg")
-        .veriler-content
-          .description
-            h3 Etkileşimler
-          .veriler
-            .veri
-              h4.veri-content 12
-              span.veri-description Sponsorluk Eşleşmesi
-            .veri
-              h4.veri-content 52
-              span.veri-description Etkinlik
-            .veri
-              h4.veri-content 71
-              span.veri-description Sponsor
-            .veri
-              h4.veri-content 274
-              span.veri-description Kişi
-      .call-to-action.bottom-call-to-action
-        a.button.button--call-to-action(href="#") Sponsor Bul
+include partials/head
+.content-box.content-box--ana#ana
+  .background
+    img.background-image.background-image--left(src="/res/images/sol.svg")
+    img.background-image.background-image--right(src="/res/images/sag.svg")
+  .ana-content
+    img.logo(src="/res/images/logo.svg")
+    .description
+      h1 Sponsor Bulmanın En Kolay Yolu
+      h2 Sponsorlar. Sponsor Arayanlar. Tek Platform.
+    .call-to-action
+      a.button.button--call-to-action(href="#") Sponsor Bul
+      a.link.link--call-to-action(href="#") Sponsor Ol
+  .brands
+    ul
+      li MARKA
+      li MARKA
+      li MARKA
+      li MARKA
+      li MARKA
+      li MARKA
+.content-box.content-box--nedir#nedir
+  .background
+    img.background-image(src="/res/images/nedir.svg")
+  .nedir-content
+    .description
+      h3 Sponsor Arayanlar ile Sponsorları Buluşturan Platform
+      p Spoonsor'un geniş sponsor ağı, aradığınız her sponsora en kolay erişim imkanını sunar.
+.content-box.content-box--nasil#nasil
+  .description
+    h3 Nasıl Çalışır?
+    p Hızlı. Kolay. Efektif.
+  .nasil-box-wrapper 
+    .nasil-box.nasil-box--1
+      h4.nasil-heading Dosyanı Doldur
+      p.nasil-description Sponsorluk ihtiyacın doğrultusunda bilgilerini gir.
+      img.nasil-arrow(src="/res/images/arrow-left.svg")
+    img.nasil-image(src="/res/images/nasil.svg")
+    .nasil-box.nasil-box--2
+      h4.nasil-heading İletişime Geç
+      p.nasil-description Sistemdeki sponsorlarla tek tıkta mesajlaşmaya başla.
+      img.nasil-arrow(src="/res/images/arrow-right.svg")
+.content-box.content-box--neden#neden
+  .neden-content
+    .description
+      h3 
+        | Neden 
+        strong Spoonsor
+        | ?
+    .neden-box-wrapper
+      .neden-box
+        img.neden-image(src="/res/images/hizli.svg")
+        h4.neden-heading Hızlı Süreç
+        p.neden-description Spoonsor, sponsorlarla birebir iletişim sağlayarak sponsor bulma sürecini hızlandırır.
+      .neden-box
+        img.neden-image(src="/res/images/uygun.svg")
+        h4.neden-heading Uygun Eşleşme
+        p.neden-description Spononsor, etkinlikle ilgili girdiğiniz bilgilere göre size en uygun sponsoru sunar.
+      .neden-box
+        img.neden-image(src="/res/images/garanti.svg")
+        h4.neden-heading Sponsor Bulma Garantisi
+        p.neden-description Spoonsor, etkinlik gerçekleşene kadar sponsor bulmanızı garantiler.
+.content-box.content-box--testimonials#testimonials
+  .background
+    img.background-image.background-image--left(src="/res/images/sol2.svg")
+    img.background-image.background-image--right(src="/res/images/sag2.svg")
+  .testimonials-content
+    .testimonial.animated
+      .testimonial-person
+        .testimonial-person-image(style="background-image:url('https://placehold.it/500x500')")
+        h4.testimonial-person-name a
+        span.testimonial-person-event Fuckup Nights
+      p.testimonial-paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor cum amet iure natus ipsam eligendi praesentium illum hic, quo corrupti quasi minima quaerat tempora veniam adipisci vero sed omnis libero.
+    .testimonial.animated.testimonial__hidden
+      .testimonial-person
+        .testimonial-person-image(style="background-image:url('https://placehold.it/500x500')")
+        h4.testimonial-person-name b
+        span.testimonial-person-event Fuckup Nights
+      p.testimonial-paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor cum amet iure natus ipsam eligendi praesentium illum hic, quo corrupti quasi minima quaerat tempora veniam adipisci vero sed omnis libero.
+    .testimonial.animated.testimonial__hidden
+      .testimonial-person
+        .testimonial-person-image(style="background-image:url('https://placehold.it/500x500')")
+        h4.testimonial-person-name c
+        span.testimonial-person-event Fuckup Nights
+      p.testimonial-paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor cum amet iure natus ipsam eligendi praesentium illum hic, quo corrupti quasi minima quaerat tempora veniam adipisci vero sed omnis libero.
+.content-box.content-box--veriler#veriler
+  .background
+    img.background-image(src="/res/images/veriler.svg")
+  .veriler-content
+    .description
+      h3 Etkileşimler
+    .veriler
+      .veri
+        h4.veri-content 12
+        span.veri-description Sponsorluk Eşleşmesi
+      .veri
+        h4.veri-content 52
+        span.veri-description Etkinlik
+      .veri
+        h4.veri-content 71
+        span.veri-description Sponsor
+.call-to-action.bottom-call-to-action
+  a.button.button--call-to-action(href="#") Sponsor Bul
