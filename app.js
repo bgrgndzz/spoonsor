@@ -11,13 +11,14 @@ const path = require('path');
 const session = require('express-session');
 const socketio = require('socket.io');
 
+// dotenv config
+dotenv.config(path.join(__dirname, '.env'));
+
 // require utils
 const logger = require('./utils/logger');
 // require routes
 const indexRoute = require('./routes/index');
-
-// dotenv config
-dotenv.config(path.join(__dirname, '.env'));
+const authRoute = require('./routes/auth');
 
 // constants
 const {
@@ -57,6 +58,7 @@ app.use(helmet());
 
 // routing
 app.use('/', indexRoute);
+app.use('/auth/', authRoute);
 
 // listen to connections
 const server = app.listen(PORT);
