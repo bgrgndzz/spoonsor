@@ -4,6 +4,7 @@ module.exports = (req, res, next) => {
     title: 'Sponsor Bulmanın En Kolay Yolu',
     includes: [
       'index'
-    ]
+    ],
+    headerType: 'landing'
   });
 };

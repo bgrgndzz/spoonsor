@@ -18,15 +18,16 @@ html(lang="tr")
   body
     .header
       .header-wrapper
-        ul.nav.nav--page
-          li
-            a.link(href="#") Sponsorlar
-          li
-            a.link.link--highlighted(href="#nasil") Nasıl Çalışır
-        img.logo(src="/res/images/logo.svg")
-        ul.nav.nav--auth
-          li.button-wrapper.login-wrapper
-            a.button.button--login(href="#") Giriş Yap
-          li.button-wrapper.register-wrapper
-            a.button.button--register(href="#") Kaydol
+        if headerType === 'landing'
+          ul.nav.nav--page
+            li
+              a.link(href="#") Sponsorlar
+            li
+              a.link.link--highlighted(href="#nasil") Nasıl Çalışır
+          img.logo(src="/res/images/logo.svg")
+          ul.nav.nav--auth
+            li.button-wrapper.login-wrapper
+              a.button.button--login(href="#") Giriş Yap
+            li.button-wrapper.register-wrapper
+              a.button.button--register(href="#") Kaydol
     .content
