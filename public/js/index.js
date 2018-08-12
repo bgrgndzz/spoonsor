@@ -1,5 +1,5 @@
 window.onscroll = () => {
-  const headerLogo = document.querySelector('.header .logo');
+  const headerLogo = document.querySelector('.header .logo-wrapper');
   if (window.pageYOffset > 100) {
     headerLogo.style.opacity = 1;
   } else {

@@ -24,10 +24,18 @@
   align-items: center;
 }
 .nav,
-.header .logo {
+.header .logo-wrapper {
   height: 100%;
   display: flex;
   flex: 1;
+}
+.header .logo-wrapper {
+  align-items: center;
+  justify-content: center;
+}
+.header .logo-wrapper a {
+  height: 40px;
+  width: 64px;
 }
 .nav {
   display: flex;
@@ -67,7 +75,7 @@
   }
 }
 @media only screen and (max-width: 500px) {
-  .header .logo {
+  .header .logo-wrapper {
     flex: 0;
     display: none;
   }

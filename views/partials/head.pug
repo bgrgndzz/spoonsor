@@ -35,7 +35,9 @@ html(lang="tr")
             if headerType === 'landing'
               li
                 a.link.link--highlighted(href="#nasil") Nasıl Çalışır
-          img.logo(src="/res/images/logo.svg")
+          .logo-wrapper
+            a(href="/")
+              img.logo(src="/res/images/logo.svg")
           ul.nav.nav--auth
             li.button-wrapper.login-wrapper
               a.button.button--login(href="#") Giriş Yap
