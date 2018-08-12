@@ -26,7 +26,6 @@
   padding: 50px;
   text-align: center;
   background-color: white;
-  border: 1px solid #FF0083;
 }
 .form-description {
   margin-bottom: 20px;
@@ -85,6 +84,17 @@ input {
 .reset-password:hover {
   color: #FF0083;
 }
+@media only screen and (max-width: 1000px) {
+  .background {
+    width: 140%;
+    left: -20%;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .form-wrapper {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .15)
+  }
+}
 @media only screen and (max-width: 500px) {
   .background {
     display: none;
@@ -92,5 +102,6 @@ input {
   .form-wrapper {
     width: 100vw;
     border: none;
+    box-shadow: none;
   }
 }
