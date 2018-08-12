@@ -75,17 +75,14 @@
   }
 }
 @media only screen and (max-width: 500px) {
-  .header .logo-wrapper {
-    flex: 0;
-    display: none;
-  }
   .nav {
     font-size: .9em;
-  }
-  .nav--page {
-    flex: .5;
+    flex: 1;
   }
   .header {
     padding: 5px;
+  }
+  .nav--auth .button-wrapper  {
+    width: 50%;
   }
 }
