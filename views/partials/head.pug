@@ -45,4 +45,12 @@ html(lang="tr")
               a.button.button--login(href="/auth/login") Giriş Yap
             li.button-wrapper.register-wrapper
               a.button.button--register(href="/auth/register") Kaydol
+        if headerType === 'register'
+          .logo-wrapper
+            a(href="/")
+              img.logo(src="/res/images/logo.svg")
+          .dilara
+          ul.nav.nav--auth
+            li.button-wrapper.login-wrapper
+              a.button.button--login(href="/auth/login") Giriş Yap
     .content
