@@ -13,14 +13,11 @@
 .background-image {
   height: 90%;
 }
-.content {
-  padding-top: 75px;
-}
 .form-wrapper {
   width: 500px;
   border-radius: 10px;
   margin: 0 auto;
-  margin-top: 2%;
+  margin-top: 75px;
   height: 80%;
   min-height: 400px;
   padding: 50px;
