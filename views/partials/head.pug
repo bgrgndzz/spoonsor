@@ -41,6 +41,9 @@ html(lang="tr")
             a(href="/")
               img.logo(src="/res/images/logo.svg")
           ul.nav.nav--auth
+            if headerType === 'landing'
+              li.button-wrapper.login-wrapper
+                a.button.button--login(href="/auth/login") Giriş Yap
             li.button-wrapper.register-wrapper
               a.button.button--register(href="/auth/register") Kaydol
         if headerType === 'register'
