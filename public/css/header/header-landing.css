@@ -12,7 +12,8 @@
   top: 0;
   width: 100vw;
   padding: 10px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   background-color: white;
   z-index: 2;
 }
@@ -20,18 +21,29 @@
   width: 100%;
   height: 100%;
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 .nav,
 .header .logo-wrapper {
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
   flex: 1;
 }
 .header .logo-wrapper {
   opacity: 0;
-  transition: .1s ease all;
+  -webkit-transition: 0.1s ease all;
+  transition: 0.1s ease all;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 .header .logo-wrapper a {
@@ -39,12 +51,18 @@
   width: 64px;
 }
 .nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
   justify-content: space-evenly;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 .link--highlighted {
-  color: #FF0083;
+  color: #ff0083;
   font-weight: 500;
 }
 .nav--auth .button-wrapper {
@@ -52,30 +70,36 @@
   text-align: center;
 }
 .nav--auth .button {
-  color: #FF0083;
+  color: #ff0083;
   padding: 5px;
-  font-size: .8em;
+  font-size: 0.8em;
 }
 .nav--auth .button--register {
-  border: 2px solid #FF0083;
+  border: 2px solid #ff0083;
 }
 @media only screen and (max-width: 800px) {
   .nav {
+    -webkit-box-flex: 2;
+    -ms-flex: 2;
     flex: 2;
   }
 }
 @media only screen and (max-width: 700px) {
   .nav {
+    -webkit-box-flex: 4;
+    -ms-flex: 4;
     flex: 4;
   }
 }
 @media only screen and (max-width: 500px) {
   .header .logo-wrapper {
+    -webkit-box-flex: 0;
+    -ms-flex: 0;
     flex: 0;
     display: none;
   }
   .nav {
-    font-size: .8em;
+    font-size: 0.8em;
   }
   .header {
     padding: 5px;

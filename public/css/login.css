@@ -1,4 +1,4 @@
-.background{
+.background {
   width: 120%;
   height: 90%;
   min-height: 500px;
@@ -6,8 +6,14 @@
   top: 5%;
   left: -10%;
   z-index: -1;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 .background-image {
@@ -34,52 +40,57 @@ input {
   outline: none;
 }
 .form .button {
-  background-color: #FF0083;
-  box-shadow: 0 0 24px rgba(255, 0, 131, .5);
+  background-color: #ff0083;
+  -webkit-box-shadow: 0 0 24px rgba(255, 0, 131, 0.5);
+  box-shadow: 0 0 24px rgba(255, 0, 131, 0.5);
   color: white;
   padding: 10px;
   width: 100%;
   margin-bottom: 5px;
   font-size: 1.2em;
-  transition: .25s ease all;
-  border: 3px solid #FF0083;
+  -webkit-transition: 0.25s ease all;
+  transition: 0.25s ease all;
+  border: 3px solid #ff0083;
   letter-spacing: 1px;
   cursor: pointer;
 }
 .form .button:hover {
-  box-shadow: 0 0 36px rgba(255, 0, 131, .75);
+  -webkit-box-shadow: 0 0 36px rgba(255, 0, 131, 0.75);
+  box-shadow: 0 0 36px rgba(255, 0, 131, 0.75);
 }
 .field {
   width: 100%;
   padding: 15px;
   padding-left: 50px;
   border: 1px solid #707070;
-  opacity: .5;
+  opacity: 0.5;
   background-repeat: no-repeat;
   background-size: 20px;
   background-position: 15px 50%;
-  transition: .25s ease all;
+  -webkit-transition: 0.25s ease all;
+  transition: 0.25s ease all;
   margin-bottom: 20px;
 }
 .field:hover,
 .field:focus {
   opacity: 1;
-  border-color: #FF0083;
+  border-color: #ff0083;
 }
 .field--email {
-  background-image: url('/res/images/mail.svg');
+  background-image: url("/res/images/mail.svg");
 }
 .field--password {
-  background-image: url('/res/images/key.svg');
+  background-image: url("/res/images/key.svg");
   margin-bottom: 40px;
 }
 .reset-password {
   display: block;
   margin: 20px 0 0 0;
-  transition: .25s ease all;
+  -webkit-transition: 0.25s ease all;
+  transition: 0.25s ease all;
 }
 .reset-password:hover {
-  color: #FF0083;
+  color: #ff0083;
 }
 @media only screen and (max-width: 1000px) {
   .background {
@@ -89,7 +100,8 @@ input {
 }
 @media only screen and (max-width: 800px) {
   .form-wrapper {
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .15)
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   }
 }
 @media only screen and (max-width: 500px) {
@@ -99,6 +111,7 @@ input {
   .form-wrapper {
     width: 100vw;
     border: none;
+    -webkit-box-shadow: none;
     box-shadow: none;
   }
 }
