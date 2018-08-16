@@ -1,13 +1,14 @@
-include partials/head
-.background
-  img.background-image.background-image--left(src="/res/images/sol2.svg")
-  img.background-image.background-image--right(src="/res/images/sag2.svg")
-.form-wrapper
-  .form-description
-    h1 Tekrar Hoş Geldin!
-    h2 Hesabına giriş yapmak ve markalara ulaşmak için aşağıdaki formu kullan.
-  form.form
-    input.field.field--email(type="email", name="email", placeholder="E-mail")
-    input.field.field--password(type="password", name="password", placeholder="Şifre")
-    input.button(type="submit", value="Giriş Yap")
-    a.link.link__highlighted.reset-password(href="#") Şifreni mi unuttun?
+extends partials/head
+block content
+  .background
+    img.background-image.background-image--left(src="/res/images/sol2.svg")
+    img.background-image.background-image--right(src="/res/images/sag2.svg")
+  .form-wrapper
+    .form-description
+      h1 Tekrar Hoş Geldin!
+      h2 Hesabına giriş yapmak ve markalara ulaşmak için aşağıdaki formu kullan.
+    form.form
+      input.field.field--email(type="email", name="email", placeholder="E-mail")
+      input.field.field--password(type="password", name="password", placeholder="Şifre")
+      input.button(type="submit", value="Giriş Yap")
+      a.link.link__highlighted.reset-password(href="#") Şifreni mi unuttun?

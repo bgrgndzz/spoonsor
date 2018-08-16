@@ -1,293 +1,294 @@
-include partials/head
-.forms-back
-.form-wrapper.form-wrapper--1
-  .form-description
-    h1 Selam! Ben Dilara. Birazdan sana harika sponsorlar bulacağım. Hazır mısın?
-    h2 Seni tanıyabilmem için adını ve e-mail adresini yaz.
-  .form
-    input.field.field--name.field__half(type="text", name="name", placeholder="Ad")
-    input.field.field--name.field__half(type="text", name="name", placeholder="Soyad")
-    input.field.field--email(type="email", name="email", placeholder="E-mail")
-    input.button.button--next(type="submit", value="Başla")
-.form-wrapper.form-wrapper--2
-  .form-description
-    h1
-      | Seninle tanışmak harika!
-      br
-      | Ne için sponsorluk arıyorsun?
-  .form
-    label.radio-wrapper.radio-wrapper--type.radio-wrapper--etkinlik
-      img.radio-image(src="/res/images/etkinlik.svg")
-      span.radio-label Etkinlik
-      input.radio.radio--etkinlik(type="radio", name="type", value="etkinlik")
-      .styled-radio.styled-radio--etkinlik
-    label.radio-wrapper.radio-wrapper--type.radio-wrapper--proje
-      img.radio-image(src="/res/images/proje.svg")
-      span.radio-label Proje
-      input.radio.radio--proje(type="radio", name="type", value="proje")
-      .styled-radio.styled-radio--proje
-    input.button.button--next.button--next--user-type(type="submit", value="Devam")
-.forms--etkinlik
-  .form-wrapper.form-wrapper--3.form-wrapper--etkinlik
+extends partials/head
+block content
+  .forms-back
+  .form-wrapper.form-wrapper--1
     .form-description
-      h1 Etkinliğinin adı nedir?
+      h1 Selam! Ben Dilara. Birazdan sana harika sponsorlar bulacağım. Hazır mısın?
+      h2 Seni tanıyabilmem için adını ve e-mail adresini yaz.
     .form
-      input.field.field--etkinlikname(type="text", name="etkinlikname", placeholder="Etkinlik Adı")
-      input.button.button--next(type="submit", value="Devam")
-  .form-wrapper.form-wrapper--4.form-wrapper--etkinlik
+      input.field.field--name.field__half(type="text", name="name", placeholder="Ad")
+      input.field.field--name.field__half(type="text", name="name", placeholder="Soyad")
+      input.field.field--email(type="email", name="email", placeholder="E-mail")
+      input.button.button--next(type="submit", value="Başla")
+  .form-wrapper.form-wrapper--2
     .form-description
-      h1 Ne zaman ve nerede düzenliyorsun?
+      h1
+        | Seninle tanışmak harika!
+        br
+        | Ne için sponsorluk arıyorsun?
     .form
-      input.field.field--etkinlikstart.field__half(type="text", name="etkinlikstart", placeholder="Başlangıç Tarihi", onfocus="(this.type='date')")
-      input.field.field--etkinlikend.field__half(type="text", name="etkinlikend", placeholder="Bitiş Tarihi", onfocus="(this.type='date')")
-      input.field.field--etkinlikplace(type="text", name="etkinlikplace", placeholder="Mekan")
-      input.button.button--next(type="submit", value="Devam")
-  .form-wrapper.form-wrapper--5.form-wrapper--etkinlik
+      label.radio-wrapper.radio-wrapper--type.radio-wrapper--etkinlik
+        img.radio-image(src="/res/images/etkinlik.svg")
+        span.radio-label Etkinlik
+        input.radio.radio--etkinlik(type="radio", name="type", value="etkinlik")
+        .styled-radio.styled-radio--etkinlik
+      label.radio-wrapper.radio-wrapper--type.radio-wrapper--proje
+        img.radio-image(src="/res/images/proje.svg")
+        span.radio-label Proje
+        input.radio.radio--proje(type="radio", name="type", value="proje")
+        .styled-radio.styled-radio--proje
+      input.button.button--next.button--next--user-type(type="submit", value="Devam")
+  .forms--etkinlik
+    .form-wrapper.form-wrapper--3.form-wrapper--etkinlik
+      .form-description
+        h1 Etkinliğinin adı nedir?
+      .form
+        input.field.field--etkinlikname(type="text", name="etkinlikname", placeholder="Etkinlik Adı")
+        input.button.button--next(type="submit", value="Devam")
+    .form-wrapper.form-wrapper--4.form-wrapper--etkinlik
+      .form-description
+        h1 Ne zaman ve nerede düzenliyorsun?
+      .form
+        input.field.field--etkinlikstart.field__half(type="text", name="etkinlikstart", placeholder="Başlangıç Tarihi", onfocus="(this.type='date')")
+        input.field.field--etkinlikend.field__half(type="text", name="etkinlikend", placeholder="Bitiş Tarihi", onfocus="(this.type='date')")
+        input.field.field--etkinlikplace(type="text", name="etkinlikplace", placeholder="Mekan")
+        input.button.button--next(type="submit", value="Devam")
+    .form-wrapper.form-wrapper--5.form-wrapper--etkinlik
+      .form-description
+        h1 Etkinliğinin türü nedir?
+      .form
+        .radios--etkinlik-type
+          label.radio-wrapper
+            input.radio(type="radio", name="type", value="Düğün") 
+            .styled-radio
+            span.radio-label Düğün
+          label.radio-wrapper
+            input.radio(type="radio", name="type", value="Festival/Fuar") 
+            .styled-radio
+            span.radio-label Festival/Fuar
+          label.radio-wrapper.radio-wrapper--small-font
+            input.radio(type="radio", name="type", value="Kar Amacı Gütmeyen Etkinlik") 
+            .styled-radio
+            span.radio-label Kar Amacı Gütmeyen Etkinlik
+          label.radio-wrapper
+            input.radio(type="radio", name="type", value="Konferans") 
+            .styled-radio
+            span.radio-label Konferans
+          label.radio-wrapper
+            input.radio(type="radio", name="type", value="Kongre") 
+            .styled-radio
+            span.radio-label Kongre
+          label.radio-wrapper
+            input.radio(type="radio", name="type", value="Konser") 
+            .styled-radio
+            span.radio-label Konser
+          label.radio-wrapper
+            input.radio(type="radio", name="type", value="Networking&Buluşma") 
+            .styled-radio
+            span.radio-label Networking/Buluşma
+          label.radio-wrapper
+            input.radio(type="radio", name="type", value="Parti") 
+            .styled-radio
+            span.radio-label Parti
+          label.radio-wrapper
+            input.radio(type="radio", name="type", value="Sergi") 
+            .styled-radio
+            span.radio-label Sergi
+          label.radio-wrapper
+            input.radio(type="radio", name="type", value="Turnuva") 
+            .styled-radio
+            span.radio-label Turnuva
+          label.radio-wrapper
+            input.radio(type="radio", name="type", value="Workshop") 
+            .styled-radio
+            span.radio-label Workshop
+          label.radio-wrapper
+            input.radio(type="radio", name="type", value="Yarışma") 
+            .styled-radio
+            span.radio-label Yarışma
+          label.radio-wrapper
+            input.radio(type="radio", name="type", value="Yemek/Gala") 
+            .styled-radio
+            span.radio-label Yemek/Gala
+          label.radio-wrapper
+            input.radio.radio--other(type="radio", name="type", value="Diğer")
+            .styled-radio
+            span.radio-label Diğer
+          input.field.field--other(type="text", name="type", placeholder="Proje türü")
+        input.button.button--next(type="submit", value="Devam")
+    .form-wrapper.form-wrapper--6.form-wrapper--etkinlik
+      .form-description
+        h1 Etkinliğinin konusu nedir?
+      .form
+        .radios--etkinlik-subject
+          label.radio-wrapper
+            input.radio(type="radio", name="etkinliksubject", value="Bilim&Teknoloji") 
+            .styled-radio
+            span.radio-label Bilim&amp;Teknoloji
+          label.radio-wrapper
+            input.radio(type="radio", name="etkinliksubject", value="Eğitim") 
+            .styled-radio
+            span.radio-label Eğitim
+          label.radio-wrapper
+            input.radio(type="radio", name="etkinliksubject", value="Eğlence") 
+            .styled-radio
+            span.radio-label Eğlence
+          label.radio-wrapper
+            input.radio(type="radio", name="etkinliksubject", value="Girişimcilik") 
+            .styled-radio
+            span.radio-label Girişimcilik
+          label.radio-wrapper
+            input.radio(type="radio", name="etkinliksubject", value="Medya") 
+            .styled-radio
+            span.radio-label Medya
+          label.radio-wrapper
+            input.radio(type="radio", name="etkinliksubject", value="Moda/Güzellik") 
+            .styled-radio
+            span.radio-label Moda/Güzellik
+          label.radio-wrapper
+            input.radio(type="radio", name="etkinliksubject", value="Müzik") 
+            .styled-radio
+            span.radio-label Müzik
+          label.radio-wrapper
+            input.radio(type="radio", name="etkinliksubject", value="Sanat") 
+            .styled-radio
+            span.radio-label Sanat
+          label.radio-wrapper
+            input.radio(type="radio", name="etkinliksubject", value="Sağlık") 
+            .styled-radio
+            span.radio-label Sağlık
+          label.radio-wrapper
+            input.radio(type="radio", name="etkinliksubject", value="Spor") 
+            .styled-radio
+            span.radio-label Spor
+          label.radio-wrapper
+            input.radio(type="radio", name="etkinliksubject", value="Topluluk/Kültür") 
+            .styled-radio
+            span.radio-label Topluluk/Kültür
+          label.radio-wrapper
+            input.radio(type="radio", name="etkinliksubject", value="Yeme/İçme") 
+            .styled-radio
+            span.radio-label Yeme/İçme
+          label.radio-wrapper
+            input.radio(type="radio", name="etkinliksubject", value="Çevre") 
+            .styled-radio
+            span.radio-label Çevre
+          label.radio-wrapper
+            input.radio(type="radio", name="etkinliksubject", value="İnsan Hakları") 
+            .styled-radio
+            span.radio-label İnsan Hakları
+          label.radio-wrapper
+            input.radio(type="radio", name="etkinliksubject", value="İş Hayatı") 
+            .styled-radio
+            span.radio-label İş Hayatı
+          label.radio-wrapper
+            input.radio.radio--other(type="radio", name="etkinliksubject", value="Diğer")
+            .styled-radio
+            span.radio-label Diğer
+          input.field.field--other(type="text", name="etkinliksubject", placeholder="Proje konusu")
+        input.button.button--next(type="submit", value="Devam")
+  .forms--proje
+    .form-wrapper.form-wrapper--7.form-wrapper--proje
+      .form-description
+        h1 Projenin adı ve tarih aralığı nedir?
+      .form
+        input.field.field--projename(type="text", name="projename", placeholder="Proje Adı")
+        input.field.field--projestart.field__half(type="text", name="projestart", placeholder="Başlangıç Tarihi", onfocus="(this.type='date')")
+        input.field.field--projeend.field__half(type="text", name="projeend", placeholder="Bitiş Tarihi", onfocus="(this.type='date')")
+        input.button.button--next(type="submit", value="Devam")
+    .form-wrapper.form-wrapper--8.form-wrapper--proje
+      .form-description
+        h1 Projenin konusu nedir?
+      .form
+        .radios--etkinlik-subject
+          label.radio-wrapper
+            input.radio(type="radio", name="projesubject", value="Bilim&Teknoloji") 
+            .styled-radio
+            span.radio-label Bilim&amp;Teknoloji
+          label.radio-wrapper
+            input.radio(type="radio", name="projesubject", value="Eğitim") 
+            .styled-radio
+            span.radio-label Eğitim
+          label.radio-wrapper
+            input.radio(type="radio", name="projesubject", value="Eğlence") 
+            .styled-radio
+            span.radio-label Eğlence
+          label.radio-wrapper
+            input.radio(type="radio", name="projesubject", value="Girişimcilik") 
+            .styled-radio
+            span.radio-label Girişimcilik
+          label.radio-wrapper
+            input.radio(type="radio", name="projesubject", value="Medya") 
+            .styled-radio
+            span.radio-label Medya
+          label.radio-wrapper
+            input.radio(type="radio", name="projesubject", value="Moda/Güzellik") 
+            .styled-radio
+            span.radio-label Moda/Güzellik
+          label.radio-wrapper
+            input.radio(type="radio", name="projesubject", value="Müzik") 
+            .styled-radio
+            span.radio-label Müzik
+          label.radio-wrapper
+            input.radio(type="radio", name="projesubject", value="Sanat") 
+            .styled-radio
+            span.radio-label Sanat
+          label.radio-wrapper
+            input.radio(type="radio", name="projesubject", value="Sağlık") 
+            .styled-radio
+            span.radio-label Sağlık
+          label.radio-wrapper
+            input.radio(type="radio", name="projesubject", value="Spor") 
+            .styled-radio
+            span.radio-label Spor
+          label.radio-wrapper
+            input.radio(type="radio", name="projesubject", value="Topluluk/Kültür") 
+            .styled-radio
+            span.radio-label Topluluk/Kültür
+          label.radio-wrapper
+            input.radio(type="radio", name="projesubject", value="Yeme/İçme") 
+            .styled-radio
+            span.radio-label Yeme/İçme
+          label.radio-wrapper
+            input.radio(type="radio", name="projesubject", value="Çevre") 
+            .styled-radio
+            span.radio-label Çevre
+          label.radio-wrapper
+            input.radio(type="radio", name="projesubject", value="İnsan Hakları") 
+            .styled-radio
+            span.radio-label İnsan Hakları
+          label.radio-wrapper
+            input.radio(type="radio", name="projesubject", value="İş Hayatı") 
+            .styled-radio
+            span.radio-label İş Hayatı
+          label.radio-wrapper
+            input.radio.radio--other(type="radio", name="projesubject", value="Diğer")
+            .styled-radio
+            span.radio-label Diğer
+          input.field.field--other(type="text", name="projesubject", placeholder="Proje konusu")
+        input.button.button--next(type="submit", value="Devam")
+  .form-wrapper.form-wrapper--9
     .form-description
-      h1 Etkinliğinin türü nedir?
+      h1 Ne tür bir sponsorluğa ihtiyacın var?
     .form
-      .radios--etkinlik-type
+      .radios--sponsorship-type
         label.radio-wrapper
-          input.radio(type="radio", name="type", value="Düğün") 
+          input.radio(type="checkbox", name="sponsorshiptype", value="İçerik") 
           .styled-radio
-          span.radio-label Düğün
+          span.radio-label İçerik
         label.radio-wrapper
-          input.radio(type="radio", name="type", value="Festival/Fuar") 
+          input.radio(type="checkbox", name="sponsorshiptype", value="İndirim/Hediye Kuponu") 
           .styled-radio
-          span.radio-label Festival/Fuar
-        label.radio-wrapper.radio-wrapper--small-font
-          input.radio(type="radio", name="type", value="Kar Amacı Gütmeyen Etkinlik") 
-          .styled-radio
-          span.radio-label Kar Amacı Gütmeyen Etkinlik
+          span.radio-label İndirim/Hediye Kuponu
         label.radio-wrapper
-          input.radio(type="radio", name="type", value="Konferans") 
+          input.radio(type="checkbox", name="sponsorshiptype", value="Mekan") 
           .styled-radio
-          span.radio-label Konferans
+          span.radio-label Mekan
         label.radio-wrapper
-          input.radio(type="radio", name="type", value="Kongre") 
+          input.radio(type="checkbox", name="sponsorshiptype", value="Stand") 
           .styled-radio
-          span.radio-label Kongre
+          span.radio-label Stand
         label.radio-wrapper
-          input.radio(type="radio", name="type", value="Konser") 
+          input.radio(type="checkbox", name="sponsorshiptype", value="Ürün") 
           .styled-radio
-          span.radio-label Konser
-        label.radio-wrapper
-          input.radio(type="radio", name="type", value="Networking&Buluşma") 
-          .styled-radio
-          span.radio-label Networking/Buluşma
-        label.radio-wrapper
-          input.radio(type="radio", name="type", value="Parti") 
-          .styled-radio
-          span.radio-label Parti
-        label.radio-wrapper
-          input.radio(type="radio", name="type", value="Sergi") 
-          .styled-radio
-          span.radio-label Sergi
-        label.radio-wrapper
-          input.radio(type="radio", name="type", value="Turnuva") 
-          .styled-radio
-          span.radio-label Turnuva
-        label.radio-wrapper
-          input.radio(type="radio", name="type", value="Workshop") 
-          .styled-radio
-          span.radio-label Workshop
-        label.radio-wrapper
-          input.radio(type="radio", name="type", value="Yarışma") 
-          .styled-radio
-          span.radio-label Yarışma
-        label.radio-wrapper
-          input.radio(type="radio", name="type", value="Yemek/Gala") 
-          .styled-radio
-          span.radio-label Yemek/Gala
-        label.radio-wrapper
-          input.radio.radio--other(type="radio", name="type", value="Diğer")
-          .styled-radio
-          span.radio-label Diğer
-        input.field.field--other(type="text", name="type", placeholder="Proje türü")
+          span.radio-label Ürün
       input.button.button--next(type="submit", value="Devam")
-  .form-wrapper.form-wrapper--6.form-wrapper--etkinlik
+  .form-wrapper.form-wrapper--10
     .form-description
-      h1 Etkinliğinin konusu nedir?
+      h1 Neredeyse bitti! 
+      h2 Sana ulaşabilmem için telefon numaranı ve hesabına erişebilmen için şifreni yaz.
     .form
-      .radios--etkinlik-subject
-        label.radio-wrapper
-          input.radio(type="radio", name="etkinliksubject", value="Bilim&Teknoloji") 
-          .styled-radio
-          span.radio-label Bilim&amp;Teknoloji
-        label.radio-wrapper
-          input.radio(type="radio", name="etkinliksubject", value="Eğitim") 
-          .styled-radio
-          span.radio-label Eğitim
-        label.radio-wrapper
-          input.radio(type="radio", name="etkinliksubject", value="Eğlence") 
-          .styled-radio
-          span.radio-label Eğlence
-        label.radio-wrapper
-          input.radio(type="radio", name="etkinliksubject", value="Girişimcilik") 
-          .styled-radio
-          span.radio-label Girişimcilik
-        label.radio-wrapper
-          input.radio(type="radio", name="etkinliksubject", value="Medya") 
-          .styled-radio
-          span.radio-label Medya
-        label.radio-wrapper
-          input.radio(type="radio", name="etkinliksubject", value="Moda/Güzellik") 
-          .styled-radio
-          span.radio-label Moda/Güzellik
-        label.radio-wrapper
-          input.radio(type="radio", name="etkinliksubject", value="Müzik") 
-          .styled-radio
-          span.radio-label Müzik
-        label.radio-wrapper
-          input.radio(type="radio", name="etkinliksubject", value="Sanat") 
-          .styled-radio
-          span.radio-label Sanat
-        label.radio-wrapper
-          input.radio(type="radio", name="etkinliksubject", value="Sağlık") 
-          .styled-radio
-          span.radio-label Sağlık
-        label.radio-wrapper
-          input.radio(type="radio", name="etkinliksubject", value="Spor") 
-          .styled-radio
-          span.radio-label Spor
-        label.radio-wrapper
-          input.radio(type="radio", name="etkinliksubject", value="Topluluk/Kültür") 
-          .styled-radio
-          span.radio-label Topluluk/Kültür
-        label.radio-wrapper
-          input.radio(type="radio", name="etkinliksubject", value="Yeme/İçme") 
-          .styled-radio
-          span.radio-label Yeme/İçme
-        label.radio-wrapper
-          input.radio(type="radio", name="etkinliksubject", value="Çevre") 
-          .styled-radio
-          span.radio-label Çevre
-        label.radio-wrapper
-          input.radio(type="radio", name="etkinliksubject", value="İnsan Hakları") 
-          .styled-radio
-          span.radio-label İnsan Hakları
-        label.radio-wrapper
-          input.radio(type="radio", name="etkinliksubject", value="İş Hayatı") 
-          .styled-radio
-          span.radio-label İş Hayatı
-        label.radio-wrapper
-          input.radio.radio--other(type="radio", name="etkinliksubject", value="Diğer")
-          .styled-radio
-          span.radio-label Diğer
-        input.field.field--other(type="text", name="etkinliksubject", placeholder="Proje konusu")
-      input.button.button--next(type="submit", value="Devam")
-.forms--proje
-  .form-wrapper.form-wrapper--7.form-wrapper--proje
-    .form-description
-      h1 Projenin adı ve tarih aralığı nedir?
-    .form
-      input.field.field--projename(type="text", name="projename", placeholder="Proje Adı")
-      input.field.field--projestart.field__half(type="text", name="projestart", placeholder="Başlangıç Tarihi", onfocus="(this.type='date')")
-      input.field.field--projeend.field__half(type="text", name="projeend", placeholder="Bitiş Tarihi", onfocus="(this.type='date')")
-      input.button.button--next(type="submit", value="Devam")
-  .form-wrapper.form-wrapper--8.form-wrapper--proje
-    .form-description
-      h1 Projenin konusu nedir?
-    .form
-      .radios--etkinlik-subject
-        label.radio-wrapper
-          input.radio(type="radio", name="projesubject", value="Bilim&Teknoloji") 
-          .styled-radio
-          span.radio-label Bilim&amp;Teknoloji
-        label.radio-wrapper
-          input.radio(type="radio", name="projesubject", value="Eğitim") 
-          .styled-radio
-          span.radio-label Eğitim
-        label.radio-wrapper
-          input.radio(type="radio", name="projesubject", value="Eğlence") 
-          .styled-radio
-          span.radio-label Eğlence
-        label.radio-wrapper
-          input.radio(type="radio", name="projesubject", value="Girişimcilik") 
-          .styled-radio
-          span.radio-label Girişimcilik
-        label.radio-wrapper
-          input.radio(type="radio", name="projesubject", value="Medya") 
-          .styled-radio
-          span.radio-label Medya
-        label.radio-wrapper
-          input.radio(type="radio", name="projesubject", value="Moda/Güzellik") 
-          .styled-radio
-          span.radio-label Moda/Güzellik
-        label.radio-wrapper
-          input.radio(type="radio", name="projesubject", value="Müzik") 
-          .styled-radio
-          span.radio-label Müzik
-        label.radio-wrapper
-          input.radio(type="radio", name="projesubject", value="Sanat") 
-          .styled-radio
-          span.radio-label Sanat
-        label.radio-wrapper
-          input.radio(type="radio", name="projesubject", value="Sağlık") 
-          .styled-radio
-          span.radio-label Sağlık
-        label.radio-wrapper
-          input.radio(type="radio", name="projesubject", value="Spor") 
-          .styled-radio
-          span.radio-label Spor
-        label.radio-wrapper
-          input.radio(type="radio", name="projesubject", value="Topluluk/Kültür") 
-          .styled-radio
-          span.radio-label Topluluk/Kültür
-        label.radio-wrapper
-          input.radio(type="radio", name="projesubject", value="Yeme/İçme") 
-          .styled-radio
-          span.radio-label Yeme/İçme
-        label.radio-wrapper
-          input.radio(type="radio", name="projesubject", value="Çevre") 
-          .styled-radio
-          span.radio-label Çevre
-        label.radio-wrapper
-          input.radio(type="radio", name="projesubject", value="İnsan Hakları") 
-          .styled-radio
-          span.radio-label İnsan Hakları
-        label.radio-wrapper
-          input.radio(type="radio", name="projesubject", value="İş Hayatı") 
-          .styled-radio
-          span.radio-label İş Hayatı
-        label.radio-wrapper
-          input.radio.radio--other(type="radio", name="projesubject", value="Diğer")
-          .styled-radio
-          span.radio-label Diğer
-        input.field.field--other(type="text", name="projesubject", placeholder="Proje konusu")
-      input.button.button--next(type="submit", value="Devam")
-.form-wrapper.form-wrapper--9
-  .form-description
-    h1 Ne tür bir sponsorluğa ihtiyacın var?
-  .form
-    .radios--sponsorship-type
-      label.radio-wrapper
-        input.radio(type="checkbox", name="sponsorshiptype", value="İçerik") 
-        .styled-radio
-        span.radio-label İçerik
-      label.radio-wrapper
-        input.radio(type="checkbox", name="sponsorshiptype", value="İndirim/Hediye Kuponu") 
-        .styled-radio
-        span.radio-label İndirim/Hediye Kuponu
-      label.radio-wrapper
-        input.radio(type="checkbox", name="sponsorshiptype", value="Mekan") 
-        .styled-radio
-        span.radio-label Mekan
-      label.radio-wrapper
-        input.radio(type="checkbox", name="sponsorshiptype", value="Stand") 
-        .styled-radio
-        span.radio-label Stand
-      label.radio-wrapper
-        input.radio(type="checkbox", name="sponsorshiptype", value="Ürün") 
-        .styled-radio
-        span.radio-label Ürün
-    input.button.button--next(type="submit", value="Devam")
-.form-wrapper.form-wrapper--10
-  .form-description
-    h1 Neredeyse bitti! 
-    h2 Sana ulaşabilmem için telefon numaranı ve hesabına erişebilmen için şifreni yaz.
-  .form
-    input.field(type="phone", name="phone", placeholder="Telefon Numarası")
-    input.field(type="password", name="password", placeholder="Şifre")
-    input.field(type="password", name="password2", placeholder="Şifre Doğrulaması")
-    input.button(type="submit", value="Kaydını tamamla")
+      input.field(type="phone", name="phone", placeholder="Telefon Numarası")
+      input.field(type="password", name="password", placeholder="Şifre")
+      input.field(type="password", name="password2", placeholder="Şifre Doğrulaması")
+      input.button(type="submit", value="Kaydını tamamla")
