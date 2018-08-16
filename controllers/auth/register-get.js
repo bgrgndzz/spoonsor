@@ -3,7 +3,7 @@ module.exports = (req, res, next) => {
     page: 'register',
     title: 'Kayıt Ol',
     includes: {
-      external: ['animate'],
+      external: ['animate.css'],
       js: ['register'],
     },
     headerType: 'register'

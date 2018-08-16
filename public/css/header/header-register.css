@@ -86,6 +86,7 @@
 }
 .nav--auth .button-wrapper {
   text-align: center;
+  margin-right: 50px;
 }
 .nav--auth .button {
   color: #FF0083;
@@ -94,6 +95,9 @@
 }
 @media only screen and (max-width: 500px) {
   .header .logo-wrapper {
-    margin-left: 0;
+    margin-left: 25px;
+  }
+  .nav--auth .button-wrapper {
+    margin-right: 25px;
   }
 }
