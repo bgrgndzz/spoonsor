@@ -5,8 +5,9 @@
   box-sizing: border-box;
   font-family: "Hind", sans-serif;
 }
-body {
+.wrapper {
   overflow-x: hidden;
+  width: 100vw;
 }
 h1 {
   font-family: "PT Serif", serif;

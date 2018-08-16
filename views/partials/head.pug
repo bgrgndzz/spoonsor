@@ -29,31 +29,32 @@ html(lang="tr")
       gtag('js', new Date());
       gtag('config', 'UA-123574708-1');
   body
-    .header
-      .header-wrapper
-        if headerType === 'landing' || headerType === 'login'
-          ul.nav.nav--page
-            li
-              a.link(href="#") Sponsorlar
-            if headerType === 'landing'
+    .wrapper
+      .header
+        .header-wrapper
+          if headerType === 'landing' || headerType === 'login'
+            ul.nav.nav--page
               li
-                a.link.link--highlighted(href="#nasil") Nasıl Çalışır
-          .logo-wrapper
-            a(href="/")
-              img.logo(src="/res/images/logo.svg")
-          ul.nav.nav--auth
-            if headerType === 'landing'
+                a.link(href="#") Sponsorlar
+              if headerType === 'landing'
+                li
+                  a.link.link--highlighted(href="#nasil") Nasıl Çalışır
+            .logo-wrapper
+              a(href="/")
+                img.logo(src="/res/images/logo.svg")
+            ul.nav.nav--auth
+              if headerType === 'landing'
+                li.button-wrapper.login-wrapper
+                  a.button.button--login(href="/auth/login") Giriş Yap
+              li.button-wrapper.register-wrapper
+                a.button.button--register(href="/auth/register") Kaydol
+          if headerType === 'register'
+            .logo-wrapper
+              a(href="/")
+                img.logo(src="/res/images/logo.svg")
+            .dilara
+            ul.nav.nav--auth
               li.button-wrapper.login-wrapper
                 a.button.button--login(href="/auth/login") Giriş Yap
-            li.button-wrapper.register-wrapper
-              a.button.button--register(href="/auth/register") Kaydol
-        if headerType === 'register'
-          .logo-wrapper
-            a(href="/")
-              img.logo(src="/res/images/logo.svg")
-          .dilara
-          ul.nav.nav--auth
-            li.button-wrapper.login-wrapper
-              a.button.button--login(href="/auth/login") Giriş Yap
-    .content
-      block content
+      .content
+        block content
