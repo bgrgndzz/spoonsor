@@ -582,4 +582,7 @@
   .ana-content .logo {
     margin-top: 100px;
   }
+  .call-to-action {
+    width: 60%;
+  }
 }
