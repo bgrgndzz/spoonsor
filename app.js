@@ -19,6 +19,7 @@ const logger = require('./utils/logger');
 // require routes
 const indexRoute = require('./routes/index');
 const authRoute = require('./routes/auth');
+const appRoute = require('./routes/app');
 
 // constants
 const {
@@ -59,6 +60,7 @@ app.use(helmet());
 // routing
 app.use('/', indexRoute);
 app.use('/auth/', authRoute);
+app.use('/app/', appRoute);
 
 // listen to connections
 const server = app.listen(PORT);
