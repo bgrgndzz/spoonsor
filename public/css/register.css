@@ -157,6 +157,7 @@ input {
 }
 .radios--etkinlik-type,
 .radios--etkinlik-subject,
+.radios--proje-subject,
 .radios--sponsorship-type {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -176,6 +177,7 @@ input {
 }
 .radios--etkinlik-type .radio-wrapper,
 .radios--etkinlik-subject .radio-wrapper,
+.radios--proje-subject .radio-wrapper,
 .radios--sponsorship-type .radio-wrapper {
   -ms-flex-preferred-size: 45%;
   flex-basis: 45%;
@@ -201,6 +203,7 @@ input {
 }
 .radios--etkinlik-type .styled-radio,
 .radios--etkinlik-subject .styled-radio,
+.radios--proje-subject .styled-radio,
 .radios--sponsorship-type .styled-radio {
   margin: 0;
   margin-right: 10px;
@@ -230,6 +233,7 @@ input {
 @media only screen and (max-width: 600px) {
   .radios--etkinlik-type .radio-wrapper,
   .radios--etkinlik-subject .radio-wrapper,
+  .radios--proje-subject .radio-wrapper,
   .radios--sponsorship-type .radio-wrapper {
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;

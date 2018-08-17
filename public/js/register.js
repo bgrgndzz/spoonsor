@@ -1,9 +1,9 @@
-const toggleDisplay = (element, condition) => {
+const toggleDisplay = (element, condition, opacity = 1) => {
   const newStyle = condition ? 'block' : 'none';
   if (element.style.display !== newStyle) {
     if (newStyle === 'block') {
       element.style.display = newStyle;
-      setTimeout(() => element.style.opacity = 1, 250);
+      setTimeout(() => element.style.opacity = opacity, 250);
     } else {
       element.style.opacity = 0;
       setTimeout(() => element.style.display = newStyle, 250);
@@ -66,6 +66,9 @@ window.onload = () => {
   const etkinlikSubjectRadios = document.querySelectorAll('.radios--etkinlik-subject .radio');
   const etkinlikSubjectOtherRadio = document.querySelector('.radios--etkinlik-subject .radio--other');
   const etkinlikSubjectOtherField = document.querySelector('.radios--etkinlik-subject .field--other');
+  const projeSubjectRadios = document.querySelectorAll('.radios--proje-subject .radio');
+  const projeSubjectOtherRadio = document.querySelector('.radios--proje-subject .radio--other');
+  const projeSubjectOtherField = document.querySelector('.radios--proje-subject .field--other');
 
   formsBack.onclick = () => {currentForm = nextForm(forms, currentForm, formsBack, userType, 'back')};
   nextButtons.forEach(nextButton => {
@@ -75,9 +78,12 @@ window.onload = () => {
     typeRadio.onchange = () => userType = typeRadio.checked ? typeRadio.value : userType;
   });
   etkinlikTypeRadios.forEach(etkinlikTypeRadio => {
-    etkinlikTypeRadio.onchange = () => toggleDisplay(etkinlikTypeOtherField, etkinlikTypeOtherRadio.checked);
+    etkinlikTypeRadio.onchange = () => toggleDisplay(etkinlikTypeOtherField, etkinlikTypeOtherRadio.checked, .5);
   });
   etkinlikSubjectRadios.forEach(etkinlikSubjectRadio => {
-    etkinlikSubjectRadio.onchange = () => toggleDisplay(etkinlikSubjectOtherField, etkinlikSubjectOtherRadio.checked);
+    etkinlikSubjectRadio.onchange = () => toggleDisplay(etkinlikSubjectOtherField, etkinlikSubjectOtherRadio.checked, .5);
+  });
+  projeSubjectRadios.forEach(projeSubjectRadio => {
+    projeSubjectRadio.onchange = () => toggleDisplay(projeSubjectOtherField, projeSubjectOtherRadio.checked, .5);
   });
 };
