@@ -28,3 +28,8 @@ a {
 .content {
   margin-top: 50px;
 }
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

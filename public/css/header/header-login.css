@@ -117,5 +117,9 @@
   }
   .nav--auth .button-wrapper {
     width: 50%;
+    margin-right: 10px;
+  }
+  .nav--page li {
+    margin-left: 10px;
   }
 }
