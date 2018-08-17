@@ -92,6 +92,15 @@ input {
   opacity: 1;
   border-color: #ff0083;
 }
+input[type="date"]:before {
+  content: attr(placeholder) !important;
+  color: #aaa;
+  margin-right: 0.5em;
+}
+input[type="date"]:focus:before,
+input[type="date"]:valid:before {
+  content: "";
+}
 .radio-wrapper--type {
   width: 45%;
   display: block;

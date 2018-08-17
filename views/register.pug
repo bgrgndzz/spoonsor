@@ -39,8 +39,8 @@ block content
       .form-description
         h1 Ne zaman ve nerede düzenliyorsun?
       .form
-        input.field.field--etkinlikstart.field__half(type="text", name="etkinlikstart", placeholder="Başlangıç Tarihi", onfocus="(this.type='date')")
-        input.field.field--etkinlikend.field__half(type="text", name="etkinlikend", placeholder="Bitiş Tarihi", onfocus="(this.type='date')")
+        input.field.field--etkinlikstart.field__half(type="date", name="etkinlikstart", placeholder="Başlangıç Tarihi")
+        input.field.field--etkinlikend.field__half(type="date", name="etkinlikend", placeholder="Bitiş Tarihi")
         input.field.field--etkinlikplace(type="text", name="etkinlikplace", placeholder="Mekan")
         input.button.button--next(type="submit", value="Devam")
     .form-wrapper.form-wrapper--5.form-wrapper--etkinlik
@@ -183,8 +183,8 @@ block content
         h1 Projenin adı ve tarih aralığı nedir?
       .form
         input.field.field--projename(type="text", name="projename", placeholder="Proje Adı")
-        input.field.field--projestart.field__half(type="text", name="projestart", placeholder="Başlangıç Tarihi", onfocus="(this.type='date')")
-        input.field.field--projeend.field__half(type="text", name="projeend", placeholder="Bitiş Tarihi", onfocus="(this.type='date')")
+        input.field.field--projestart.field__half(type="date", name="projestart", placeholder="Başlangıç Tarihi")
+        input.field.field--projeend.field__half(type="date", name="projeend", placeholder="Bitiş Tarihi")
         input.button.button--next(type="submit", value="Devam")
     .form-wrapper.form-wrapper--8.form-wrapper--proje
       .form-description
