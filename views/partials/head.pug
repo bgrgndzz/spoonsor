@@ -56,5 +56,44 @@ html(lang="tr")
             ul.nav.nav--auth
               li.button-wrapper.login-wrapper
                 a.button.button--login(href="/auth/login") Giriş Yap
+          if headerType === 'app'
+            ul.nav.nav--left
+              li
+                if page === 'sponsors'
+                  a.link.link--highlighted(href="#") Sponsorlar
+                else
+                  a.link(href="/app/sponsors") Sponsorlar
+              li
+                a.link(href="#") Sponsor Arayanlar
+            .logo-wrapper
+              a(href="/")
+                img.logo(src="/res/images/logo.svg")
+            ul.nav.nav--right 
+              li
+                a.link(href="#")
+                  img.nav-img(src="/res/images/messages.svg")
+              li
+                a.link(href="#")
+                  img.nav-img(src="/res/images/user.svg")
+            .hamburger
+              .hamburger-icon
+                .bar.top
+                .bar.middle
+                .bar.bottom
+              .hamburger-overlay
+              ul.hamburger-wrapper
+                li
+                  if page === 'sponsors'
+                    a.link.link--highlighted(href="/app/sponsors") Sponsorlar
+                  else
+                    a.link(href="/app/sponsors") Sponsorlar
+                li
+                  a.link(href="#") Sponsor Arayanlar
+                li
+                  a.link(href="#") Görüşmeler
+                li
+                  a.link(href="#") Profil
+                li
+                  a.link(href="#") Çıkış Yap
       .content
         block content
