@@ -1,6 +1,9 @@
 extends ../partials/head
 block content
   .filters
+    span.filter.button--filter 
+      i.fas.fa-plus.button--add-filter 
+      | Filtre ekle
     span.filter 
       i.fas.fa-times.button--delete-filter
       | İçerik
@@ -10,9 +13,6 @@ block content
     span.filter 
       i.fas.fa-times.button--delete-filter
       | Nakit
-    span.filter.button--filter 
-      i.fas.fa-plus.button--add-filter 
-      | Filtre ekle
   .items-wrapper
     .items
       - for(i = 0; i <= 7; i++)
