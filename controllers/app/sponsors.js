@@ -3,6 +3,7 @@ module.exports = (req, res, next) => {
     page: 'sponsors',
     title: 'Sponsorlar',
     includes: {
+      external: ['fontawesome'],
       js: ['sponsors']
     },
     headerType: 'app'

@@ -1,3 +1,28 @@
 extends ../partials/head
 block content
-  
+  .filters
+    span.filter 
+      i.fas.fa-times.button--delete-filter
+      | İçerik
+    span.filter 
+      i.fas.fa-times.button--delete-filter
+      | Yeme&amp;İçme
+    span.filter 
+      i.fas.fa-times.button--delete-filter
+      | Nakit
+    span.filter.button--filter 
+      i.fas.fa-plus.button--add-filter 
+      | Filtre ekle
+  .items-wrapper
+    .items
+      - for(i = 0; i <= 7; i++)
+        .item
+          h2.item-name.open-modal Sponsor
+          .item-image.open-modal(style="background-image: url('http://pngimg.com/uploads/ibm/ibm_PNG19658.png')")
+          span.item-description
+            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, accusantium... 
+            a.open-modal Daha fazla gör 
+          .item-sponsorships
+            span.item-sponsorship İçerik
+            span.item-sponsorship Yeme&amp;İçme
+            span.item-sponsorship Nakit
