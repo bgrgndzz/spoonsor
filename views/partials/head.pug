@@ -60,11 +60,14 @@ html(lang="tr")
             ul.nav.nav--left
               li
                 if page === 'sponsors'
-                  a.link.link--highlighted(href="#") Sponsorlar
+                  a.link.link--highlighted(href="/app/sponsors") Sponsorlar
                 else
                   a.link(href="/app/sponsors") Sponsorlar
               li
-                a.link(href="#") Sponsor Arayanlar
+                if page === 'seekers'
+                  a.link.link--highlighted(href="/app/seekers") Sponsor Arayanlar
+                else
+                  a.link(href="/app/seekers") Sponsor Arayanlar
             .logo-wrapper
               a(href="/")
                 img.logo(src="/res/images/logo.svg")
@@ -88,7 +91,10 @@ html(lang="tr")
                   else
                     a.link(href="/app/sponsors") Sponsorlar
                 li
-                  a.link(href="#") Sponsor Arayanlar
+                  if page === 'seekers'
+                    a.link.link--highlighted(href="/app/seekers") Sponsor Arayanlar
+                  else
+                    a.link(href="/app/seekers") Sponsor Arayanlar
                 li
                   a.link(href="#") Görüşmeler
                 li
