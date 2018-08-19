@@ -186,6 +186,7 @@
   transform: translate(-50%, -50%);
   z-index: 4;
   border-radius: 10px;
+  overflow: scroll;
 }
 .modal-close-button {
   position: absolute;
@@ -272,17 +273,12 @@
 }
 .modal-description {
   padding: 20px 100px;
-  overflow: scroll;
-  height: calc(60% - 100px);
   font-weight: 100;
   color: rgba(0, 0, 0, 0.5);
+  text-align: center;
 }
 .modal-contact-button {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
+  margin: 0 auto;
   background-color: #ff0083;
   -webkit-box-shadow: 0 0 24px rgba(255, 0, 131, 0.5);
   box-shadow: 0 0 24px rgba(255, 0, 131, 0.5);
