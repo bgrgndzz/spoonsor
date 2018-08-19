@@ -1,25 +1,3 @@
-const toggleDisplay = (element, condition, opacity = 1) => {
-  const newStyle = condition ? 'block' : 'none';
-  if (element.style.display !== newStyle) {
-    if (newStyle === 'block') {
-      element.style.display = newStyle;
-      setTimeout(() => element.style.opacity = opacity, 250);
-    } else {
-      element.style.opacity = 0;
-      setTimeout(() => element.style.display = newStyle, 250);
-    }
-  }
-};
-const scrollTo = (element, to, duration) => {
-  if (duration < 0) return;
-  const difference = to - element.scrollTop;
-  const perTick = difference / duration * 10;
-  setTimeout(() => {
-    element.scrollTop = element.scrollTop + perTick;
-    if (element.scrollTop === to) return;
-    scrollTo(element, to, duration - 10);
-  }, 10);
-};
 const hideForm = (forms, currentForm, type = 'front') => {
   forms[currentForm].classList.remove('fadeInRight');
   forms[currentForm].classList.remove('fadeInLeft');

@@ -4,7 +4,10 @@ module.exports = (req, res, next) => {
     title: 'Sponsorlar',
     includes: {
       external: ['fontawesome'],
-      js: ['sponsors']
+      js: [
+        'sponsors',
+        'util/toggleDisplay'
+      ]
     },
     headerType: 'app'
   });

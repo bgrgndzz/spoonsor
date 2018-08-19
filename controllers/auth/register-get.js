@@ -4,7 +4,11 @@ module.exports = (req, res, next) => {
     title: 'Kayıt Ol',
     includes: {
       external: ['animate.css'],
-      js: ['register'],
+      js: [
+        'register',
+        'util/toggleDisplay',
+        'util/scrollTo'
+      ],
     },
     headerType: 'register'
   });
