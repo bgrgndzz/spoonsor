@@ -160,7 +160,8 @@
   z-index: 3;
   display: none;
   opacity: 0;
-  transition: .5s ease all;
+  -webkit-transition: 0.5s ease all;
+  transition: 0.5s ease all;
 }
 .overlay {
   width: 100vw;
@@ -176,10 +177,12 @@
   width: 60vw;
   height: 90vh;
   background-color: white;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
   position: fixed;
   top: 50%;
   left: 50%;
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   z-index: 4;
   border-radius: 10px;
@@ -213,10 +216,12 @@
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 50%;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
   position: absolute;
   top: 50%;
   left: 50%;
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   z-index: 5;
 }
@@ -225,6 +230,7 @@
   padding: 10px;
   padding-top: 30px;
   background-color: #f7f7f7;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -253,10 +259,12 @@
   position: absolute;
   bottom: 0;
   left: 50%;
+  -webkit-transform: translate(-50%, 50%);
   transform: translate(-50%, 50%);
   background: white;
   padding: 0 50px;
   z-index: 5;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   border-radius: 20px;
   color: rgba(0, 0, 0, 0.75);
@@ -273,6 +281,7 @@
   position: absolute;
   bottom: 20px;
   left: 50%;
+  -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   background-color: #ff0083;
   -webkit-box-shadow: 0 0 24px rgba(255, 0, 131, 0.5);
