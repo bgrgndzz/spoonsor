@@ -303,6 +303,14 @@
     width: 75vw;
     grid-template-columns: 1fr 1fr;
   }
+  .modal-description {
+    padding: 20px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .modal {
+    width: 80vw;
+  }
 }
 @media only screen and (max-width: 800px) {
   .items {
@@ -314,6 +322,9 @@
   .items {
     width: 100vw;
     grid-template-columns: 1fr 1fr;
+  }
+  .modal-contact-button {
+    width: 60%;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -327,6 +338,14 @@
     -webkit-box-pack: start;
     -ms-flex-pack: start;
     justify-content: flex-start;
+  }
+  .modal {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
+  .modal-image-wrapper {
+    border-radius: 0;
   }
 }
 @media only screen and (max-width: 500px) {
