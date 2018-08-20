@@ -10,11 +10,20 @@ const registerPostController = require('../controllers/auth/register-post');
 // require validators
 const registerPostValidator = require('../controllers/auth/register-validate');
 
+// require middleware
+const validationResult = require('../middleware/validationResult');
+
 // routing
 // get
 router.get('/login', loginGetController);
 router.get('/register', registerGetController);
+
 // post
-router.post('/register', registerPostValidator, registerPostController);
+router.post(
+  '/register', 
+    registerPostValidator, 
+    validationResult, 
+    registerPostController
+);
 
 module.exports = router;

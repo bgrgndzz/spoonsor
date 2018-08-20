@@ -1,4 +1,4 @@
-const { check, oneOf } = require('express-validator/check');
+const {check, oneOf} = require('express-validator/check');
 
 const unknownError = 'Bilinmeyen bir hata oluştu';
 const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
