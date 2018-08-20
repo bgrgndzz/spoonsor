@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
       external: ['fontawesome'],
       js: [
         'sponsors',
-        'util/toggleDisplay'
+        'utils/toggleDisplay'
       ]
     },
     headerType: 'app'

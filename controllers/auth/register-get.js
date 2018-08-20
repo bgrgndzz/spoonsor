@@ -6,8 +6,8 @@ module.exports = (req, res, next) => {
       external: ['animate.css'],
       js: [
         'register',
-        'util/toggleDisplay',
-        'util/scrollTo'
+        'utils/toggleDisplay',
+        'utils/scrollTo'
       ],
     },
     headerType: 'register'
