@@ -7,9 +7,9 @@ block content
       h2 Seni tanıyabilmem için adını ve e-mail adresini yaz.
     .form
       input.field.field--name.field__half(type="text", name="name", placeholder="Ad")
-      input.field.field--name.field__half(type="text", name="name", placeholder="Soyad")
+      input.field.field--name.field__half(type="text", name="surname", placeholder="Soyad")
       input.field.field--email(type="email", name="email", placeholder="E-mail")
-      input.button.button--next(type="submit", value="Başla")
+      input.button.button--next.button--email-submit(type="submit", value="Başla")
   .form-wrapper.form-wrapper--2
     .form-description
       h1
@@ -49,62 +49,62 @@ block content
       .form
         .radios--etkinlik-type
           label.radio-wrapper
-            input.radio(type="radio", name="type", value="Düğün") 
+            input.radio(type="radio", name="etkinliktype", value="Düğün") 
             .styled-radio
             span.radio-label Düğün
           label.radio-wrapper
-            input.radio(type="radio", name="type", value="Festival/Fuar") 
+            input.radio(type="radio", name="etkinliktype", value="Festival/Fuar") 
             .styled-radio
             span.radio-label Festival/Fuar
           label.radio-wrapper.radio-wrapper--small-font
-            input.radio(type="radio", name="type", value="Kar Amacı Gütmeyen Etkinlik") 
+            input.radio(type="radio", name="etkinliktype", value="Kar Amacı Gütmeyen Etkinlik") 
             .styled-radio
             span.radio-label Kar Amacı Gütmeyen Etkinlik
           label.radio-wrapper
-            input.radio(type="radio", name="type", value="Konferans") 
+            input.radio(type="radio", name="etkinliktype", value="Konferans") 
             .styled-radio
             span.radio-label Konferans
           label.radio-wrapper
-            input.radio(type="radio", name="type", value="Kongre") 
+            input.radio(type="radio", name="etkinliktype", value="Kongre") 
             .styled-radio
             span.radio-label Kongre
           label.radio-wrapper
-            input.radio(type="radio", name="type", value="Konser") 
+            input.radio(type="radio", name="etkinliktype", value="Konser") 
             .styled-radio
             span.radio-label Konser
           label.radio-wrapper
-            input.radio(type="radio", name="type", value="Networking&Buluşma") 
+            input.radio(type="radio", name="etkinliktype", value="Networking&Buluşma") 
             .styled-radio
             span.radio-label Networking/Buluşma
           label.radio-wrapper
-            input.radio(type="radio", name="type", value="Parti") 
+            input.radio(type="radio", name="etkinliktype", value="Parti") 
             .styled-radio
             span.radio-label Parti
           label.radio-wrapper
-            input.radio(type="radio", name="type", value="Sergi") 
+            input.radio(type="radio", name="etkinliktype", value="Sergi") 
             .styled-radio
             span.radio-label Sergi
           label.radio-wrapper
-            input.radio(type="radio", name="type", value="Turnuva") 
+            input.radio(type="radio", name="etkinliktype", value="Turnuva") 
             .styled-radio
             span.radio-label Turnuva
           label.radio-wrapper
-            input.radio(type="radio", name="type", value="Workshop") 
+            input.radio(type="radio", name="etkinliktype", value="Workshop") 
             .styled-radio
             span.radio-label Workshop
           label.radio-wrapper
-            input.radio(type="radio", name="type", value="Yarışma") 
+            input.radio(type="radio", name="etkinliktype", value="Yarışma") 
             .styled-radio
             span.radio-label Yarışma
           label.radio-wrapper
-            input.radio(type="radio", name="type", value="Yemek/Gala") 
+            input.radio(type="radio", name="etkinliktype", value="Yemek/Gala") 
             .styled-radio
             span.radio-label Yemek/Gala
           label.radio-wrapper
-            input.radio.radio--other(type="radio", name="type", value="Diğer")
+            input.radio.radio--other(type="radio", name="etkinliktype", value="Diğer")
             .styled-radio
             span.radio-label Diğer
-          input.field.field--other(type="text", name="type", placeholder="Proje türü")
+          input.field.field--other(type="text", name="etkinliktype", placeholder="Proje türü")
         input.button.button--next(type="submit", value="Devam")
     .form-wrapper.form-wrapper--6.form-wrapper--etkinlik
       .form-description
@@ -288,7 +288,7 @@ block content
       h1 Neredeyse bitti! 
       h2 Sana ulaşabilmem için telefon numaranı ve hesabına erişebilmen için şifreni yaz.
     .form
-      input.field(type="phone", name="phone", placeholder="Telefon Numarası")
+      input.field(type="tel", name="phone", placeholder="Telefon Numarası")
       input.field(type="password", name="password", placeholder="Şifre")
-      input.field(type="password", name="password2", placeholder="Şifre Doğrulaması")
-      input.button(type="submit", value="Kaydını tamamla")
+      input.field(type="password2", name="password2", placeholder="Şifre Doğrulaması")
+      input.button.button--submit(type="submit", value="Kaydını tamamla")
