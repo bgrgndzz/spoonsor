@@ -12,8 +12,8 @@
   top: 0;
   width: 100vw;
   padding: 10px;
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   background-color: white;
   z-index: 2;
 }
@@ -49,7 +49,7 @@
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  background-image: url('/res/images/dilara.jpeg');
+  background-image: url("/res/images/dilara.jpeg");
   background-size: cover;
   background-position: 40%;
   background-repeat: no-repeat;
@@ -85,16 +85,13 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
 }
 .header .logo-wrapper a {
   height: 40px;
   width: 64px;
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -115,7 +112,7 @@
   align-items: center;
 }
 .link--highlighted {
-  color: #FF0083;
+  color: #ff0083;
   font-weight: 500;
 }
 .nav--auth .button-wrapper {
@@ -123,9 +120,9 @@
   margin-right: 50px;
 }
 .nav--auth .button {
-  color: #FF0083;
+  color: #ff0083;
   padding: 5px;
-  font-size: .8em;
+  font-size: 0.8em;
 }
 @media only screen and (max-width: 500px) {
   .header .logo-wrapper {
