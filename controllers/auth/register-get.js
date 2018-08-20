@@ -3,7 +3,11 @@ module.exports = (req, res, next) => {
     page: 'register',
     title: 'Kayıt Ol',
     includes: {
-      external: ['animate.css'],
+      external: [
+        'animate.css',
+        'validator',
+        'fontawesome'
+      ],
       js: [
         'register',
         'utils/toggleDisplay',
