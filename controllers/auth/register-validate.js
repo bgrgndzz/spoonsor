@@ -29,6 +29,21 @@ module.exports = (req, res, next) => {
       error: 'Girdiğiniz e-mail geçerli değil.'
     });
   }
+  if (!req.body.sponsorshiptype || req.body.sponsorshiptype.length === 0) {
+    errors.push({
+      param: 'sponsorshiptype',
+      error: 'Lütfen istediğiniz sponsorluk tipini seçin.'
+    });
+  } else if (
+    !req.body.sponsorshiptype.find(
+      value => validator.isIn(value, ['İçerik', 'İndirim/Hediye Kuponu', 'Mekan', 'Stand', 'Ürün'])
+    )
+  ) {
+    errors.push({
+      param: 'sponsorshiptype',
+      error: 'Seçtiğiniz sponsorluk tipi geçerli değil.'
+    });
+  }
   if (!req.body.phone || isEmpty(req.body.phone)) {
     errors.push({
       param: 'phone',
@@ -51,7 +66,7 @@ module.exports = (req, res, next) => {
       param: 'password2',
       error: 'Lütfen şifrenizi tekrar yazarak doğrulayın.'
     });
-  } else if (equals(req.body.password2, req.body.password)) {
+  } else if (!equals(req.body.password2, req.body.password)) {
     errors.push({
       param: 'password2',
       error: 'Şifre doğrulanamadı, lütfen iki kutucuğa da aynı şifreyi yazdığınızdan emin olun.'
@@ -80,7 +95,7 @@ module.exports = (req, res, next) => {
         param: 'etkinlikstart',
         error: 'Lütfen etkinliğinizin başlangıç tarihini girin.'
       });
-    } else if (matches(req.body.etkinlikstart, dateRegex)) {
+    } else if (!matches(req.body.etkinlikstart, dateRegex)) {
       errors.push({
         param: 'etkinlikstart',
         error: 'Girdiğiniz etkinlik başlangıç tarihi geçerli değil.'
@@ -91,7 +106,7 @@ module.exports = (req, res, next) => {
         param: 'etkinlikend',
         error: 'Lütfen etkinliğinizin bitiş tarihini girin.'
       });
-    } else if (matches(req.body.etkinlikend, dateRegex)) {
+    } else if (!matches(req.body.etkinlikend, dateRegex)) {
       errors.push({
         param: 'etkinlikend',
         error: 'Girdiğiniz etkinlik bitiş tarihi geçerli değil.'
@@ -127,7 +142,7 @@ module.exports = (req, res, next) => {
         param: 'projestart',
         error: 'Lütfen projenizin başlangıç tarihini girin.'
       });
-    } else if (matches(req.body.projestart, dateRegex)) {
+    } else if (!matches(req.body.projestart, dateRegex)) {
       errors.push({
         param: 'projestart',
         error: 'Girdiğiniz proje başlangıç tarihi geçerli değil.'
@@ -138,7 +153,7 @@ module.exports = (req, res, next) => {
         param: 'projeend',
         error: 'Lütfen projenizin bitiş tarihini girin.'
       });
-    } else if (matches(req.body.projeend, dateRegex)) {
+    } else if (!matches(req.body.projeend, dateRegex)) {
       errors.push({
         param: 'projeend',
         error: 'Girdiğiniz proje bitiş tarihi geçerli değil.'
