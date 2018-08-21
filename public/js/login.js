@@ -10,7 +10,7 @@ const displayErrors = (errors) => {
     errorDescription.appendChild(errorElement);
   });
   const modalWrapper = document.querySelector('.error-modal-wrapper');
-  toggleDisplay(modalWrapper, 1);
+  toggleDisplay(modalWrapper, true);
 };
 
 const validateCurrentForm = () => {
