@@ -1,10 +1,11 @@
 const winston = require('winston');
+const path = require('path');
 
 const logger = winston.createLogger({
   transports: [
     new winston.transports.File({
       level: 'info',
-      filename: '../logs/all-logs.log',
+      filename: path.join(__dirname, '../logs/all-logs.log'),
       handleExceptions: true,
       json: true,
       maxsize: 5242880,
