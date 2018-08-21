@@ -1,5 +1,9 @@
+// require mongoose
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+
+// require functions
+const hashPassword = require('./functions/hashPassword');
 
 const UserSchema = new Schema({
   // required
@@ -64,5 +68,7 @@ const UserSchema = new Schema({
     hash: String
   }
 });
+
+UserSchema.pre('save', hashPassword);
 
 module.exports = mongoose.model('User', UserSchema);
