@@ -60,7 +60,7 @@ const UserSchema = new Schema({
     // seeker/shared
     start: Date,
     end: Date,
-    sponsorshipType: String,
+    sponsorshipType: [String],
     seekerSubject: String,
     // seeker/etkinlik
     etkinlikPlace: String,
