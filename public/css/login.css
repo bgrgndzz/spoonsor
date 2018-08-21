@@ -1,23 +1,22 @@
 .background {
-  width: 120%;
+  width: 100%;
   height: 90%;
   min-height: 500px;
-  position: absolute;
+  position: fixed;
   top: 5%;
-  left: -10%;
+  left: 0;
   z-index: -1;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
 }
 .background-image {
   height: 90%;
+  position: absolute;
+  top: 10%;
+}
+.background-image--left {
+  left: -10%;
+}
+.background-image--right {
+  right: -10%;
 }
 .form-wrapper {
   width: 500px;
@@ -109,21 +108,19 @@ input {
   color: #ff0083;
 }
 @media only screen and (max-width: 1000px) {
-  .background {
-    width: 140%;
-    left: -20%;
+  .background-image--left {
+    left: -15%;
+  }
+  .background-image--right {
+    right: -15%;
   }
 }
 @media only screen and (max-width: 800px) {
-  .form-wrapper {
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-  }
-}
-@media only screen and (max-width: 500px) {
   .background {
     display: none;
   }
+}
+@media only screen and (max-width: 500px) {
   .form-wrapper {
     width: 100vw;
     border: none;
