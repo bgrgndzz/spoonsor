@@ -387,7 +387,7 @@ window.onload = () => {
       })
       .then((data) => data.json())
       .then((data) => console.log(data))
-      .catch((err) => displayErrors(['Bilinmeyen bir hata oluştu.']));
+      .catch((err) => displayErrors([{error: 'Bilinmeyen bir hata oluştu.'}]));
     }
   };
 };
