@@ -386,7 +386,13 @@ window.onload = () => {
         body: JSON.stringify(formData)
       })
       .then((data) => data.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        if (data.success) {
+          window.location.href = '/app/';
+        } else if (data.errors && data.errors.length > 0) {
+          displayErrors(data.errors);
+        }
+      })
       .catch((err) => displayErrors([{error: 'Bilinmeyen bir hata oluştu.'}]));
     }
   };

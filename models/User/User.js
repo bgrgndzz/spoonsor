@@ -43,7 +43,8 @@ const UserSchema = new Schema({
     },
     profilepicture: {
       type: String, 
-      required: true
+      required: true,
+      default: 'default.jpg'
     },
     active: {
       type: Boolean, 
@@ -56,8 +57,8 @@ const UserSchema = new Schema({
     sponsorshipType: String,
     seekerSubject: String,
     // seeker/etkinlik
-    place: String,
-    etkinlikType: String
+    etkinlikPlace: String,
+    etkinlikType: String,
   },
   passwordReset: {
     hash: String

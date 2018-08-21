@@ -1,4 +1,7 @@
 const {isEmpty, isEmail, isIn, equals, matches} = require('validator');
+const mongoose = require('mongoose');
+
+const User = require('../../models/User/User');
 
 module.exports = (req, res, next) => {
   const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
@@ -167,8 +170,21 @@ module.exports = (req, res, next) => {
     }
   }
 
-  if (errors.length > 0) {
-    return res.status(422).json({errors});
-  }
-  next();
+  User.findOne({'auth.email': req.body.email}, (err, userRes) => {
+    if (err) errors.push({
+      param: 'mongoose',
+      error: 'Bilinmeyen bir hata oluştu.'
+    });
+
+    if (userRes) {
+      errors.push({
+        param: 'database',
+        error: 'Bu e-mail ile kayıtlı bir hesap zaten var.'
+      });
+    }
+    if (errors.length > 0) {
+      return res.status(422).json({errors});
+    }
+    next();
+  });
 };
