@@ -69,19 +69,35 @@ input {
   background-position: 15px 50%;
   -webkit-transition: 0.25s ease all;
   transition: 0.25s ease all;
-  margin-bottom: 20px;
 }
-.field:hover,
+.field-wrapper:hover .field,
 .field:focus {
   opacity: 1;
   border-color: #ff0083;
 }
-.field--email {
+.field-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+  display: block;
+}
+.field-icon {
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center center;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  opacity: .5;
+}
+.field-icon--email {
   background-image: url("/res/images/mail.svg");
 }
-.field--password {
+.field-icon--password {
   background-image: url("/res/images/key.svg");
-  margin-bottom: 40px;
 }
 .reset-password {
   display: block;

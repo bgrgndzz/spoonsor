@@ -8,7 +8,11 @@ block content
       h1 Tekrar Hoş Geldin!
       h2 Hesabına giriş yapmak ve markalara ulaşmak için aşağıdaki formu kullan.
     form.form
-      input.field.field--email(type="email", name="email", placeholder="E-mail")
-      input.field.field--password(type="password", name="password", placeholder="Şifre")
+      label.field-wrapper.field-wrapper--email
+        .field-icon.field-icon--email
+        input.field.field--email(type="email", name="email", placeholder="E-mail")
+      label.field-wrapper.field-wrapper--password
+        .field-icon.field-icon--password
+        input.field.field--password(type="password", name="password", placeholder="Şifre")
       input.button.button--submit(type="submit", value="Giriş Yap")
       a.link.link__highlighted.reset-password(href="#") Şifreni mi unuttun?
