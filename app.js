@@ -45,7 +45,7 @@ app.use(session({
   secret: SESSION_SECRET,
   resave: true,
   saveUninitialized: true,
-  cookie: {secure: true}
+  cookie: {secure: false}
 }));
 
 // logging
