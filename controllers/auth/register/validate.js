@@ -178,13 +178,14 @@ module.exports = (req, res, next) => {
 
     if (userRes) {
       errors.push({
-        param: 'database',
+        param: 'email',
         error: 'Bu e-mail ile kayıtlı bir hesap zaten var.'
       });
     }
     if (errors.length > 0) {
       return res.status(422).json({errors});
+    } else {
+      next();
     }
-    next();
   });
 };
