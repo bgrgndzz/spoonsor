@@ -6,10 +6,11 @@ module.exports = (req, res, next) => {
     includes: {
       external: [
         'fontawesome',
-        'validator'
+        'validator',
       ],
       js: [
-        'utils/toggleDisplay'
+        'utils/toggleDisplay',
+        'login'
       ]
     }
   });

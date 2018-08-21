@@ -1,7 +1,7 @@
 module.exports = (req, res, next) => {
-  if (!req.session || !req.session.user) {
+  if (!req.session.user) {
     next();
   } else {
-    res.redirect('/app/');
+    res.redirect('/app/sponsors');
   }
 }

@@ -33,7 +33,7 @@ mongoose.connect(MONGO_URI, {useNewUrlParser: true});
 
 // express setup
 const app = express();
-app.set('trust proxy', 1);
+// app.set('trust proxy', 1);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -43,7 +43,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(session({
   secret: SESSION_SECRET,
-  resave: true,
+  resave: false,
   saveUninitialized: true,
   cookie: {secure: false}
 }));
@@ -55,12 +55,12 @@ app.use(morgan('combined', {'stream': logger.stream}));
 // const store = new expressBrute.MemoryStore();
 // const bruteforce = new expressBrute(store);
 // app.use(bruteforce.prevent);
-app.use(helmet());
+// app.use(helmet());
 
 // routing
+app.use('/auth', authRoute);
+app.use('/app', appRoute);
 app.use('/', indexRoute);
-app.use('/auth/', authRoute);
-app.use('/app/', appRoute);
 
 // listen to connections
 const server = app.listen(PORT);

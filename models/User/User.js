@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 // require functions
 const hashPassword = require('./functions/hashPassword');
+const verifyPassword = require('./functions/verifyPassword');
 
 const UserSchema = new Schema({
   // required
@@ -70,5 +71,6 @@ const UserSchema = new Schema({
 });
 
 UserSchema.pre('save', hashPassword);
+UserSchema.methods.verifyPassword = verifyPassword;
 
 module.exports = mongoose.model('User', UserSchema);
