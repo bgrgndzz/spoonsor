@@ -44,7 +44,10 @@ module.exports = (req, res, next) => {
   newUser.save(err => {
     if (err) return res.status(500).send(err);
     
-    req.session.user = newUser.user;
+    req.session.user = {
+      ...newUser.user,
+      email: newUser.person.email
+    };
     return res.status(200).json({success: true});
   });
 };

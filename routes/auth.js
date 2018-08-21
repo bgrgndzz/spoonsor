@@ -10,6 +10,10 @@ const registerPostController = require('../controllers/auth/register/post');
 // require validators
 const registerPostValidator = require('../controllers/auth/register/validate');
 
+// require middleware
+const notLoggedIn = require('../middleware/notLoggedIn');
+router.use(notLoggedIn);
+
 // routing
 // get
 router.get('/login', loginGetController);
