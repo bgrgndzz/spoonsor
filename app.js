@@ -42,10 +42,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(session({
-    secret: SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
-    cookie: {secure: true}
+  secret: SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  cookie: {secure: true}
 }));
 
 // logging

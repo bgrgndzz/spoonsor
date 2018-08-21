@@ -1,7 +1,7 @@
 const {isEmpty, isEmail, isIn, equals, matches} = require('validator');
 const mongoose = require('mongoose');
 
-const User = require('../../models/User/User');
+const User = require('../../../models/User/User');
 
 module.exports = (req, res, next) => {
   const dateRegex = /^\d{4}-\d{2}-\d{2}$/;

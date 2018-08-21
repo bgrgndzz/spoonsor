@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 // require controllers
-const loginGetController = require('../controllers/auth/login-get');
-const registerGetController = require('../controllers/auth/register-get');
+const loginGetController = require('../controllers/auth/login/get');
+const registerGetController = require('../controllers/auth/register/get');
 
-const registerPostController = require('../controllers/auth/register-post');
+const registerPostController = require('../controllers/auth/register/post');
 
 // require validators
-const registerPostValidator = require('../controllers/auth/register-validate');
+const registerPostValidator = require('../controllers/auth/register/validate');
 
 // routing
 // get
