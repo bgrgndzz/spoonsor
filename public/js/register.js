@@ -1,3 +1,17 @@
+const displayErrors = (errors) => {
+  const errorDescription = document.querySelector('.error-description');
+  errorDescription.innerHTML = '';
+
+  errors.forEach(error => {
+    const errorElement = document.createElement('li');
+    errorElement.classList.add('error');
+    errorElement.innerHTML = error.error;
+    
+    errorDescription.appendChild(errorElement);
+  });
+  const modalWrapper = document.querySelector('.error-modal-wrapper');
+  toggleDisplay(modalWrapper, 1);
+};
 const hideForm = (forms, currentForm, type = 'front') => {
   forms[currentForm].classList.remove('fadeInRight');
   forms[currentForm].classList.remove('fadeInLeft');
@@ -56,8 +70,8 @@ const validateCurrentForm = (currentForm, userType) => {
       });
     }
   } else if (currentForm === 1) {
-    const typeRadio = document.querySelector('input[name="type"]:checked')
-    type = typeRadio ? typeRadio.value : '';
+    const typeRadio = document.querySelector('input[name="type"]:checked');
+    const type = typeRadio ? typeRadio.value : '';
     if (!type || isEmpty(type)) {
       errors.push({
         param: 'type',
@@ -111,7 +125,7 @@ const validateCurrentForm = (currentForm, userType) => {
     }
   } else if (currentForm === 4 && userType === 'etkinlik') {
     const etkinliktypeRadio = document.querySelector('input[name="etkinliktype"]:checked');
-    etkinliktype = etkinliktypeRadio ? etkinliktypeRadio.value : '';
+    let etkinliktype = etkinliktypeRadio ? etkinliktypeRadio.value : '';
 
     const otherEtkinliktype = document.querySelector('.radios--etkinlik-type .field--other').value;
     etkinliktype = etkinliktype === 'Diğer' ? otherEtkinliktype : etkinliktype;
@@ -124,7 +138,7 @@ const validateCurrentForm = (currentForm, userType) => {
     }
   } else if (currentForm === 5 && userType === 'etkinlik') {
     const etkinliksubjectRadio = document.querySelector('input[name="etkinliksubject"]:checked');
-    etkinliksubject = etkinliksubjectRadio ? etkinliksubjectRadio.value : '';
+    let etkinliksubject = etkinliksubjectRadio ? etkinliksubjectRadio.value : '';
 
     const otherEtkinliksubject = document.querySelector('.radios--etkinlik-subject .field--other').value;
     etkinliksubject = etkinliksubject === 'Diğer' ? otherEtkinliksubject : etkinliksubject;
@@ -169,7 +183,7 @@ const validateCurrentForm = (currentForm, userType) => {
     }
   } else if (currentForm === 7 && userType === 'proje') {
     const projesubjectRadio = document.querySelector('input[name="projesubject"]:checked');
-    projesubject = projesubjectRadio ? projesubjectRadio.value : '';
+    let projesubject = projesubjectRadio ? projesubjectRadio.value : '';
 
     const otherProjesubject = document.querySelector('.radios--proje-subject .field--other').value;
     projesubject = projesubject === 'Diğer' ? otherProjesubject : projesubject;
@@ -182,7 +196,7 @@ const validateCurrentForm = (currentForm, userType) => {
     }
   } else if (currentForm === 8) {
     const sponsorshiptypeRadio = document.querySelectorAll('input[name="sponsorshiptype"]:checked');
-    sponsorshiptype = sponsorshiptypeRadio ? Array.prototype.slice.call(sponsorshiptypeRadio).map(el => el.value) : [];
+    const sponsorshiptype = sponsorshiptypeRadio ? Array.prototype.slice.call(sponsorshiptypeRadio).map(el => el.value) : [];
 
     if (!sponsorshiptype || sponsorshiptype.length === 0) {
       errors.push({
@@ -190,7 +204,7 @@ const validateCurrentForm = (currentForm, userType) => {
         error: 'Lütfen istediğiniz sponsorluk tipini seçin.'
       });
     } else if (
-      !sponsorshiptype.find(
+      !sponsorshiptype.every(
         value => validator.isIn(value, ['İçerik', 'İndirim/Hediye Kuponu', 'Mekan', 'Stand', 'Ürün'])
       )
     ) {
@@ -233,19 +247,8 @@ const validateCurrentForm = (currentForm, userType) => {
     }
   }
 
-  const errorDescription = document.querySelector('.error-description');
-  errorDescription.innerHTML = '';
-
   if (errors.length > 0) {
-    errors.forEach(error => {
-      const errorElement = document.createElement('li');
-      errorElement.classList.add('error');
-      errorElement.innerHTML = error.error;
-      
-      errorDescription.appendChild(errorElement);
-    });
-    const modalWrapper = document.querySelector('.error-modal-wrapper');
-    toggleDisplay(modalWrapper, 1);
+    displayErrors(errors);
     return false;
   }
 
@@ -282,6 +285,7 @@ window.onload = () => {
   const projeSubjectOtherField = document.querySelector('.radios--proje-subject .field--other');
   const modalWrapper = document.querySelector('.error-modal-wrapper');
   const closeModalButtons = document.querySelectorAll('.close-error-modal');
+  const submitButton = document.querySelector('.button--submit');
 
   closeModalButtons.forEach(closeModalButton => {
     closeModalButton.onclick = () => toggleDisplay(modalWrapper, false);
@@ -302,4 +306,88 @@ window.onload = () => {
   projeSubjectRadios.forEach(projeSubjectRadio => {
     projeSubjectRadio.onchange = () => toggleDisplay(projeSubjectOtherField, projeSubjectOtherRadio.checked, .5);
   });
+
+  submitButton.onclick = () => {
+    if (
+      userType && 
+      Array.from({length: 10}, (_, i) => i)
+        .every((formCursor) => validateCurrentForm(formCursor, userType))
+    ) {
+      const name = document.querySelector('input[name="name"]').value;
+      const surname = document.querySelector('input[name="surname"]').value;
+      const email = document.querySelector('input[name="email"]').value;
+      const type = document.querySelector('input[name="type"]:checked').value;
+      const phone = document.querySelector('input[name="phone"]').value;
+      const password = document.querySelector('input[name="password"]').value;
+      const password2 = document.querySelector('input[name="password2"]').value;
+
+      const sponsorshiptype = Array.prototype.slice.call(
+        document.querySelectorAll('input[name="sponsorshiptype"]:checked')
+      ).map(el => el.value);
+
+      let formData = {
+        name,
+        surname,
+        email,
+        type,
+        phone,
+        password,
+        password2,
+        sponsorshiptype
+      };
+
+      if (userType === 'etkinlik') {
+        const etkinlikname = document.querySelector('input[name="etkinlikname"]').value;
+        const etkinlikstart = document.querySelector('input[name="etkinlikstart"]').value;
+        const etkinlikend = document.querySelector('input[name="etkinlikend"]').value;
+        const etkinlikplace = document.querySelector('input[name="etkinlikplace"]').value;
+
+        let etkinliktype = document.querySelector('input[name="etkinliktype"]:checked').value;
+        const otherEtkinliktype = document.querySelector('.radios--etkinlik-type .field--other').value;
+        etkinliktype = etkinliktype === 'Diğer' ? otherEtkinliktype : etkinliktype;
+
+        let etkinliksubject = document.querySelector('input[name="etkinliksubject"]:checked').value;
+        const otherEtkinliksubject = document.querySelector('.radios--etkinlik-subject .field--other').value;
+        etkinliksubject = etkinliksubject === 'Diğer' ? otherEtkinliksubject : etkinliksubject;
+
+        formData = {
+          ...formData,
+          etkinlikname,
+          etkinlikstart,
+          etkinlikend,
+          etkinlikplace,
+          etkinliktype,
+          etkinliksubject
+        };
+      } else if (userType === 'proje') {
+        const projename = document.querySelector('input[name="projename"]').value;
+        const projestart = document.querySelector('input[name="projestart"]').value;
+        const projeend = document.querySelector('input[name="projeend"]').value;
+
+        let projesubject = document.querySelector('input[name="projesubject"]:checked').value;
+        const otherProjesubject = document.querySelector('.radios--proje-subject .field--other').value;
+        projesubject = projesubject === 'Diğer' ? otherProjesubject : projesubject;
+
+        formData = {
+          ...formData,
+          projename,
+          projestart,
+          projeend,
+          projesubject
+        };
+      }
+
+      fetch('/auth/register', {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(formData)
+      })
+      .then((data) => data.json())
+      .then((data) => console.log(data))
+      .catch((err) => displayErrors(['Bilinmeyen bir hata oluştu.']));
+    }
+  };
 };

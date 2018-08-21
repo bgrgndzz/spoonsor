@@ -35,8 +35,8 @@ module.exports = (req, res, next) => {
       error: 'Lütfen istediğiniz sponsorluk tipini seçin.'
     });
   } else if (
-    !req.body.sponsorshiptype.find(
-      value => validator.isIn(value, ['İçerik', 'İndirim/Hediye Kuponu', 'Mekan', 'Stand', 'Ürün'])
+    !req.body.sponsorshiptype.every(
+      value => isIn(value, ['İçerik', 'İndirim/Hediye Kuponu', 'Mekan', 'Stand', 'Ürün'])
     )
   ) {
     errors.push({
