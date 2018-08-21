@@ -15,17 +15,18 @@ block content
       | Nakit
   .items-wrapper
     .items
-      - for(i = 0; i <= 7; i++)
+      each user in users
         .item
-          h2.item-name.open-modal Sponsor
-          .item-image.open-modal(style="background-image: url('http://pngimg.com/uploads/ibm/ibm_PNG19658.png')")
-          p.item-description
-            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, accusantium... 
-            a.open-modal Daha fazla gör 
+          h2.item-name.open-modal= user.name
+          - const profilePicture = user.profilepicture
+          .item-image.open-modal(style="background-image: url('/res/uploads/" + user.profilepicture + "')")
+          if user.description
+            p.item-description
+              #{user.description}
+              a.open-modal Daha fazla gör 
           .item-sponsorships
-            span.item-sponsorship İçerik
-            span.item-sponsorship Yeme&amp;İçme
-            span.item-sponsorship Nakit
+            each sponsorship in user.sponsorshipType
+              span.item-sponsorship= sponsorship
     .modal-wrapper
       .overlay.close-modal
       .modal
