@@ -17,8 +17,8 @@ block content
     .items
       each user in users
         .item
+          input.item-id(type="hidden", value=user.id)
           h2.item-name.open-modal= user.name
-          - const profilePicture = user.profilepicture
           .item-image.open-modal(style="background-image: url('/res/uploads/" + user.profilepicture + "')")
           if user.description
             p.item-description
@@ -32,11 +32,9 @@ block content
       .modal
         i.fas.fa-times.modal-close-button.close-modal
         .modal-image-wrapper
-          .modal-image(style="background-image: url('http://pngimg.com/uploads/ibm/ibm_PNG19658.png')")
-          h2.modal-title Sponsor
+          .modal-image(style="background-image: url('')")
+          h2.modal-title
         .modal-sponsorships
-          span.modal-sponsorship İçerik
-          span.modal-sponsorship Yeme&amp;İçme
-          span.modal-sponsorship Nakit
         p.modal-description Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga numquam iste quis ad voluptatem mollitia itaque delectus inventore hic, vero dolores provident nobis, vel porro saepe magni quas error adipisci!Laudantium, eius minus dicta amet eos iste et quia ducimus velit ad totam, maxime aliquid esse error corporis blanditiis voluptatum reprehenderit earum aperiam architecto praesentium nesciunt? Quidem placeat laudantium distinctio?
         button.button.modal-contact-button İletişime Geç
+    script let users = !{JSON.stringify(users).replace(/<\//g, '<\\/')}
