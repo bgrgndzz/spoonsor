@@ -78,7 +78,7 @@ window.onload = () => {
       .then((data) => data.json())
       .then((data) => {
         if (data.success) {
-          window.location.href = '/app/sponsors';
+          window.location.href = '/app/';
         } else if (data.errors && data.errors.length > 0) {
           displayErrors(data.errors);
         }

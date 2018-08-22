@@ -57,14 +57,17 @@ const UserSchema = new Schema({
       required: true, 
       default: false
     },
+    description: String,
+    sponsorshipType: [String],
     // seeker/shared
     start: Date,
     end: Date,
-    sponsorshipType: [String],
     seekerSubject: String,
     // seeker/etkinlik
     etkinlikPlace: String,
     etkinlikType: String,
+    // sponsor
+    sponsorName : String,
   },
   passwordReset: {
     hash: String

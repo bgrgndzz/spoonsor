@@ -35,7 +35,7 @@ module.exports = (req, res, next) => {
   
       if (userRes) {
         userRes.verifyPassword(req.body.password, (err, passwordRes) => {
-          if (!res) {
+          if (!passwordRes) {
             errors.push({
               param: 'password',
               error: 'Girdiğiniz şifre yanlış.'
