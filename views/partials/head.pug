@@ -77,8 +77,12 @@ html(lang="tr")
                 img.logo(src="/res/images/logo.svg")
             ul.nav.nav--right 
               li
-                a.link(href="#")
-                  img.nav-img(src="/res/images/messages.svg")
+                if page === 'messages'
+                  a.link.link--highlighted(href="/app/messages")
+                    img.nav-img(src="/res/images/messages2.svg")
+                else
+                  a.link(href="/app/messages")
+                    img.nav-img(src="/res/images/messages.svg")
               li
                 a.link(href="#")
                   img.nav-img(src="/res/images/user.svg")
@@ -100,7 +104,10 @@ html(lang="tr")
                   else
                     a.link(href="/app/seekers") Sponsor Arayanlar
                 li
-                  a.link(href="#") Görüşmeler
+                  if page === 'messages'
+                    a.link.link--highlighted(href="/app/messages") Görüşmeler
+                  else
+                    a.link(href="/app/messages") Görüşmeler
                 li
                   a.link(href="#") Profil
                 li
