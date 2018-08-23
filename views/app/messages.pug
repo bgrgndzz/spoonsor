@@ -1,2 +1,41 @@
 extends ../partials/head
 block content
+  .users-wrapper
+    .search-users
+      input.field(type="text", name="searchusers", placeholder="Ara")
+      i.fas.fa-search
+    ul.users
+      li.user.user__active
+        .user-image(style="background-image: url('/res/uploads/default.jpg')")
+        .user-content
+          h2.user-name Sponsor
+          p.user-message Lorem ipsum dolor sit amet consectetur adipisicing elit...
+      - for (let i = 0; i <= 5; i++)
+        li.user
+          .user-image(style="background-image: url('/res/uploads/default.jpg')")
+          .user-content
+            h2.user-name Sponsor
+            p.user-message Lorem ipsum dolor sit amet consectetur adipisicing elit...
+  .messages-wrapper
+    .messages-header
+      h2.messages-user Sponsor
+    .messages
+      - for (let i = 0; i <= 5; i++)
+        div(class="message message__" + ((i % 2 === 0) ? 'sent' : 'received'))
+          .message-image(style="background-image: url('/res/uploads/default.jpg')")
+          .message-content
+            .message-details
+              span.message-sender User
+              span.message-date 10-10-1010 10.10
+            p.message-text Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non minus voluptas, dolor mollitia tempore, repellendus labore quod expedita similique commodi accusantium iste assumenda quo magni, ratione architecto placeat fuga soluta.
+    form.message-form
+      textarea.field.message-field(name="message", placeholder="Bir mesaj yazın")
+      input.button.message-button(type="submit", value="")
+  .user-wrapper
+    .user-image(style="background-image: url('/res/uploads/default.jpg')")
+    h2.user-name Sponsor
+    p.user-description Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae totam optio est pariatur mollitia consequuntur quisquam praesentium culpa deserunt, repudiandae, numquam quos error a, ducimus saepe vitae. Voluptates, consequatur natus.Voluptates, temporibus repellat voluptatem aut facere culpa animi minus nesciunt neque at atque sit facilis recusandae veritatis. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique natus consequatur impedit officia velit obcaecati omnis. Architecto dolores harum nesciunt, magnam quasi exercitationem facere eveniet nam veritatis aperiam ipsam ducimus!
+    .user-sponsorships
+      span.user-sponsorship İçerik
+      span.user-sponsorship Mekan
+      span.user-sponsorship Yeme&amp;İçme
