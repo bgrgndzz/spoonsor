@@ -18,7 +18,8 @@ block content
             p.user-message Lorem ipsum dolor sit amet consectetur adipisicing elit...
   .messages-wrapper
     .messages-header
-      h2.messages-user Sponsor
+      i.fas.fa-chevron-left.close-messages
+      h2.messages-user.open-modal Sponsor
     .messages
       - for (let i = 0; i <= 5; i++)
         div(class="message message__" + ((i % 2 === 0) ? 'sent' : 'received'))
@@ -39,3 +40,12 @@ block content
       span.user-sponsorship İçerik
       span.user-sponsorship Mekan
       span.user-sponsorship Yeme&amp;İçme
+  .modal-wrapper
+    .overlay.close-modal
+    .modal
+      i.fas.fa-times.modal-close-button.close-modal
+      .modal-image-wrapper
+        .modal-image(style="background-image: url('')")
+        h2.modal-title
+      .modal-sponsorships
+      p.modal-description Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga numquam iste quis ad voluptatem mollitia itaque delectus inventore hic, vero dolores provident nobis, vel porro saepe magni quas error adipisci!Laudantium, eius minus dicta amet eos iste et quia ducimus velit ad totam, maxime aliquid esse error corporis blanditiis voluptatum reprehenderit earum aperiam architecto praesentium nesciunt? Quidem placeat laudantium distinctio?

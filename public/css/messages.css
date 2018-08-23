@@ -1,6 +1,6 @@
 .content {
   display: grid;
-  grid-template-columns: 2fr 4fr 1.5fr;
+  grid-template-columns: 2fr 4fr 1.75fr;
   overflow: hidden;
   height: calc(100vh - 50px);
 }
@@ -41,7 +41,6 @@
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  z-index: 2;
   opacity: 0.5;
   color: rgba(0, 0, 0, 0.5);
   -webkit-transition: 0.25s ease all;
@@ -123,6 +122,16 @@
 .messages-user {
   color: rgba(0, 0, 0, 0.75);
   font-weight: 500;
+  -webkit-transition: 0.25s ease all;
+  transition: 0.25s ease all;
+  cursor: pointer;
+  display: inline;
+}
+.messages-user:hover {
+  color: #ff0083;
+}
+.close-messages {
+  display: none;
 }
 .messages {
   display: -webkit-box;
@@ -318,4 +327,174 @@
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
   color: rgba(0, 0, 0, 0.75);
+}
+.modal-wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  display: none;
+  opacity: 0;
+  -webkit-transition: 0.5s ease all;
+  transition: 0.5s ease all;
+}
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+.modal {
+  width: 60vw;
+  height: 90vh;
+  background-color: white;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  border-radius: 10px;
+  overflow: scroll;
+}
+.modal-close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 10px;
+  color: white;
+  z-index: 4;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+.modal-image-wrapper {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 100%;
+  height: 35vh;
+  background-color: #ff0083;
+  background-image: url(/res/images/sol.svg);
+  background-size: 130%;
+  background-position: 0 50%;
+  position: relative;
+}
+.modal-image {
+  width: 160px;
+  height: 160px;
+  background-color: white;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+.modal-sponsorships {
+  width: 100%;
+  padding: 10px;
+  background-color: #f7f7f7;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.modal-sponsorship {
+  border-radius: 10px;
+  font-size: 0.8em;
+  padding: 0 10px;
+  margin-right: 5px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.5);
+}
+.modal-title {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0 25px;
+  z-index: 5;
+  color: white;
+  font-weight: 500;
+  width: 100%;
+}
+.modal-description {
+  padding: 20px 100px;
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+@media only screen and (max-width: 1000px) {
+  .content {
+    grid-template-columns: 1fr 2fr;
+  }
+  .user-wrapper {
+    display: none;
+  }
+  .modal-description {
+    padding: 20px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .modal {
+    width: 80vw;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .content {
+    grid-template-columns: 1fr 1fr;
+    width: 200vw;
+    transition: .5s ease all;
+  }
+  .close-messages {
+    display: block;
+    position: absolute;
+    left: 20px;
+    line-height: 50px;
+    font-size: 1.5em;
+    color: rgba(0, 0, 0, 0.5);
+    transition: .25s ease all;
+    cursor: pointer;
+  }
+  .close-messages:hover {
+    color: #ff0083;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .modal {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
+  .modal-image-wrapper {
+    border-radius: 0;
+  }
 }

@@ -25,6 +25,10 @@ window.onload = () => {
   const modalWrapper = document.querySelector('.modal-wrapper');
   const openModalButtons = document.querySelectorAll('.open-modal');
   const closeModalButtons = document.querySelectorAll('.close-modal');
+
+  const users = document.querySelectorAll('.users-wrapper .user');
+  const closeMessages = document.querySelector('.close-messages');
+  const content = document.querySelector('.content');
   
   hamburgerIcon.onclick = () => {
     if (hamburger.classList.contains('hamburger-open')) {
@@ -37,14 +41,31 @@ window.onload = () => {
   };
   openModalButtons.forEach(openModalButton => {
     openModalButton.onclick = (event) => {
-      const itemId = event.target.closest('.item').querySelector('.item-id').value;
-      const item = users.find(user => user.id === itemId);
-
-      changeModal(item, modalWrapper);
       toggleDisplay(modalWrapper, true);
     };
   });
   closeModalButtons.forEach(closeModalButton => {
     closeModalButton.onclick = () => toggleDisplay(modalWrapper, false);
   });
+  users.forEach(user => {
+    user.onclick = () => {
+      const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+      if (vw <= 700) {
+        content.style.marginLeft = '-100vw';
+        window.onresize = () => {
+          const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+          if (vw > 700) {
+            content.style.marginLeft = '0';
+          }
+        };
+      }
+    };
+  });
+  closeMessages.onclick = () => {
+    const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    if (vw <= 700) {
+      content.style.marginLeft = '0';
+      window.onresize = () => {}; 
+    }
+  }
 };

@@ -4,7 +4,11 @@ module.exports = (req, res, next) => {
     title: 'Mesajlar',
     headerType: 'app',
     includes: {
-      external: ['fontawesome']
+      external: ['fontawesome'],
+      js: [
+        'messages',
+        'utils/toggleDisplay'
+      ]
     }
   });
 };
