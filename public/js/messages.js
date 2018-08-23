@@ -30,6 +30,9 @@ window.onload = () => {
   const closeMessages = document.querySelector('.close-messages');
   const content = document.querySelector('.content');
   
+  const socket = io();
+  socket.emit('join room', '5b7d95c978e50a718d3c5a0b'); // test emit
+
   hamburgerIcon.onclick = () => {
     if (hamburger.classList.contains('hamburger-open')) {
       hamburger.classList.remove('hamburger-open');

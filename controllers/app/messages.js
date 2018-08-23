@@ -4,7 +4,10 @@ module.exports = (req, res, next) => {
     title: 'Mesajlar',
     headerType: 'app',
     includes: {
-      external: ['fontawesome'],
+      external: [
+        'fontawesome',
+        'socket.io'
+      ],
       js: [
         'messages',
         'utils/toggleDisplay'

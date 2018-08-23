@@ -18,6 +18,8 @@ html(lang="tr")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/validator/10.6.0/validator.min.js",
                integrity="sha256-KU9MuJZK6AHzdTG3Bi3UBmv1TEvxc8sItJ7PJoe1N88=",
                crossorigin="anonymous")
+      if includes.external.indexOf('socket.io') > -1
+        script(src="/socket.io/socket.io.js")
     link(rel="stylesheet", href="/css/shared.css")
     link(rel="stylesheet", href=`/css/header/header-${headerType}.css`)
     link(rel="stylesheet", href=`/css/${page}.css`)
