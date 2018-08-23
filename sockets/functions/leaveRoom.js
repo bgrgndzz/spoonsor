@@ -6,7 +6,7 @@ const createRoomName = require('../../utils/createRoomName');
 module.exports = (fromUser, toUser, socket) => {
   if (toUser) {
     User.findById(toUser, (err, userRes) => {
-      if (userRes) socket.join(createRoomName(fromUser, toUser));
+      if (userRes) socket.leave(createRoomName(fromUser, toUser));
     });
   }
 };
