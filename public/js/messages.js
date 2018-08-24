@@ -1,6 +1,8 @@
 const resetMessages = () => {
   const messagesWrapper = document.querySelector('.messages-wrapper');
   messagesWrapper.innerHTML = '';
+  const userWrapper = document.querySelector('.user-wrapper');
+  userWrapper.innerHTML = '';
 
   const messagesBackgroundNotice = document.createElement('span');
   messagesBackgroundNotice.classList.add('messages-background-notice');
@@ -30,7 +32,7 @@ const loadMessages = (user) => {
           if (vw <= 700) {
             content.style.marginLeft = '0';
             document.querySelector('.user__active').classList.remove('user__active');
-            setTimeout(resetMessages, 500);
+            resetMessages();
           }
         }
 
@@ -194,21 +196,21 @@ window.onload = () => {
     const modalWrapper = document.querySelector('.modal-wrapper');
     if (event.target && event.target.classList.contains('open-modal')) {
       toggleDisplay(modalWrapper, true);
-    }else if (event.target && event.target.classList.contains('close-modal')) {
+    } else if (event.target && event.target.classList.contains('close-modal')) {
       toggleDisplay(modalWrapper, false);
     }
   });
 
   users.forEach(user => {
     user.onclick = () => {
-      if (!user.classList.contains('user__active')) {
-        const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+      const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+      if (!user.classList.contains('user__active') || vw <= 700) {
         const userId = user.querySelector('.user-id').value;
 
         if (document.querySelector('.user__active')) {
           document.querySelector('.user__active').classList.remove('user__active');
         }
-        setTimeout(() => user.classList.add('user__active'), vw <= 700 ? 500 : 0);
+        user.classList.add('user__active');
         loadMessages(userId);
         if (vw <= 700) {
           content.style.marginLeft = '-100vw';
