@@ -272,6 +272,10 @@
 }
 
 .user-wrapper {
+  height: calc(100vh - 50px);
+  background-color: #f0f0f0;
+}
+.user-wrapper .user-content {
   text-align: center;
   position: relative;
   display: -webkit-box;
@@ -285,6 +289,7 @@
   -ms-flex-pack: start;
   justify-content: flex-start;
   height: calc(100vh - 50px);
+  background-color: white;
 }
 .user-wrapper .user-image {
   width: 100px;
