@@ -27,59 +27,103 @@ const resetMessages = () => {
 
   messagesWrapper.appendChild(messagesBackgroundNotice);
 };
-const loadMessages = (user, data) => {
-  const content = document.querySelector('.content');
+const loadMessages = (user) => {
+  fetch('/app/messages/' + user)
+    .then(data => data.json())
+    .then(data => {
+      const content = document.querySelector('.content');
   
-  const messagesWrapper = document.querySelector('.messages-wrapper');
-  messagesWrapper.innerHTML = '';
+      const messagesWrapper = document.querySelector('.messages-wrapper');
+      messagesWrapper.innerHTML = '';
 
-  // messages header
-  const messagesHeader = document.createElement('div');
-  messagesHeader.classList.add('messages-header');
-  
-  const closeMessages = document.createElement('i');
-  closeMessages.classList.add('fas', 'fa-chevron-left', 'close-messages');
-  closeMessages.onclick = () => {
-    const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    if (vw <= 700) {
-      content.style.marginLeft = '0';
-      document.querySelector('.user__active').classList.remove('user__active');
-      setTimeout(resetMessages, 500);
-    }
-  }
+      // messages header
+      const messagesHeader = document.createElement('div');
+      messagesHeader.classList.add('messages-header');
+      
+      const closeMessages = document.createElement('i');
+      closeMessages.classList.add('fas', 'fa-chevron-left', 'close-messages');
+      closeMessages.onclick = () => {
+        const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        if (vw <= 700) {
+          content.style.marginLeft = '0';
+          document.querySelector('.user__active').classList.remove('user__active');
+          setTimeout(resetMessages, 500);
+        }
+      }
 
-  const messagesUser = document.createElement('h2');
-  messagesUser.classList.add('messages-user', 'open-modal');
-  messagesUser.innerHTML = 'Sponsor';
+      const messagesUser = document.createElement('h2');
+      messagesUser.classList.add('messages-user', 'open-modal');
+      messagesUser.innerHTML = 'Sponsor';
 
-  messagesHeader.appendChild(closeMessages);
-  messagesHeader.appendChild(messagesUser);
+      messagesHeader.appendChild(closeMessages);
+      messagesHeader.appendChild(messagesUser);
 
-  // messages
-  const messages = document.createElement('div');
-  messages.classList.add('messages');
+      // messages
+      const messages = document.createElement('div');
+      messages.classList.add('messages');
 
-  // message form
-  const messageForm = document.createElement('form');
-  messageForm.classList.add('message-form');
+      data.messages.forEach(message => {
+        const messageNode = document.createElement('div');
+        messageNode.classList.add('message', 'message__' + message.type);
 
-  const messageField = document.createElement('textarea');
-  messageField.classList.add('field', 'message-field');
-  messageField.name = 'message';
-  messageField.placeholder = 'Bir mesaj yazın';
+        const messageImage = document.createElement('div');
+        messageImage.classList.add('message-image');
+        messageImage.style.backgroundImage = `url('/res/uploads/${message.user.profilepicture}')`;
 
-  const messageButton = document.createElement('input');
-  messageButton.classList.add('button', 'message-button');
-  messageButton.type = 'submit';
-  messageButton.value = '';
+        const messageContent = document.createElement('div');
+        messageContent.classList.add('message-content');
 
-  messageForm.appendChild(messageField);
-  messageForm.appendChild(messageButton);
+        const messageDetails = document.createElement('div');
+        messageDetails.classList.add('message-details');
 
-  // append everything to the wrapper
-  messagesWrapper.appendChild(messagesHeader);
-  messagesWrapper.appendChild(messages);
-  messagesWrapper.appendChild(messageForm);
+        const messageSender = document.createElement('span');
+        messageSender.classList.add('message-sender');
+        messageSender.innerHTML = message.user.name;
+
+        const messageDate = document.createElement('span');
+        messageDate.classList.add('message-date');
+        messageDate.innerHTML = message.date;
+
+        messageDetails.appendChild(messageSender);
+        messageDetails.appendChild(messageDate);
+
+        const messageText = document.createElement('p');
+        messageText.classList.add('message-text');
+        messageText.innerHTML = message.message;
+
+        messageContent.appendChild(messageDetails);
+        messageContent.appendChild(messageText);
+
+        messageNode.appendChild(messageImage);
+        messageNode.appendChild(messageContent);
+        
+        messages.appendChild(messageNode);
+      });
+
+      // message form
+      const messageForm = document.createElement('form');
+      messageForm.classList.add('message-form');
+
+      const messageField = document.createElement('textarea');
+      messageField.classList.add('field', 'message-field');
+      messageField.name = 'message';
+      messageField.placeholder = 'Bir mesaj yazın';
+
+      const messageButton = document.createElement('input');
+      messageButton.classList.add('button', 'message-button');
+      messageButton.type = 'submit';
+      messageButton.value = '';
+
+      messageForm.appendChild(messageField);
+      messageForm.appendChild(messageButton);
+
+      // append everything to the wrapper
+      messagesWrapper.appendChild(messagesHeader);
+      messagesWrapper.appendChild(messages);
+      messagesWrapper.appendChild(messageForm);
+
+      messagesWrapper.scrollTop = messagesWrapper.scrollHeight;
+    });
 };
 
 window.onload = () => {
@@ -115,15 +159,18 @@ window.onload = () => {
   });
   users.forEach(user => {
     user.onclick = () => {
-      const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+      if (!user.classList.contains('user__active')) {
+        const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        const userId = user.querySelector('.user-id').value;
 
-      if (document.querySelector('.user__active')) {
-        document.querySelector('.user__active').classList.remove('user__active');
-      }
-      setTimeout(() => user.classList.add('user__active'), vw <= 700 ? 500 : 0);
-      loadMessages();
-      if (vw <= 700) {
-        content.style.marginLeft = '-100vw';
+        if (document.querySelector('.user__active')) {
+          document.querySelector('.user__active').classList.remove('user__active');
+        }
+        setTimeout(() => user.classList.add('user__active'), vw <= 700 ? 500 : 0);
+        loadMessages(userId);
+        if (vw <= 700) {
+          content.style.marginLeft = '-100vw';
+        }
       }
     };
   });
