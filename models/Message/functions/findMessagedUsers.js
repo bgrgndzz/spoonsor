@@ -3,8 +3,8 @@ module.exports = function (user, callback) {
     .find()
     .or([{from: user}, {to: user}])
     .sort('-date')
-    .populate('from')
-    .populate('to')
+    .populate('from', 'user')
+    .populate('to', 'user')
     .exec((err, messages) => {
       if (err) return callback(err);
 
@@ -23,7 +23,15 @@ module.exports = function (user, callback) {
           .map(message => ({
             message: message.message,
             date: message.date,
-            user: message.from.id.toString() === user ? {...message.to.user} : {...message.from.user} 
+            user: message.from.id.toString() === user ? 
+              {
+                ...message.to.user,
+                id: message.to.id
+              } : 
+              {
+                ...message.from.user,
+                id: message.from.id
+              }
           }))
       );
     });

@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 // require functions
 const findMessagedUsers = require('./functions/findMessagedUsers');
+const findMessagesWithUser = require('./functions/findMessagesWithUser');
 
 const MessageSchema = new Schema({
   from: {
@@ -24,5 +25,6 @@ const MessageSchema = new Schema({
 });
 
 MessageSchema.statics.findMessagedUsers = findMessagedUsers;
+MessageSchema.statics.findMessagesWithUser = findMessagesWithUser;
 
 module.exports = mongoose.model('Message', MessageSchema);

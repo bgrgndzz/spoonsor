@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const User = require('../../models/User/User');
-const Message = require('../../models/Message/Message');
+const User = require('../../../models/User/User');
+const Message = require('../../../models/Message/Message');
 
 module.exports = (req, res, next) => {
   Message.findMessagedUsers(req.session.user.id, (err, messagedUsers) => {

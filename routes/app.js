@@ -5,7 +5,8 @@ const router = express.Router();
 const indexController = require('../controllers/app/index');
 const sponsorsController = require('../controllers/app/sponsors');
 const seekersController = require('../controllers/app/seekers');
-const messagesController = require('../controllers/app/messages');
+const messagesIndexController = require('../controllers/app/messages/index');
+const messagesUserController = require('../controllers/app/messages/user');
 
 // require middleware
 const loggedIn = require('../middleware/loggedIn');
@@ -16,7 +17,8 @@ router.use(loggedIn);
 router.get('/', indexController);
 router.get('/sponsors', sponsorsController);
 router.get('/seekers', seekersController);
-router.get('/messages', messagesController);
+router.get('/messages', messagesIndexController);
+router.get('/messages/:user', messagesUserController);
 // post
 
 module.exports = router;
