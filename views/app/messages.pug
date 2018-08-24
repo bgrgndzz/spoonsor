@@ -5,17 +5,12 @@ block content
       input.field(type="text", name="searchusers", placeholder="Ara")
       i.fas.fa-search
     ul.users
-      li.user.user__active
-        .user-image(style="background-image: url('/res/uploads/default.jpg')")
-        .user-content
-          h2.user-name Sponsor
-          p.user-message Lorem ipsum dolor sit amet consectetur adipisicing elit...
-      - for (let i = 0; i <= 5; i++)
+      each messagedUser in messagedUsers
         li.user
-          .user-image(style="background-image: url('/res/uploads/default.jpg')")
+          .user-image(style="background-image: url('/res/uploads/" + messagedUser.user.profilepicture + "')")
           .user-content
-            h2.user-name Sponsor
-            p.user-message Lorem ipsum dolor sit amet consectetur adipisicing elit...
+            h2.user-name= messagedUser.user.name
+            p.user-message= messagedUser.message
   .messages-wrapper
     .messages-header
       i.fas.fa-chevron-left.close-messages

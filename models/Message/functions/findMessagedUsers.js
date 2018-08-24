@@ -9,13 +9,22 @@ module.exports = function (user, callback) {
       if (err) return callback(err);
 
       let uniqueUsers = [];
-      callback(null, messages.filter(message => {
-        const otherUser = message.from.id.toString() === user ? message.to.id : message.from.id;
-        if (uniqueUsers.includes(otherUser)) {
-          return false;
-        }
-        uniqueUsers.push(otherUser);
-        return true;
-      }));
+      callback(
+        null, 
+        messages
+          .filter(message => {
+            const otherUser = message.from.id.toString() === user ? message.to.id : message.from.id;
+            if (uniqueUsers.includes(otherUser)) {
+              return false;
+            }
+            uniqueUsers.push(otherUser);
+            return true;
+          })
+          .map(message => ({
+            message: message.message,
+            date: message.date,
+            user: message.from.id.toString() === user ? {...message.to.user} : {...message.from.user} 
+          }))
+      );
     });
 };

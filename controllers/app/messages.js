@@ -3,7 +3,7 @@ const User = require('../../models/User/User');
 const Message = require('../../models/Message/Message');
 
 module.exports = (req, res, next) => {
-  Message.findMessagedUsers(req.session.user.id, (err, users) => {
+  Message.findMessagedUsers(req.session.user.id, (err, messagedUsers) => {
     if (err) res.status(500).send(err);
     res.render('app/messages', {
       page: 'messages',
@@ -19,7 +19,7 @@ module.exports = (req, res, next) => {
           'utils/toggleDisplay'
         ]
       },
-      users
+      messagedUsers
     });
   });
 };
