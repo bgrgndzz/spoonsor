@@ -173,6 +173,8 @@ const loadMessages = (user) => {
 };
 
 window.onload = () => {
+  let currentUser = '';
+
   const hamburger = document.querySelector('.hamburger');
   const hamburgerIcon = document.querySelector('.hamburger-icon');
 
@@ -180,7 +182,6 @@ window.onload = () => {
   const content = document.querySelector('.content');
   
   const socket = io();
-  socket.emit('join room', '5b7d95c978e50a718d3c5a0b'); // test emit
 
   hamburgerIcon.onclick = () => {
     if (hamburger.classList.contains('hamburger-open')) {
@@ -212,6 +213,11 @@ window.onload = () => {
         }
         user.classList.add('user__active');
         loadMessages(userId);
+        if (currentUser) {
+          socket.emit('leave room', currentUser);
+        }
+        currentUser = userId;
+        socket.emit('join room', currentUser);
         if (vw <= 700) {
           content.style.marginLeft = '-100vw';
         }
