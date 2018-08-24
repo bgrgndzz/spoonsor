@@ -12,21 +12,7 @@ block content
             h2.user-name= messagedUser.user.name
             p.user-message= messagedUser.message
   .messages-wrapper
-    .messages-header
-      i.fas.fa-chevron-left.close-messages
-      h2.messages-user.open-modal Sponsor
-    .messages
-      - for (let i = 0; i <= 5; i++)
-        div(class="message message__" + ((i % 2 === 0) ? 'sent' : 'received'))
-          .message-image(style="background-image: url('/res/uploads/default.jpg')")
-          .message-content
-            .message-details
-              span.message-sender User
-              span.message-date 10-10-1010 10.10
-            p.message-text Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non minus voluptas, dolor mollitia tempore, repellendus labore quod expedita similique commodi accusantium iste assumenda quo magni, ratione architecto placeat fuga soluta.
-    form.message-form
-      textarea.field.message-field(name="message", placeholder="Bir mesaj yazın")
-      input.button.message-button(type="submit", value="")
+    span.messages-background-notice Mesajları görüntülemek için sol taraftan bir görüşme seçin
   .user-wrapper
     .user-image(style="background-image: url('/res/uploads/default.jpg')")
     h2.user-name Sponsor

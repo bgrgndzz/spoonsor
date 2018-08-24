@@ -113,11 +113,13 @@
   -ms-flex-pack: start;
   justify-content: flex-start;
   height: calc(100vh - 50px);
+  background-color: #f0f0f0;
 }
 .messages-header {
   height: 50px;
   line-height: 50px;
   text-align: center;
+  background-color: white;
 }
 .messages-user {
   color: rgba(0, 0, 0, 0.75);
@@ -148,6 +150,16 @@
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 20px 70px;
+  background-color: white;
+}
+.messages-background-notice {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(0, 0, 0, 0.5);
+  width: 90%;
+  text-align: center;
 }
 .message {
   margin-bottom: 20px;
@@ -217,6 +229,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  background-color: white;
 }
 .message-field {
   width: 100%;
