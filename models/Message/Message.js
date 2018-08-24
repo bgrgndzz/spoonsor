@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// require functions
+const findMessagedUsers = require('./functions/findMessagedUsers');
+
 const MessageSchema = new Schema({
   from: {
     type: Schema.Types.ObjectId, 
@@ -19,5 +22,7 @@ const MessageSchema = new Schema({
     default: Date.now
   }
 });
+
+MessageSchema.statics.findMessagedUsers = findMessagedUsers;
 
 module.exports = mongoose.model('Message', MessageSchema);

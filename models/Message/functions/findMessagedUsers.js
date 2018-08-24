@@ -1,0 +1,21 @@
+module.exports = function (user, callback) {
+  this
+    .find()
+    .or([{from: user}, {to: user}])
+    .sort('-date')
+    .populate('from')
+    .populate('to')
+    .exec((err, messages) => {
+      if (err) return callback(err);
+
+      let uniqueUsers = [];
+      callback(null, messages.filter(message => {
+        const otherUser = message.from.id.toString() === user ? message.to.id : message.from.id;
+        if (uniqueUsers.includes(otherUser)) {
+          return false;
+        }
+        uniqueUsers.push(otherUser);
+        return true;
+      }));
+    });
+};
