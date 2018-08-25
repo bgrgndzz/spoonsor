@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const User = require('../../../models/User/User');
 const Message = require('../../../models/Message/Message');
 
+const createRoomName = require('../../../utils/createRoomName');
+
 module.exports = (req, res, next) => {
   if (
     req.body.user &&
@@ -19,11 +21,18 @@ module.exports = (req, res, next) => {
         .populate('from', 'user')
         .exec((err, message) => {
           if (err) return res.status(500).send(err);
-          res.status(200).json({
+          
+          const messageDisplayMap = {
             ...message._doc,
-            type: 'sent',
-            user: {...message.from._doc.user}
-          });
+            user: {
+              ...message.from._doc.user,
+              id: message.from.id
+            }
+          };
+          const roomName = createRoomName(req.session.user.id, req.body.user);
+
+          req.io.in(roomName).emit('new message', messageDisplayMap);
+          res.status(200).json({success: true});
         });
     });
   }

@@ -119,13 +119,7 @@ const loadMessages = (user) => {
             })
             .then(data => data.json())
             .then(data => {
-              console.log({
-                messages,
-                data,
-                messageField
-              });
-              createMessage(messages, data);
-              messages.scrollTop = messages.scrollHeight;
+              "messages.scrollTop = messages.scrollHeight;"
               messageField.value = '';
             });
         };
@@ -210,6 +204,17 @@ window.onload = () => {
   const content = document.querySelector('.content');
   
   const socket = io();
+
+  socket.on('new message', (data) => {
+    if (currentUser) {
+      const messages = document.querySelector('.messages');
+      createMessage(messages, {
+        ...data,
+        type: data.user.id === currentUser ? 'received' : 'sent'
+      });
+      messages.scrollTop = messages.scrollHeight;
+    }
+  });
 
   hamburgerIcon.onclick = () => {
     if (hamburger.classList.contains('hamburger-open')) {

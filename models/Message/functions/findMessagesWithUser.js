@@ -10,7 +10,10 @@ module.exports = function (user, other, callback) {
       callback(null, messages.map(message => ({
         ...message._doc,
         type: message.from.id.toString() === user ? 'sent' : 'received',
-        user: {...message.from._doc.user}
+        user: {
+          ...message.from._doc.user,
+          id: message.from.id
+        }
       })));
     });
 };
