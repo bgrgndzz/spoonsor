@@ -1,7 +1,6 @@
 module.exports = function (user, other, callback) {
   this
-    .find()
-    .or([{from: user}, {to: user}])
+    .find({$or: [{$and: [{from: user}, {to: other}]}, {$and: [{from: other}, {to: user}]}]})
     .sort('date')
     .populate('from', 'user')
     .populate('to', 'user')

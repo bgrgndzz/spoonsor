@@ -65,9 +65,7 @@ const UserSchema = new Schema({
     seekerSubject: String,
     // seeker/etkinlik
     etkinlikPlace: String,
-    etkinlikType: String,
-    // sponsor
-    sponsorName : String,
+    etkinlikType: String
   },
   passwordReset: {
     hash: String

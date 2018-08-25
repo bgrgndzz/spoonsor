@@ -19,6 +19,7 @@ module.exports = (req, res, next) => {
       Message
         .findById(newMessage.id)
         .populate('from', 'user')
+        .populate('to', 'user')
         .exec((err, message) => {
           if (err) return res.status(500).send(err);
           
@@ -27,6 +28,10 @@ module.exports = (req, res, next) => {
             user: {
               ...message.from._doc.user,
               id: message.from.id
+            },
+            other: {
+              ...message.to._doc.user,
+              id: message.to.id
             }
           };
           const roomName = createRoomName(req.session.user.id, req.body.user);

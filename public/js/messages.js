@@ -75,7 +75,7 @@ const loadMessages = (user) => {
 
         const messagesUser = document.createElement('h2');
         messagesUser.classList.add('messages-user', 'open-modal');
-        messagesUser.innerHTML = 'Sponsor';
+        messagesUser.innerHTML = data.user.name;
 
         messagesHeader.appendChild(closeMessages);
         messagesHeader.appendChild(messagesUser);
@@ -194,6 +194,42 @@ const loadMessages = (user) => {
     });
 };
 
+const createUser = (data, target = 'user') => {
+  const users = document.querySelector('.users-wrapper .users');
+
+  const userNode = document.createElement('li');
+  userNode.classList.add('user', 'user__active');
+
+  const userId = document.createElement('input');
+  userId.classList.add('user-id');
+  userId.type = 'hidden';
+  userId.name = 'user-id';
+  userId.value = data[target].id;
+  
+  const userImage = document.createElement('div');
+  userImage.classList.add('user-image');
+  userImage.style.backgroundImage = `url('/res/uploads/${data[target].profilepicture}')`;
+
+  const userContent = document.createElement('div');
+  userContent.classList.add('user-content');
+
+  const userName = document.createElement('h2');
+  userName.classList.add('user-name');
+  userName.innerHTML = data[target].name;
+
+  const userMessage = document.createElement('p');
+  userMessage.classList.add('user-message');
+
+  userContent.appendChild(userName);
+  userContent.appendChild(userMessage);
+
+  userNode.appendChild(userId);
+  userNode.appendChild(userImage);
+  userNode.appendChild(userContent);
+
+  users.prepend(userNode);
+};
+
 window.onload = () => {
   let currentUser = '';
 
@@ -212,9 +248,27 @@ window.onload = () => {
         ...data,
         type: data.user.id === currentUser ? 'received' : 'sent'
       });
-      const activeUserMessage = document.querySelector('.user__active .user-message');
-      const shortenedMessage = data.message.substring(0, 50);
-      activeUserMessage.innerHTML = shortenedMessage + (shortenedMessage !== data.message && '...')
+      if (data.user.id === currentUser) {
+        const activeUserNode = document.querySelector('.user__active');
+        if (activeUserNode) {
+          const activeUserId = activeUserNode.querySelector('.user-id').value;
+          if (activeUserId !== data.user.id) {
+            createUser(data);
+          }
+        } else {
+          createUser(data);
+        }
+        const activeUserMessage = document.querySelector('.user__active .user-message');
+        const shortenedMessage = data.message.substring(0, 50);
+        activeUserMessage.innerHTML = shortenedMessage;
+        if (shortenedMessage !== data.message) activeUserMessage.innerHTML += '...';
+      } else if (!data.messages) {
+        createUser(data, 'other');
+        const activeUserMessage = document.querySelector('.user__active .user-message');
+        const shortenedMessage = data.message.substring(0, 50);
+        activeUserMessage.innerHTML = shortenedMessage;
+        if (shortenedMessage !== data.message) activeUserMessage.innerHTML += '...';
+      }
       messages.scrollTop = messages.scrollHeight;
     }
   });
@@ -230,36 +284,57 @@ window.onload = () => {
   };
 
   document.addEventListener('click', (event) => {
-    const modalWrapper = document.querySelector('.modal-wrapper');
-    if (event.target && event.target.classList.contains('open-modal')) {
-      toggleDisplay(modalWrapper, true);
-    } else if (event.target && event.target.classList.contains('close-modal')) {
-      toggleDisplay(modalWrapper, false);
+    if (event.target) {
+      const modalWrapper = document.querySelector('.modal-wrapper');
+      if (event.target.classList.contains('open-modal')) {
+        toggleDisplay(modalWrapper, true);
+      } else if (event.target.classList.contains('close-modal')) {
+        toggleDisplay(modalWrapper, false);
+      }
+
+      if (event.target.closest('.users-wrapper .user')) {
+        const user = event.target.closest('.users-wrapper .user');
+        const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        if (!user.classList.contains('user__active') || vw <= 700) {
+          const userId = user.querySelector('.user-id').value;
+
+          if (document.querySelector('.user__active')) {
+            document.querySelector('.user__active').classList.remove('user__active');
+          }
+          user.classList.add('user__active');
+          loadMessages(userId);
+          if (currentUser) {
+            socket.emit('leave room', currentUser);
+          }
+          currentUser = userId;
+          socket.emit('join room', currentUser);
+          if (vw <= 700) {
+            content.style.marginLeft = '-100vw';
+          }
+        }
+      }
     }
   });
 
   users.forEach(user => {
     user.onclick = () => {
-      const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-      if (!user.classList.contains('user__active') || vw <= 700) {
-        const userId = user.querySelector('.user-id').value;
-
-        if (document.querySelector('.user__active')) {
-          document.querySelector('.user__active').classList.remove('user__active');
-        }
-        user.classList.add('user__active');
-        loadMessages(userId);
-        if (currentUser) {
-          socket.emit('leave room', currentUser);
-        }
-        currentUser = userId;
-        socket.emit('join room', currentUser);
-        if (vw <= 700) {
-          content.style.marginLeft = '-100vw';
-        }
-      }
+      
     };
   });
+
+  if (to) {
+    const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    loadMessages(to);
+    const toUserNode = [...users].find(user => user.querySelector('.user-id').value === to);
+    if (toUserNode) {
+      toUserNode.classList.add('user__active');
+    }
+    currentUser = to;
+    socket.emit('join room', to);
+    if (vw <= 700) {
+      content.style.marginLeft = '-100vw';
+    }
+  }
 
   window.onresize = () => {
     const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);

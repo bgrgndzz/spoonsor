@@ -17,7 +17,6 @@ module.exports = (req, res, next) => {
       name: req.body.sponsorname,
       description: req.body.sponsordescription,
       userType: 'sponsor',
-      sponsorName: req.body.sponsorname,
       sponsorDescription: req.body.sponsordescription,
       sponsorshipType: req.body.sponsorshiptype,
       active: true
