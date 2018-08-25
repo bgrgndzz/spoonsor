@@ -10,6 +10,43 @@ const resetMessages = () => {
 
   messagesWrapper.appendChild(messagesBackgroundNotice);
 };
+const createMessage = (messages, message) => {
+  const messageNode = document.createElement('div');
+  messageNode.classList.add('message', 'message__' + message.type);
+
+  const messageImage = document.createElement('div');
+  messageImage.classList.add('message-image');
+  messageImage.style.backgroundImage = `url('/res/uploads/${message.user.profilepicture}')`;
+
+  const messageContent = document.createElement('div');
+  messageContent.classList.add('message-content');
+
+  const messageDetails = document.createElement('div');
+  messageDetails.classList.add('message-details');
+
+  const messageSender = document.createElement('span');
+  messageSender.classList.add('message-sender');
+  messageSender.innerHTML = message.user.name;
+
+  const messageDate = document.createElement('span');
+  messageDate.classList.add('message-date');
+  messageDate.innerHTML = message.date;
+
+  messageDetails.appendChild(messageSender);
+  messageDetails.appendChild(messageDate);
+
+  const messageText = document.createElement('p');
+  messageText.classList.add('message-text');
+  messageText.innerHTML = message.message;
+
+  messageContent.appendChild(messageDetails);
+  messageContent.appendChild(messageText);
+
+  messageNode.appendChild(messageImage);
+  messageNode.appendChild(messageContent);
+  
+  messages.appendChild(messageNode);
+};
 const loadMessages = (user) => {
   fetch('/app/messages/' + user)
     .then(data => data.json())
@@ -47,43 +84,7 @@ const loadMessages = (user) => {
         const messages = document.createElement('div');
         messages.classList.add('messages');
 
-        data.messages.forEach(message => {
-          const messageNode = document.createElement('div');
-          messageNode.classList.add('message', 'message__' + message.type);
-
-          const messageImage = document.createElement('div');
-          messageImage.classList.add('message-image');
-          messageImage.style.backgroundImage = `url('/res/uploads/${message.user.profilepicture}')`;
-
-          const messageContent = document.createElement('div');
-          messageContent.classList.add('message-content');
-
-          const messageDetails = document.createElement('div');
-          messageDetails.classList.add('message-details');
-
-          const messageSender = document.createElement('span');
-          messageSender.classList.add('message-sender');
-          messageSender.innerHTML = message.user.name;
-
-          const messageDate = document.createElement('span');
-          messageDate.classList.add('message-date');
-          messageDate.innerHTML = message.date;
-
-          messageDetails.appendChild(messageSender);
-          messageDetails.appendChild(messageDate);
-
-          const messageText = document.createElement('p');
-          messageText.classList.add('message-text');
-          messageText.innerHTML = message.message;
-
-          messageContent.appendChild(messageDetails);
-          messageContent.appendChild(messageText);
-
-          messageNode.appendChild(messageImage);
-          messageNode.appendChild(messageContent);
-          
-          messages.appendChild(messageNode);
-        });
+        data.messages.forEach(message => createMessage(messages, message));
 
         // message form
         const messageForm = document.createElement('form');
@@ -101,13 +102,40 @@ const loadMessages = (user) => {
 
         messageForm.appendChild(messageField);
         messageForm.appendChild(messageButton);
+        messageForm.onsubmit = (event) => {
+          event.preventDefault();
+          fetch(
+            '/app/messages/send', 
+            {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                message: messageField.value,
+                user
+              })
+            })
+            .then(data => data.json())
+            .then(data => {
+              console.log({
+                messages,
+                data,
+                messageField
+              });
+              createMessage(messages, data);
+              messages.scrollTop = messages.scrollHeight;
+              messageField.value = '';
+            });
+        };
 
         // append everything to the wrapper
         messagesWrapper.appendChild(messagesHeader);
         messagesWrapper.appendChild(messages);
         messagesWrapper.appendChild(messageForm);
 
-        messagesWrapper.scrollTop = messagesWrapper.scrollHeight;
+        messages.scrollTop = messages.scrollHeight;
       })();
 
       // user wrapper

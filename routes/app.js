@@ -8,6 +8,8 @@ const seekersController = require('../controllers/app/seekers');
 const messagesIndexController = require('../controllers/app/messages/index');
 const messagesUserController = require('../controllers/app/messages/user');
 
+const messagesSendController = require('../controllers/app/messages/send');
+
 // require middleware
 const loggedIn = require('../middleware/loggedIn');
 router.use(loggedIn);
@@ -20,5 +22,6 @@ router.get('/seekers', seekersController);
 router.get('/messages', messagesIndexController);
 router.get('/messages/:user', messagesUserController);
 // post
+router.post('/messages/send', messagesSendController);
 
 module.exports = router;
