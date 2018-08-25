@@ -212,6 +212,9 @@ window.onload = () => {
         ...data,
         type: data.user.id === currentUser ? 'received' : 'sent'
       });
+      const activeUserMessage = document.querySelector('.user__active .user-message');
+      const shortenedMessage = data.message.substring(0, 50);
+      activeUserMessage.innerHTML = shortenedMessage + (shortenedMessage !== data.message && '...')
       messages.scrollTop = messages.scrollHeight;
     }
   });
