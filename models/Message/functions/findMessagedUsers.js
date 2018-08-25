@@ -23,6 +23,7 @@ module.exports = function (user, callback) {
           .map(message => ({
             message: message.message,
             date: message.date,
+            shortenedMessage: message.shortenedMessage,
             user: message.from.id.toString() === user ? 
               {
                 ...message.to.user,

@@ -22,7 +22,9 @@ block content
           .item-image.open-modal(style="background-image: url('/res/uploads/" + user.profilepicture + "')")
           if user.description
             p.item-description
-              =user.description
+              =user.shortenedDescription
+              if user.shortenedDescription !== user.description
+                |... 
               a.open-modal Daha fazla gör 
           .item-sponsorships
             each sponsorship in user.sponsorshipType

@@ -11,7 +11,10 @@ block content
           .user-image(style="background-image: url('/res/uploads/" + messagedUser.user.profilepicture + "')")
           .user-content
             h2.user-name= messagedUser.user.name
-            p.user-message= messagedUser.message
+            p.user-message
+              =messagedUser.shortenedMessage 
+              if messagedUser.shortenedMessage !== messagedUser.message
+                | ...
   .messages-wrapper
     span.messages-background-notice Mesajları görüntülemek için sol taraftan bir görüşme seçin
   .user-wrapper

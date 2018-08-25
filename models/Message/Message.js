@@ -24,6 +24,10 @@ const MessageSchema = new Schema({
   }
 });
 
+MessageSchema.virtual('shortenedMessage').get(function() {  
+  return this.message.substring(0, 50);
+});
+
 MessageSchema.statics.findMessagedUsers = findMessagedUsers;
 MessageSchema.statics.findMessagesWithUser = findMessagesWithUser;
 

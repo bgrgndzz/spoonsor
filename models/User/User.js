@@ -74,6 +74,10 @@ const UserSchema = new Schema({
   }
 });
 
+UserSchema.virtual('user.shortenedDescription').get(function() {  
+  return this.user.description ? this.user.description.substring(0, 100) : '';
+});
+
 UserSchema.pre('save', hashPassword);
 UserSchema.methods.verifyPassword = verifyPassword;
 UserSchema.query.byType = byType;

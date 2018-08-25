@@ -119,7 +119,7 @@ const loadMessages = (user) => {
             })
             .then(data => data.json())
             .then(data => {
-              "messages.scrollTop = messages.scrollHeight;"
+              messages.scrollTop = messages.scrollHeight;
               messageField.value = '';
             });
         };
