@@ -7,6 +7,8 @@ const sponsorsController = require('../controllers/app/sponsors');
 const seekersController = require('../controllers/app/seekers');
 const messagesIndexController = require('../controllers/app/messages/index');
 const messagesUserController = require('../controllers/app/messages/user');
+const profileIndexController = require('../controllers/app/profile/index');
+const profileUserController = require('../controllers/app/profile/user');
 
 const messagesSendController = require('../controllers/app/messages/send');
 
@@ -21,6 +23,8 @@ router.get('/sponsors', sponsorsController);
 router.get('/seekers', seekersController);
 router.get('/messages', messagesIndexController);
 router.get('/messages/:user', messagesUserController);
+router.get('/profile', profileIndexController);
+router.get('/profile/:user', profileUserController);
 // post
 router.post('/messages/send', messagesSendController);
 

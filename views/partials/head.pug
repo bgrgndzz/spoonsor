@@ -86,8 +86,12 @@ html(lang="tr")
                   a.link(href="/app/messages")
                     img.nav-img(src="/res/images/messages.svg")
               li
-                a.link(href="#")
-                  img.nav-img(src="/res/images/user.svg")
+                if page === 'profile'
+                  a.link.link--highlighted(href="/app/profile")
+                    img.nav-img(src="/res/images/user2.svg")
+                else
+                  a.link(href="/app/profile")
+                    img.nav-img(src="/res/images/user.svg")
             .hamburger
               .hamburger-icon
                 .bar.top
@@ -111,7 +115,10 @@ html(lang="tr")
                   else
                     a.link(href="/app/messages") Görüşmeler
                 li
-                  a.link(href="#") Profil
+                  if page === 'profile'
+                    a.link.link--highlighted(href="/app/profile") Profil
+                  else
+                    a.link(href="/app/profile") Profil
                 li
                   a.link(href="#") Çıkış Yap
       .content
