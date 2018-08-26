@@ -12,6 +12,7 @@ module.exports = (req, res, next) => {
         'utils/toggleDisplay'
       ]
     },
-    headerType: 'app'
+    headerType: 'app',
+    user: req.session.user
   });
 };
