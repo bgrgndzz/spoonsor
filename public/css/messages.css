@@ -61,6 +61,9 @@
   align-items: center;
   cursor: pointer;
 }
+.users-wrapper .highlighted {
+  color: #ff0083;
+}
 .users-wrapper .user-image {
   width: 50px;
   height: 50px;

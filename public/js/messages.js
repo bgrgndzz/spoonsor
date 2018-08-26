@@ -236,6 +236,7 @@ window.onload = () => {
   const hamburger = document.querySelector('.hamburger');
   const hamburgerIcon = document.querySelector('.hamburger-icon');
 
+  const searchField = document.querySelector('.search-users .field');
   const users = document.querySelectorAll('.users-wrapper .user');
   const content = document.querySelector('.content');
   
@@ -316,12 +317,6 @@ window.onload = () => {
     }
   });
 
-  users.forEach(user => {
-    user.onclick = () => {
-      
-    };
-  });
-
   if (to) {
     const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     loadMessages(to);
@@ -335,6 +330,55 @@ window.onload = () => {
       content.style.marginLeft = '-100vw';
     }
   }
+
+  searchField.onkeyup = (event) => {
+    const search = event.target.value;
+    const highlightSearch = (search, elementName, user, add = true) => {
+      const element = user.querySelector('.user-' + elementName);
+      const searchRegex = new RegExp(search, 'gi');
+      if (add) {
+        element.innerHTML = 
+          element.innerHTML
+            .split(searchRegex)
+            .map(
+              (splitSearch, index, array) => 
+                index === array.length - 1 ? 
+                splitSearch : 
+                splitSearch + `<span class="highlighted">${element.innerHTML.match(searchRegex)[index]}</span>`)
+            .join('');
+      } else {
+        [...element.querySelectorAll('.highlighted')]
+          .map(highlighted => highlighted.outerHTML = highlighted.innerHTML);
+      }
+    };
+    const resetHiglight = () => {
+      const users = document.querySelectorAll('.users-wrapper .user');
+      [...users].forEach(user => {
+        highlightSearch(null, 'name', user, false);
+        highlightSearch(null, 'message', user, false);
+      });
+    }
+
+    resetHiglight();
+
+    if (search) {
+      [...users].map(user => {
+        if (user.querySelector('.user-name').innerHTML.toLowerCase().indexOf(search.toLowerCase()) > -1) {
+          user.style.display = 'flex';
+          highlightSearch(search, 'name', user);
+        } else if (user.querySelector('.user-message').innerHTML.toLowerCase().indexOf(search.toLowerCase()) > -1) {
+          user.style.display = 'flex';
+          highlightSearch(search, 'message', user);
+        } else {
+          user.style.display = 'none';
+        }
+      });
+    } else {
+      [...users].map(user => {
+        user.style.display = 'flex';
+      });
+    }
+  };
 
   window.onresize = () => {
     const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
