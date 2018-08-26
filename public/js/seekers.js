@@ -3,6 +3,7 @@ const changeModal = (data, modalWrapper) => {
   const modalTitle = modalWrapper.querySelector('.modal-title');
   const modalSponsorships = modalWrapper.querySelector('.modal-sponsorships');
   const modalDescription = modalWrapper.querySelector('.modal-description');
+  const modalContactButton = modalWrapper.querySelector('.modal-contact-button');
 
   modalImage.style.backgroundImage = `url('/res/uploads/${data.profilepicture}')`;
   modalTitle.innerHTML = data.name;
@@ -16,6 +17,8 @@ const changeModal = (data, modalWrapper) => {
 
     modalSponsorships.appendChild(sponsorshipNode);
   });
+
+  modalContactButton.onclick = () => window.location.href = '/app/messages?to=' + data.id;
 };
 
 window.onload = () => {
