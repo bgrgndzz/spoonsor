@@ -249,22 +249,16 @@ window.onload = () => {
         ...data,
         type: data.user.id === currentUser ? 'received' : 'sent'
       });
-      if (data.user.id === currentUser) {
+      if (data.user.id === currentUser || data.other.id === currentUser) {
         const activeUserNode = document.querySelector('.user__active');
         if (activeUserNode) {
           const activeUserId = activeUserNode.querySelector('.user-id').value;
-          if (activeUserId !== data.user.id) {
-            createUser(data);
+          if (activeUserId !== currentUser) {
+            createUser(data, data.user.id === currentUser ? 'user' : 'other');
           }
         } else {
-          createUser(data);
+          createUser(data, data.user.id === currentUser ? 'user' : 'other');
         }
-        const activeUserMessage = document.querySelector('.user__active .user-message');
-        const shortenedMessage = data.message.substring(0, 50);
-        activeUserMessage.innerHTML = shortenedMessage;
-        if (shortenedMessage !== data.message) activeUserMessage.innerHTML += '...';
-      } else if (!data.messages) {
-        createUser(data, 'other');
         const activeUserMessage = document.querySelector('.user__active .user-message');
         const shortenedMessage = data.message.substring(0, 50);
         activeUserMessage.innerHTML = shortenedMessage;

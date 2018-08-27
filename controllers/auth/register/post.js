@@ -14,31 +14,16 @@ module.exports = (req, res, next) => {
       phone: req.body.phone
     },
     user: {
-      userType: req.body.type,
-    }
-  };
-  
-  if (req.body.type === 'etkinlik') {
-    newUserData.user = {
-      ...newUserData.user,
+      userType: 'etkinlik',
       name: req.body.etkinlikname,
       start: req.body.etkinlikstart,
       end: req.body.etkinlikend,
       sponsorshipType: req.body.sponsorshiptype,
-      seekerSubject: req.body.etkinliksubject,
+      etkinlikSubject: req.body.etkinliksubject,
       etkinlikPlace: req.body.etkinlikplace,
       etkinlikType: req.body.etkinliktype
-    };
-  } else if (req.body.type === 'proje') {
-    newUserData.user = {
-      ...newUserData.user,
-      name: req.body.projename,
-      start: req.body.projestart,
-      end: req.body.projeend,
-      sponsorshipType: req.body.sponsorshiptype,
-      seekerSubject: req.body.projesubject
-    };
-  }
+    }
+  };
 
   const newUser = new User(newUserData);
   newUser.save(err => {

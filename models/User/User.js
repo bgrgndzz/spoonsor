@@ -59,11 +59,9 @@ const UserSchema = new Schema({
     },
     description: String,
     sponsorshipType: [String],
-    // seeker/shared
     start: Date,
     end: Date,
-    seekerSubject: String,
-    // seeker/etkinlik
+    etkinlikSubject: String,
     etkinlikPlace: String,
     etkinlikType: String
   },

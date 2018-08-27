@@ -4,7 +4,7 @@ const router = express.Router();
 // require controllers
 const indexController = require('../controllers/app/index');
 const sponsorsController = require('../controllers/app/sponsors');
-const seekersController = require('../controllers/app/seekers');
+const eventsController = require('../controllers/app/events');
 const messagesIndexController = require('../controllers/app/messages/index');
 const messagesUserController = require('../controllers/app/messages/user');
 const profileIndexController = require('../controllers/app/profile/index');
@@ -20,7 +20,7 @@ router.use(loggedIn);
 // get
 router.get('/', indexController);
 router.get('/sponsors', sponsorsController);
-router.get('/seekers', seekersController);
+router.get('/events', eventsController);
 router.get('/messages', messagesIndexController);
 router.get('/messages/:user', messagesUserController);
 router.get('/profile', profileIndexController);

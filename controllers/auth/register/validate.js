@@ -76,98 +76,51 @@ module.exports = (req, res, next) => {
     });
   }
   
-  if (!req.body.type || isEmpty(req.body.type)) {
+  if (!req.body.etkinlikname || isEmpty(req.body.etkinlikname)) {
     errors.push({
-      param: 'type',
-      error: 'Lütfen bir hesap türü seçin.'
+      param: 'etkinlikname',
+      error: 'Lütfen etkinliğinizin ismini girin.'
     });
-  } else if (!isIn(req.body.type, ['etkinlik', 'proje'])) {
+  }
+  if (!req.body.etkinlikstart || isEmpty(req.body.etkinlikstart)) {
     errors.push({
-      param: 'type',
-      error: 'Seçtiğiniz hesap türü geçerli değil.'
+      param: 'etkinlikstart',
+      error: 'Lütfen etkinliğinizin başlangıç tarihini girin.'
     });
-  } else if (equals(req.body.type, 'etkinlik')) {
-    if (!req.body.etkinlikname || isEmpty(req.body.etkinlikname)) {
-      errors.push({
-        param: 'etkinlikname',
-        error: 'Lütfen etkinliğinizin ismini girin.'
-      });
-    }
-    if (!req.body.etkinlikstart || isEmpty(req.body.etkinlikstart)) {
-      errors.push({
-        param: 'etkinlikstart',
-        error: 'Lütfen etkinliğinizin başlangıç tarihini girin.'
-      });
-    } else if (!matches(req.body.etkinlikstart, dateRegex)) {
-      errors.push({
-        param: 'etkinlikstart',
-        error: 'Girdiğiniz etkinlik başlangıç tarihi geçerli değil.'
-      });
-    }
-    if (!req.body.etkinlikend || isEmpty(req.body.etkinlikend)) {
-      errors.push({
-        param: 'etkinlikend',
-        error: 'Lütfen etkinliğinizin bitiş tarihini girin.'
-      });
-    } else if (!matches(req.body.etkinlikend, dateRegex)) {
-      errors.push({
-        param: 'etkinlikend',
-        error: 'Girdiğiniz etkinlik bitiş tarihi geçerli değil.'
-      });
-    }
-    if (!req.body.etkinlikplace || isEmpty(req.body.etkinlikplace)) {
-      errors.push({
-        param: 'etkinlikplace',
-        error: 'Lütfen etkinliğinizin olacağı yeri girin.'
-      });
-    }
-    if (!req.body.etkinliktype || isEmpty(req.body.etkinliktype)) {
-      errors.push({
-        param: 'etkinliktype',
-        error: 'Lütfen etkinliğinizin türünü girin.'
-      });
-    }
-    if (!req.body.etkinliksubject || isEmpty(req.body.etkinliksubject)) {
-      errors.push({
-        param: 'etkinliksubject',
-        error: 'Lütfen etkinliğinizin konusunu girin.'
-      });
-    }
-  } else if (equals(req.body.type, 'proje')) {
-    if (!req.body.projename || isEmpty(req.body.projename)) {
-      errors.push({
-        param: 'projename',
-        error: 'Lütfen projenizin ismini girin.'
-      });
-    }
-    if (!req.body.projestart || isEmpty(req.body.projestart)) {
-      errors.push({
-        param: 'projestart',
-        error: 'Lütfen projenizin başlangıç tarihini girin.'
-      });
-    } else if (!matches(req.body.projestart, dateRegex)) {
-      errors.push({
-        param: 'projestart',
-        error: 'Girdiğiniz proje başlangıç tarihi geçerli değil.'
-      });
-    }
-    if (!req.body.projeend || isEmpty(req.body.projeend)) {
-      errors.push({
-        param: 'projeend',
-        error: 'Lütfen projenizin bitiş tarihini girin.'
-      });
-    } else if (!matches(req.body.projeend, dateRegex)) {
-      errors.push({
-        param: 'projeend',
-        error: 'Girdiğiniz proje bitiş tarihi geçerli değil.'
-      });
-    }
-    if (!req.body.projesubject || isEmpty(req.body.projesubject)) {
-      errors.push({
-        param: 'projesubject',
-        error: 'Lütfen projenizin konusunu girin.'
-      });
-    }
+  } else if (!matches(req.body.etkinlikstart, dateRegex)) {
+    errors.push({
+      param: 'etkinlikstart',
+      error: 'Girdiğiniz etkinlik başlangıç tarihi geçerli değil.'
+    });
+  }
+  if (!req.body.etkinlikend || isEmpty(req.body.etkinlikend)) {
+    errors.push({
+      param: 'etkinlikend',
+      error: 'Lütfen etkinliğinizin bitiş tarihini girin.'
+    });
+  } else if (!matches(req.body.etkinlikend, dateRegex)) {
+    errors.push({
+      param: 'etkinlikend',
+      error: 'Girdiğiniz etkinlik bitiş tarihi geçerli değil.'
+    });
+  }
+  if (!req.body.etkinlikplace || isEmpty(req.body.etkinlikplace)) {
+    errors.push({
+      param: 'etkinlikplace',
+      error: 'Lütfen etkinliğinizin olacağı yeri girin.'
+    });
+  }
+  if (!req.body.etkinliktype || isEmpty(req.body.etkinliktype)) {
+    errors.push({
+      param: 'etkinliktype',
+      error: 'Lütfen etkinliğinizin türünü girin.'
+    });
+  }
+  if (!req.body.etkinliksubject || isEmpty(req.body.etkinliksubject)) {
+    errors.push({
+      param: 'etkinliksubject',
+      error: 'Lütfen etkinliğinizin konusunu girin.'
+    });
   }
 
   User.findOne({'auth.email': req.body.email}, (err, userRes) => {
