@@ -88,7 +88,17 @@ const validateCurrentForm = (currentForm) => {
       });
     } else if (
       !sponsorshiptype.every(
-        value => validator.isIn(value, ['İçerik', 'İndirim/Hediye Kuponu', 'Mekan', 'Stand', 'Ürün'])
+        value => validator.isIn(
+          value, 
+          [
+            'İçerik/Konuşmacı', 
+            'İndirim/Hediye Kuponu', 
+            'Mekan', 
+            'Nakit', 
+            'Stand', 
+            'Tanıtım', 
+            'Ürün'
+          ])
       )
     ) {
       errors.push({

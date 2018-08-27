@@ -39,7 +39,17 @@ module.exports = (req, res, next) => {
     });
   } else if (
     !req.body.sponsorshiptype.every(
-      value => isIn(value, ['İçerik', 'İndirim/Hediye Kuponu', 'Mekan', 'Stand', 'Ürün'])
+      value => isIn(
+        value, 
+        [
+          'İçerik/Konuşmacı', 
+          'İndirim/Hediye Kuponu', 
+          'Mekan', 
+          'Nakit', 
+          'Stand', 
+          'Tanıtım', 
+          'Ürün'
+        ])
     )
   ) {
     errors.push({
