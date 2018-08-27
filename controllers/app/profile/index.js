@@ -13,6 +13,7 @@ module.exports = (req, res, next) => {
       ]
     },
     headerType: 'app',
-    user: req.session.user
+    user: req.session.user,
+    edit: true
   });
 };

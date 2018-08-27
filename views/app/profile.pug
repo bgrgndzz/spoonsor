@@ -1,2 +1,36 @@
 extends ../partials/head
 block content
+  .main-info
+    .user-image(style="background-image: url('/res/uploads/" + user.profilepicture + "')")
+    h1.user-name= user.name
+    if edit
+      a(href="#").edit-button
+        i.fas.fa-pen
+        |  
+        h3 Profili düzenle
+    if user.description
+      p.user-description= user.description
+  .user-details.user-details--current
+    - for (let i = 0; i <= 7; i++)
+      .user-detail
+        img.user-detail-image(src="/res/images/user.svg")
+        span.user-detail-name Detay
+        span.user-detail-value Değer
+  h2.user-detail-old-heading Önceki yıla ait
+  .user-details.user-details--old
+    - for (let i = 0; i <= 4; i++)
+      .user-detail
+        img.user-detail-image(src="/res/images/user.svg")
+        span.user-detail-name Detay
+        span.user-detail-value Değer
+  if self
+    .modal-wrapper
+      .overlay.close-modal
+      .modal
+        i.fas.fa-times.modal-close-button.close-modal
+        .modal-image-wrapper
+          .modal-image(style="background-image: url('/res/images/')")
+          h2.modal-title
+        .modal-sponsorships
+        p.modal-description Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga numquam iste quis ad voluptatem mollitia itaque delectus inventore hic, vero dolores provident nobis, vel porro saepe magni quas error adipisci!Laudantium, eius minus dicta amet eos iste et quia ducimus velit ad totam, maxime aliquid esse error corporis blanditiis voluptatum reprehenderit earum aperiam architecto praesentium nesciunt? Quidem placeat laudantium distinctio?
+        button.button.modal-contact-button İletişime Geç
