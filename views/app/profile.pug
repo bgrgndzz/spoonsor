@@ -128,7 +128,7 @@ block content
                 | Açıklama
                 i.fas.fa-chevron-down.setting-reveal
               .setting-content
-                textarea.field(name="description", placeholder="Açıklama")
+                textarea.field(name="description", placeholder="Açıklama")= user.description
             .setting
               span.setting-heading 
                 | İstenilen Sponsorluk
@@ -136,31 +136,31 @@ block content
               .setting-content
                 .radios
                   label.radio-wrapper.radio-wrapper--small-font
-                    input.radio(type="checkbox", name="sponsorshiptype", value="İçerik/Konuşmacı") 
+                    input.radio(type="checkbox", name="sponsorshiptype", value="İçerik/Konuşmacı", checked=user.sponsorshipType.includes('İçerik/Konuşmacı')) 
                     .styled-radio
                     span.radio-label İçerik/Konuşmacı
                   label.radio-wrapper.radio-wrapper--small-font
-                    input.radio(type="checkbox", name="sponsorshiptype", value="İndirim/Hediye Kuponu")
+                    input.radio(type="checkbox", name="sponsorshiptype", value="İndirim/Hediye Kuponu", checked=user.sponsorshipType.includes('İndirim/Hediye Kuponu'))
                     .styled-radio
                     span.radio-label İndirim/Hediye Kuponu
                   label.radio-wrapper
-                    input.radio(type="checkbox", name="sponsorshiptype", value="Mekan") 
+                    input.radio(type="checkbox", name="sponsorshiptype", value="Mekan", checked=user.sponsorshipType.includes('Mekan')) 
                     .styled-radio
                     span.radio-label Mekan
                   label.radio-wrapper
-                    input.radio(type="checkbox", name="sponsorshiptype", value="Nakit") 
+                    input.radio(type="checkbox", name="sponsorshiptype", value="Nakit", checked=user.sponsorshipType.includes('Nakit')) 
                     .styled-radio
                     span.radio-label Nakit
                   label.radio-wrapper
-                    input.radio(type="checkbox", name="sponsorshiptype", value="Stand") 
+                    input.radio(type="checkbox", name="sponsorshiptype", value="Stand", checked=user.sponsorshipType.includes('Stand')) 
                     .styled-radio
                     span.radio-label Stand
                   label.radio-wrapper
-                    input.radio(type="checkbox", name="sponsorshiptype", value="Tanıtım") 
+                    input.radio(type="checkbox", name="sponsorshiptype", value="Tanıtım", checked=user.sponsorshipType.includes('Tanıtım')) 
                     .styled-radio
                     span.radio-label Tanıtım
                   label.radio-wrapper
-                    input.radio(type="checkbox", name="sponsorshiptype", value="Ürün") 
+                    input.radio(type="checkbox", name="sponsorshiptype", value="Ürün", checked=user.sponsorshipType.includes('Ürün')) 
                     .styled-radio
                     span.radio-label Ürün
             .setting
@@ -168,40 +168,40 @@ block content
                 | Hedef Kitle
                 i.fas.fa-chevron-down.setting-reveal
               .setting-content
-                input.field(type="text", name="description", placeholder="Hedef kitle açıklaması")
-                input.field(type="text", name="expectedAttendance", placeholder="Ulaşılacak kişi sayısı")
+                input.field(type="text", name="target", placeholder="Hedef kitle açıklaması", value=user.target)
+                input.field(type="text", name="expectedAttendance", placeholder="Ulaşılacak kişi sayısı", value=user.expectedAttendance)
                 select.field(name="age")
-                  option(disabled, selected, value="") Yaş Grubu
-                  option(value="0-6") 0-6
-                  option(value="7-14") 7-14
-                  option(value="15-17") 15-17
-                  option(value="18-24") 18-24
-                  option(value="25-34") 25-34
-                  option(value="35-44") 35-44
-                  option(value="45-65") 45-65
-                  option(value="65+") 65+
-                input.field.field__half.field__left-half(type="text", name="male", placeholder="Erkek oranı")
-                input.field.field__half.field__right-half(type="text", name="female", placeholder="Kadın oranı")
+                  option(value="", disabled, selected=!['0-6', '7-14', '15-17', '18-24', '25-34', '35-44', '45-65', '65+'].some(age => age === user.age)) Yaş Grubu
+                  option(value="0-6", selected=user.age==='0-6') 0-6
+                  option(value="7-14", selected=user.age==='7-14') 7-14
+                  option(value="15-17", selected=user.age==='15-17') 15-17
+                  option(value="18-24", selected=user.age==='18-24') 18-24
+                  option(value="25-34", selected=user.age==='25-34') 25-34
+                  option(value="35-44", selected=user.age==='35-44') 35-44
+                  option(value="45-65", selected=user.age==='45-65') 45-65
+                  option(value="65+", selected=user.age==='65+') 65+
+                input.field.field__half.field__left-half(type="text", name="male", placeholder="Erkek oranı", value=user.male)
+                input.field.field__half.field__right-half(type="text", name="female", placeholder="Kadın oranı", value=user.female)
             .setting
               span.setting-heading 
                 | Kesinleşmiş Sponsorlar
                 i.fas.fa-chevron-down.setting-reveal
               .setting-content
-                input.field(type="text", name="sponsors", placeholder="Sponsorlar (virgülle ayırın)")
+                input.field(type="text", name="sponsors", placeholder="Sponsorlar (virgülle ayırın)", value=user.sponsors.join(','))
             .setting
               span.setting-heading 
                 | Sosyal Medya
                 i.fas.fa-chevron-down.setting-reveal
               .setting-content
-                input.field(type="text", name="website", placeholder="İnternet sitesi")
-                input.field(type="text", name="instagram", placeholder="Instagram kullanıcı adı")
+                input.field(type="text", name="website", placeholder="İnternet sitesi", value=user.social.website)
+                input.field(type="text", name="instagram", placeholder="Instagram kullanıcı adı", value=user.social.instagram)
             .setting
               span.setting-heading 
                 | Önceki yılın verileri
                 i.fas.fa-chevron-down.setting-reveal
               .setting-content
-                input.field(type="text", name="attendance", placeholder="Katılımcı sayısı")
-                input.field(type="text", name="audience", placeholder="Katılımcı profili")
-                input.field(type="text", name="promotion", placeholder="Tanıtım kaynakları")
-                input.field(type="text", name="oldsponsors", placeholder="Sponsorlar (virgülle ayırın)")
+                input.field(type="text", name="attendance", placeholder="Katılımcı sayısı", value=user.old.attendance)
+                input.field(type="text", name="audience", placeholder="Katılımcı profili", value=user.old.audience)
+                input.field(type="text", name="promotion", placeholder="Tanıtım kaynakları", value=user.old.promotion)
+                input.field(type="text", name="oldsponsors", placeholder="Sponsorlar (virgülle ayırın)", value=user.old.sponsors.join(','))
         input.button.submit-button(type="submit", value="Kaydet")    

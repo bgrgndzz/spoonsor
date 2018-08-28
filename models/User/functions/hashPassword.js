@@ -1,12 +1,14 @@
 const bcrypt = require('bcrypt');
 
 module.exports = function(next) {
-  var user = this;
+  if (this.preSave) {
+    bcrypt.hash(this.auth.password, 10, (err, hash) => {
+      if (err) return next(err);
 
-  bcrypt.hash(user.auth.password, 10, (err, hash) => {
-    if (err) return next(err);
-
-    user.auth.password = hash;
+      user.auth.password = hash;
+      next();
+    });
+  } else {
     next();
-  });
+  }
 };

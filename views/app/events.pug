@@ -24,8 +24,8 @@ block content
             p.item-description
               =user.shortenedDescription
               if user.shortenedDescription !== user.description
-                |...  
-              a.open-modal Daha fazla gör 
+                |...
+              a.open-modal  Daha fazla gör 
           .item-sponsorships
             each sponsorship in user.sponsorshipType
               span.item-sponsorship= sponsorship

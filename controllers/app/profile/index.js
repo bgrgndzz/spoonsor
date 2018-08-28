@@ -6,7 +6,10 @@ module.exports = (req, res, next) => {
     page: 'profile',
     title: 'Profil',
     includes: {
-      external: ['fontawesome'],
+      external: [
+        'fontawesome',
+        'validator'
+      ],
       js: [
         'profile',
         'utils/toggleDisplay'

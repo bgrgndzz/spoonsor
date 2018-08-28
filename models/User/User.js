@@ -86,6 +86,10 @@ const UserSchema = new Schema({
   },
   passwordReset: {
     hash: String
+  },
+  preSave: {
+    type: Boolean,
+    default: true
   }
 });
 
