@@ -4,6 +4,12 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-family: "Hind", sans-serif;
+  outline: none;
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 .wrapper {
   overflow-x: hidden;
@@ -97,7 +103,6 @@ input {
   list-style-type: disc;
   font-size: 1.25em;
 }
-
 
 @media only screen and (max-width: 1000px) {
   .error-description {

@@ -5,7 +5,7 @@ block content
       .user-image(style="background-image: url('/res/uploads/" + user.profilepicture + "')")
       h1.user-name= user.name
       if edit
-        a(href="#").edit-button
+        a(href="#").edit-button.open-modal
           i.fas.fa-pen
           |  
           h3 Profili düzenle
@@ -41,7 +41,9 @@ block content
         img.user-detail-image(src="/res/images/profile/sponsorshiptype.svg")
         .user-detail-content
           span.user-detail-name Sponsorluk İhtiyacı
-          span.user-detail-value= user.sponsorshipType
+          ul.user-detail-value.sponsorships
+            each sponsorship in user.sponsorshipType
+              li.sponsorship= sponsorship
       .user-detail-half-wrapper
         .user-detail.user-detail__half.user-detail__left-half
           img.user-detail-image(src="/res/images/profile/target.svg")
@@ -109,14 +111,97 @@ block content
         .user-detail-content
           span.user-detail-name Sponsorlar
           span.user-detail-value #{user.old.sponsors.join(', ')}
-  if self
+  if edit
     .modal-wrapper
       .overlay.close-modal
       .modal
         i.fas.fa-times.modal-close-button.close-modal
-        .modal-image-wrapper
-          .modal-image(style="background-image: url('/res/images/')")
-          h2.modal-title
-        .modal-sponsorships
-        p.modal-description Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga numquam iste quis ad voluptatem mollitia itaque delectus inventore hic, vero dolores provident nobis, vel porro saepe magni quas error adipisci!Laudantium, eius minus dicta amet eos iste et quia ducimus velit ad totam, maxime aliquid esse error corporis blanditiis voluptatum reprehenderit earum aperiam architecto praesentium nesciunt? Quidem placeat laudantium distinctio?
-        button.button.modal-contact-button İletişime Geç
+        .settings-wrapper
+          .profile-picture
+            .profile-picture-display(style="background-image: url('/res/uploads/" + user.profilepicture + "')")
+              label.profile-picture-edit-button
+                input(type="file", name="profilepicture")
+                i.fas.fa-pen
+          .settings
+            .setting
+              span.setting-heading 
+                | Açıklama
+                i.fas.fa-chevron-down.setting-reveal
+              .setting-content
+                textarea.field(name="description", placeholder="Açıklama")
+            .setting
+              span.setting-heading 
+                | İstenilen Sponsorluk
+                i.fas.fa-chevron-down.setting-reveal
+              .setting-content
+                .radios
+                  label.radio-wrapper.radio-wrapper--small-font
+                    input.radio(type="checkbox", name="sponsorshiptype", value="İçerik/Konuşmacı") 
+                    .styled-radio
+                    span.radio-label İçerik/Konuşmacı
+                  label.radio-wrapper.radio-wrapper--small-font
+                    input.radio(type="checkbox", name="sponsorshiptype", value="İndirim/Hediye Kuponu")
+                    .styled-radio
+                    span.radio-label İndirim/Hediye Kuponu
+                  label.radio-wrapper
+                    input.radio(type="checkbox", name="sponsorshiptype", value="Mekan") 
+                    .styled-radio
+                    span.radio-label Mekan
+                  label.radio-wrapper
+                    input.radio(type="checkbox", name="sponsorshiptype", value="Nakit") 
+                    .styled-radio
+                    span.radio-label Nakit
+                  label.radio-wrapper
+                    input.radio(type="checkbox", name="sponsorshiptype", value="Stand") 
+                    .styled-radio
+                    span.radio-label Stand
+                  label.radio-wrapper
+                    input.radio(type="checkbox", name="sponsorshiptype", value="Tanıtım") 
+                    .styled-radio
+                    span.radio-label Tanıtım
+                  label.radio-wrapper
+                    input.radio(type="checkbox", name="sponsorshiptype", value="Ürün") 
+                    .styled-radio
+                    span.radio-label Ürün
+            .setting
+              span.setting-heading 
+                | Hedef Kitle
+                i.fas.fa-chevron-down.setting-reveal
+              .setting-content
+                input.field(type="text", name="description", placeholder="Hedef kitle açıklaması")
+                input.field(type="text", name="expectedAttendance", placeholder="Ulaşılacak kişi sayısı")
+                select.field(name="age")
+                  option(disabled, selected, value="") Yaş Grubu
+                  option(value="0-6") 0-6
+                  option(value="7-14") 7-14
+                  option(value="15-17") 15-17
+                  option(value="18-24") 18-24
+                  option(value="25-34") 25-34
+                  option(value="35-44") 35-44
+                  option(value="45-65") 45-65
+                  option(value="65+") 65+
+                input.field.field__half.field__left-half(type="text", name="male", placeholder="Erkek oranı")
+                input.field.field__half.field__right-half(type="text", name="female", placeholder="Kadın oranı")
+            .setting
+              span.setting-heading 
+                | Kesinleşmiş Sponsorlar
+                i.fas.fa-chevron-down.setting-reveal
+              .setting-content
+                input.field(type="text", name="sponsors", placeholder="Sponsorlar (virgülle ayırın)")
+            .setting
+              span.setting-heading 
+                | Sosyal Medya
+                i.fas.fa-chevron-down.setting-reveal
+              .setting-content
+                input.field(type="text", name="website", placeholder="İnternet sitesi")
+                input.field(type="text", name="instagram", placeholder="Instagram kullanıcı adı")
+            .setting
+              span.setting-heading 
+                | Önceki yılın verileri
+                i.fas.fa-chevron-down.setting-reveal
+              .setting-content
+                input.field(type="text", name="attendance", placeholder="Katılımcı sayısı")
+                input.field(type="text", name="audience", placeholder="Katılımcı profili")
+                input.field(type="text", name="promotion", placeholder="Tanıtım kaynakları")
+                input.field(type="text", name="oldsponsors", placeholder="Sponsorlar (virgülle ayırın)")
+        input.button.submit-button(type="submit", value="Kaydet")    

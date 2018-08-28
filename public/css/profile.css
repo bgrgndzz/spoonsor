@@ -1,9 +1,54 @@
 h2 {
   text-align: center;
 }
+.button {
+  background-color: #ff0083;
+  -webkit-box-shadow: 0 0 24px rgba(255, 0, 131, 0.5);
+  box-shadow: 0 0 24px rgba(255, 0, 131, 0.5);
+  color: white;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 5px;
+  font-size: 1.2em;
+  -webkit-transition: 0.25s ease all;
+  transition: 0.25s ease all;
+  border: 3px solid #ff0083;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.button:hover {
+  -webkit-box-shadow: 0 0 36px rgba(255, 0, 131, 0.75);
+  box-shadow: 0 0 36px rgba(255, 0, 131, 0.75);
+}
+.field {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #707070;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-position: 15px 50%;
+  -webkit-transition: 0.25s ease all;
+  transition: 0.25s ease all;
+  resize: vertical;
+  background-color: white;
+}
+.field:not(:last-child) {
+  margin-bottom: 25px;
+}
+.field__half {
+  width: 45%;
+}
+.field__left-half {
+  margin-right: 10%;
+}
+.field:hover,
+.field:focus {
+  border-color: #ff0083;
+}
 .main-info {
   margin-bottom: 25px;
   text-align: center;
+  padding: 25px;
 }
 .user-image {
   width: 250px;
@@ -79,7 +124,7 @@ hr {
   flex: 1;
 }
 .user-detail__half {
-  width: 45%;
+  width: 47.5%;
 }
 .user-detail-half-wrapper {
   display: flex;
@@ -108,9 +153,239 @@ hr {
   font-weight: 900;
   padding-top: 25px;
 }
+.sponsorships {
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.sponsorship {
+  border-radius: 10px;
+  font-size: 0.8em;
+  padding: 0 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.modal-wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  display: none;
+  opacity: 0;
+  -webkit-transition: 0.5s ease all;
+  transition: 0.5s ease all;
+}
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+.modal {
+  width: 60vw;
+  height: 95vh;
+  background-color: white;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  border-radius: 10px;
+  overflow: scroll;
+  padding: 50px;
+}
+.modal-close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 10px;
+  color: rgba(0, 0, 0, 0.75);
+  z-index: 5;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+.settings-wrapper {
+  width: 100%;
+  height: calc(100% - 40px);
+  overflow-y: scroll;
+}
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+}
+.profile-picture-display {
+  width: 150px;
+  height: 150px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.profile-picture-edit-button {
+  cursor: pointer;
+}
+.profile-picture-edit-button input[type="file"] {
+  display: none;
+}
+.profile-picture-edit-button i {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  background-color: #ff0083;
+  color: white;
+  padding: 5px;
+  border-radius: 50%;
+}
+.submit-button {
+  height: 50px;
+  width: 40%;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.settings {
+  width: 100%;
+}
+.setting {
+  width: 100%;
+}
+.setting-heading {
+  background-color: white;
+  width: 100%;
+  padding: 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  position: relative;
+  line-height: 25px;
+}
+.setting-reveal {
+  float: right;
+  line-height: 25px;
+  cursor: pointer;
+}
+.setting-content {
+  display: none;
+  opacity: 0;
+  width: 100%;
+  background-color: #f9f9f9;
+  padding: 25px;
+  transition: .25s ease all;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.radio:checked + .styled-radio {
+  border: 1px solid #ff0083;
+}
+.radio + .styled-radio:after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-transition: 0.25s ease all;
+  transition: 0.25s ease all;
+  background-color: white;
+}
+.radio:checked + .styled-radio:after {
+  background-color: #ff0083;
+}
+.styled-radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  -webkit-transition: 0.25s ease all;
+  transition: 0.25s ease all;
+  margin: 0 auto;
+  position: relative;
+}
+.radio {
+  display: none;
+}
+.radios {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.radio-wrapper {
+  -ms-flex-preferred-size: 45%;
+  flex-basis: 45%;
+  width: 45%;
+  height: 50px;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  margin-bottom: 20px;
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: white;
+}
+.styled-radio {
+  margin: 0;
+  margin-right: 10px;
+}
+.radio-wrapper--small-font {
+  font-size: 0.8em;
+}
 
 @media only screen and (max-width: 900px) {
-
+  .modal {
+    width: 90vw;
+  }
 }
 @media only screen and (max-width: 750px) {
   .user-details {
@@ -125,6 +400,20 @@ hr {
   .user-detail-half-wrapper {
     display: block;
   }
+  .radio-wrapper {
+    width: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+  }
+  .radio-wrapper--small-font {
+    font-size: 1em;
+  }
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 550px) {
+  .modal {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    padding: 50px 25px;
+  }
 }

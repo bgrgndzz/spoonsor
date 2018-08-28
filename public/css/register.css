@@ -101,36 +101,6 @@ input[type="date"]:focus:before,
 input[type="date"]:valid:before {
   content: "";
 }
-.radio-wrapper--type {
-  width: 45%;
-  display: block;
-  padding: 50px;
-  height: 250px;
-  border: 1px solid rgba(0, 0, 0, 0.25);
-  margin-bottom: 20px;
-  cursor: pointer;
-}
-.radio-wrapper--type:nth-child(odd) {
-  float: left;
-}
-.radio-wrapper--type:nth-child(even) {
-  float: right;
-}
-.radio-wrapper--type .radio-image {
-  height: 100px;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  display: block;
-}
-.radio-wrapper--type .radio-label {
-  width: 100%;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.5);
-  display: block;
-  font-weight: 900;
-  font-size: 1.2em;
-  margin-bottom: 10px;
-}
 .radio:checked + .styled-radio {
   border: 1px solid #ff0083;
 }
