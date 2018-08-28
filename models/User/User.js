@@ -8,7 +8,6 @@ const verifyPassword = require('./functions/verifyPassword');
 const byType = require('./functions/byType');
 
 const UserSchema = new Schema({
-  // required
   auth: {
     email: {
       type: String,
@@ -59,11 +58,31 @@ const UserSchema = new Schema({
     },
     description: String,
     sponsorshipType: [String],
-    start: Date,
-    end: Date,
-    etkinlikSubject: String,
-    etkinlikPlace: String,
-    etkinlikType: String
+    date: {
+      start: Date,
+      end: Date,
+    },
+    location: String,
+    subject: String,
+    etkinlikType: String,
+    target: String,
+    gender: {
+      male: Number,
+      female: Number
+    },
+    age: String,
+    expectedAttendance: Number,
+    sponsors: [String],
+    social: {
+      website: String,
+      instagram: String
+    },
+    old: {
+      attendance: Number,
+      audience: String,
+      promotion: String,
+      sponsors: [String]
+    }
   },
   passwordReset: {
     hash: String

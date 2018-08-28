@@ -1,28 +1,114 @@
 extends ../partials/head
 block content
-  .main-info
-    .user-image(style="background-image: url('/res/uploads/" + user.profilepicture + "')")
-    h1.user-name= user.name
-    if edit
-      a(href="#").edit-button
-        i.fas.fa-pen
-        |  
-        h3 Profili düzenle
-    if user.description
-      p.user-description= user.description
-  .user-details.user-details--current
-    - for (let i = 0; i <= 7; i++)
+  .main-info-wrapper
+    .main-info
+      .user-image(style="background-image: url('/res/uploads/" + user.profilepicture + "')")
+      h1.user-name= user.name
+      if edit
+        a(href="#").edit-button
+          i.fas.fa-pen
+          |  
+          h3 Profili düzenle
+      if user.description
+        p.user-description= user.description
+  .user-details-wrapper.user-details-wrapper--current
+    .user-details.user-details-current
+      .user-detail-half-wrapper
+        .user-detail.user-detail__half.user-detail__left-half
+          img.user-detail-image(src="/res/images/profile/date.svg")
+          .user-detail-content
+            span.user-detail-name Tarih
+            span.user-detail-value
+              | #{user.date.start}
+              br
+              | #{user.date.end}
+        .user-detail.user-detail__half.user-detail__right-half
+          img.user-detail-image(src="/res/images/profile/location.svg")
+          .user-detail-content
+            span.user-detail-name Mekan
+            span.user-detail-value= user.location
       .user-detail
-        img.user-detail-image(src="/res/images/user.svg")
-        span.user-detail-name Detay
-        span.user-detail-value Değer
-  h2.user-detail-old-heading Önceki yıla ait
-  .user-details.user-details--old
-    - for (let i = 0; i <= 4; i++)
+        img.user-detail-image(src="/res/images/profile/subject.svg")
+        .user-detail-content
+          span.user-detail-name Etkinlik Konusu
+          span.user-detail-value= user.subject
       .user-detail
-        img.user-detail-image(src="/res/images/user.svg")
-        span.user-detail-name Detay
-        span.user-detail-value Değer
+        img.user-detail-image(src="/res/images/profile/type.svg")
+        .user-detail-content
+          span.user-detail-name Etkinlik Türü
+          span.user-detail-value= user.etkinlikType
+      .user-detail
+        img.user-detail-image(src="/res/images/profile/sponsorshiptype.svg")
+        .user-detail-content
+          span.user-detail-name Sponsorluk İhtiyacı
+          span.user-detail-value= user.sponsorshipType
+      .user-detail-half-wrapper
+        .user-detail.user-detail__half.user-detail__left-half
+          img.user-detail-image(src="/res/images/profile/target.svg")
+          .user-detail-content
+            span.user-detail-name Hedef Kitle
+            span.user-detail-value= user.target
+        .user-detail.user-detail__half.user-detail__right-half
+          img.user-detail-image(src="/res/images/profile/gender.svg")
+          .user-detail-content
+            span.user-detail-name Cinsiyet Oranları
+            span.user-detail-value
+              | % #{user.gender.male} Erkek
+              br
+              | % #{user.gender.female} Kadın
+      .user-detail-half-wrapper
+        .user-detail.user-detail__half.user-detail__left-half
+          img.user-detail-image(src="/res/images/profile/age.svg")
+          .user-detail-content
+            span.user-detail-name Yaş Grubu
+            span.user-detail-value= user.age
+        .user-detail.user-detail__half.user-detail__right-half
+          img.user-detail-image(src="/res/images/profile/people.svg")
+          .user-detail-content
+            span.user-detail-name Ulaşılacak Kişi Sayısı
+            span.user-detail-value= user.expectedAttendance
+      .user-detail
+        img.user-detail-image(src="/res/images/profile/sponsors.svg")
+        .user-detail-content
+          span.user-detail-name Kesinleşmiş Sponsorlar
+          span.user-detail-value #{user.sponsors.join(', ')}
+  .user-details-wrapper.user-details-wrapper--online
+    .user-details.user-details--online
+      .user-detail
+        img.user-detail-image(src="/res/images/profile/website.svg")
+        .user-detail-content
+          span.user-detail-name İnternet Sitesi
+          span.user-detail-value= user.social.website
+      hr
+      .user-detail
+        img.user-detail-image(src="/res/images/profile/instagram.svg")
+        .user-detail-content
+          span.user-detail-name Sosyal Medya
+          span.user-detail-value= user.social.instagram
+  .user-details-wrapper.user-details-wrapper--old
+    h2.user-detail-old-heading Önceki yıla ait
+    .user-details.user-details-old
+      .user-detail-half-wrapper
+        .user-detail.user-detail__half.user-detail__left-half
+          img.user-detail-image(src="/res/images/profile/people2.svg")
+          .user-detail-content
+            span.user-detail-name Katılımcı Sayısı
+            span.user-detail-value= user.old.attendance
+        .user-detail.user-detail__half.user-detail__right-half
+          img.user-detail-image(src="/res/images/profile/target2.svg")
+          .user-detail-content
+            span.user-detail-name Katılımcı Profili
+            span.user-detail-value= user.old.audience
+      .user-detail
+        img.user-detail-image(src="/res/images/profile/promotion.svg")
+        .user-detail-content
+          span.user-detail-name Tanıtım Kaynakları
+          span.user-detail-value= user.old.promotion
+      .user-detail
+        img.user-detail-image(src="/res/images/profile/sponsors.svg")
+        .user-detail-content
+          span.user-detail-name Sponsorlar
+          span.user-detail-value #{user.old.sponsors.join(', ')}
   if self
     .modal-wrapper
       .overlay.close-modal

@@ -16,18 +16,20 @@ module.exports = (req, res, next) => {
     user: {
       userType: 'etkinlik',
       name: req.body.etkinlikname,
-      start: req.body.etkinlikstart,
-      end: req.body.etkinlikend,
+      date: {
+        start: req.body.start,
+        end: req.body.end,
+      },
       sponsorshipType: req.body.sponsorshiptype,
-      etkinlikSubject: req.body.etkinliksubject,
-      etkinlikPlace: req.body.etkinlikplace,
-      etkinlikType: req.body.etkinliktype
+      subject: req.body.subject,
+      location: req.body.location,
+      etkinlikType: req.body.type
     }
   };
 
   const newUser = new User(newUserData);
   newUser.save(err => {
-    if (err) return res.status(500).send(err);
+    if (err) return console.log(err);
     
     req.session.user = {
       ...newUser.user,

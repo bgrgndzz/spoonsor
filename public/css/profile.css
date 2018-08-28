@@ -1,12 +1,9 @@
-.content {
-  width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 100px;
+h2 {
   text-align: center;
 }
 .main-info {
   margin-bottom: 25px;
+  text-align: center;
 }
 .user-image {
   width: 250px;
@@ -46,17 +43,51 @@
   color: rgba(0, 0, 0, 0.6);
   font-weight: 300;
 }
+.user-details-wrapper--current,
+.user-details-wrapper--old {
+  background-color: #f9f9f9;
+}
 .user-details {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 25px;
-  grid-row-gap: 25px;
+  display: flex;
+  flex-direction: column;
+  width: 750px;
+  margin: 0 auto;
+  padding: 25px;
+}
+.user-details-wrapper--current .user-detail,
+.user-details-wrapper--old .user-detail {
+  background-color: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 .user-detail {
   padding: 25px;
+  width: 100%;
+  display: flex;
+  margin-bottom: 25px;
+  align-items: center;
+  justify-content: flex-start;
+}
+hr {
+  border: 2px solid rgba(0, 0, 0, 0.1);
 }
 .user-detail-image {
-  width: 80%;
+  width: 100px;
+  height: 100px;
+  margin-right: 25px;
+}
+.user-detail-content {
+  flex: 1;
+}
+.user-detail__half {
+  width: 45%;
+}
+.user-detail-half-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.user-detail__right-half {
+  margin-left: auto;
 }
 .user-detail-name {
   display: inline-block;
@@ -64,7 +95,6 @@
   font-size: 1.5em;
   color: rgba(0, 0, 0, 0.75);
   font-weight: 700;
-  margin-bottom: -50px;
 }
 .user-detail-value {
   display: inline-block;
@@ -72,35 +102,29 @@
   font-weight: 100;
   color: rgba(0, 0, 0, 0.6);
   font-size: 1.25em;
-  margin-top: -50px;
 }
 .user-detail-old-heading {
   font-size: 2.5em;
   font-weight: 900;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  padding-top: 25px;
 }
 
 @media only screen and (max-width: 900px) {
-  .content {
-    width: 100vw;
-  }
+
 }
 @media only screen and (max-width: 750px) {
   .user-details {
-    grid-template-columns: 1fr 1fr;
+    width: 100vw;
+  }
+  .user-details-image {
+    width: 10%;
+  }
+  .user-detail__half {
+    width: 100%;
+  }
+  .user-detail-half-wrapper {
+    display: block;
   }
 }
 @media only screen and (max-width: 500px) {
-  .user-details {
-    grid-template-columns: 1fr;
-    width: 80%;
-    margin: 0 auto;
-  }
-  .user-detail-image {
-    width: 60%;
-  }
-  .user-description {
-    width: 90%;
-  }
 }

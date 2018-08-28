@@ -92,43 +92,43 @@ module.exports = (req, res, next) => {
       error: 'Lütfen etkinliğinizin ismini girin.'
     });
   }
-  if (!req.body.etkinlikstart || isEmpty(req.body.etkinlikstart)) {
+  if (!req.body.start || isEmpty(req.body.start)) {
     errors.push({
-      param: 'etkinlikstart',
+      param: 'start',
       error: 'Lütfen etkinliğinizin başlangıç tarihini girin.'
     });
-  } else if (!matches(req.body.etkinlikstart, dateRegex)) {
+  } else if (!matches(req.body.start, dateRegex)) {
     errors.push({
-      param: 'etkinlikstart',
+      param: 'start',
       error: 'Girdiğiniz etkinlik başlangıç tarihi geçerli değil.'
     });
   }
-  if (!req.body.etkinlikend || isEmpty(req.body.etkinlikend)) {
+  if (!req.body.end || isEmpty(req.body.end)) {
     errors.push({
-      param: 'etkinlikend',
+      param: 'end',
       error: 'Lütfen etkinliğinizin bitiş tarihini girin.'
     });
-  } else if (!matches(req.body.etkinlikend, dateRegex)) {
+  } else if (!matches(req.body.end, dateRegex)) {
     errors.push({
-      param: 'etkinlikend',
+      param: 'end',
       error: 'Girdiğiniz etkinlik bitiş tarihi geçerli değil.'
     });
   }
-  if (!req.body.etkinlikplace || isEmpty(req.body.etkinlikplace)) {
+  if (!req.body.location || isEmpty(req.body.location)) {
     errors.push({
-      param: 'etkinlikplace',
+      param: 'location',
       error: 'Lütfen etkinliğinizin olacağı yeri girin.'
     });
   }
-  if (!req.body.etkinliktype || isEmpty(req.body.etkinliktype)) {
+  if (!req.body.type || isEmpty(req.body.type)) {
     errors.push({
-      param: 'etkinliktype',
+      param: 'type',
       error: 'Lütfen etkinliğinizin türünü girin.'
     });
   }
-  if (!req.body.etkinliksubject || isEmpty(req.body.etkinliksubject)) {
+  if (!req.body.subject || isEmpty(req.body.subject)) {
     errors.push({
-      param: 'etkinliksubject',
+      param: 'subject',
       error: 'Lütfen etkinliğinizin konusunu girin.'
     });
   }

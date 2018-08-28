@@ -71,60 +71,60 @@ const validateCurrentForm = (currentForm, userType) => {
       });
     }
   } else if (currentForm === 2) {
-    const etkinlikstart = document.querySelector('input[name="etkinlikstart"]').value;
-    const etkinlikend = document.querySelector('input[name="etkinlikend"]').value;
-    const etkinlikplace = document.querySelector('input[name="etkinlikplace"]').value;
-    if (!etkinlikstart || isEmpty(etkinlikstart)) {
+    const start = document.querySelector('input[name="start"]').value;
+    const end = document.querySelector('input[name="end"]').value;
+    const location = document.querySelector('input[name="location"]').value;
+    if (!start || isEmpty(start)) {
       errors.push({
-        param: 'etkinlikstart',
+        param: 'start',
         error: 'Lütfen etkinliğinizin başlangıç tarihini girin.'
       });
-    } else if (!matches(etkinlikstart, dateRegex)) {
+    } else if (!matches(start, dateRegex)) {
       errors.push({
-        param: 'etkinlikstart',
+        param: 'start',
         error: 'Girdiğiniz etkinlik başlangıç tarihi geçerli değil.'
       });
     }
-    if (!etkinlikend || isEmpty(etkinlikend)) {
+    if (!end || isEmpty(end)) {
       errors.push({
-        param: 'etkinlikend',
+        param: 'end',
         error: 'Lütfen etkinliğinizin bitiş tarihini girin.'
       });
-    } else if (!matches(etkinlikend, dateRegex)) {
+    } else if (!matches(end, dateRegex)) {
       errors.push({
-        param: 'etkinlikend',
+        param: 'end',
         error: 'Girdiğiniz etkinlik bitiş tarihi geçerli değil.'
       });
     }
-    if (!etkinlikplace || isEmpty(etkinlikplace)) {
+    if (!location || isEmpty(location)) {
       errors.push({
-        param: 'etkinlikplace',
+        param: 'location',
         error: 'Lütfen etkinliğinizin olacağı yeri girin.'
       });
     }
   } else if (currentForm === 3) {
-    const etkinliktypeRadio = document.querySelector('input[name="etkinliktype"]:checked');
-    let etkinliktype = etkinliktypeRadio ? etkinliktypeRadio.value : '';
+    const typeRadio = document.querySelector('input[name="type"]:checked');
+    let type = typeRadio ? typeRadio.value : '';
 
-    const otherEtkinliktype = document.querySelector('.radios--etkinlik-type .field--other').value;
-    etkinliktype = etkinliktype === 'Diğer' ? otherEtkinliktype : etkinliktype;
+    const othertype = document.querySelector('.radios--type .field--other').value;
+    type = type === 'Diğer' ? othertype : type;
 
-    if (!etkinliktype || isEmpty(etkinliktype)) {
+    if (!type || isEmpty(type)) {
       errors.push({
-        param: 'etkinliktype',
+        param: 'type',
         error: 'Lütfen etkinliğinizin türünü girin.'
       });
     }
   } else if (currentForm === 4) {
-    const etkinliksubjectRadio = document.querySelector('input[name="etkinliksubject"]:checked');
-    let etkinliksubject = etkinliksubjectRadio ? etkinliksubjectRadio.value : '';
+    const subjectRadio = document.querySelector('input[name="subject"]:checked');
+    let subject = subjectRadio ? subjectRadio.value : '';
 
-    const otherEtkinliksubject = document.querySelector('.radios--etkinlik-subject .field--other').value;
-    etkinliksubject = etkinliksubject === 'Diğer' ? otherEtkinliksubject : etkinliksubject;
+    const othersubject = document.querySelector('.radios--subject .field--other').value;
+    subject = subject === 'Diğer' ? othersubject : subject;
 
-    if (!etkinliksubject || isEmpty(etkinliksubject)) {
+    if (!subject || isEmpty(subject)) {
       errors.push({
-        param: 'etkinliksubject',
+        param: 'subject',
         error: 'Lütfen etkinliğinizin konusunu girin.'
       });
     }
@@ -214,13 +214,12 @@ window.onload = () => {
   const formsBack = document.querySelector('.forms-back');
   const forms = document.querySelectorAll('.form-wrapper');
   const nextButtons = document.querySelectorAll('.button--next');
-  const typeRadios = document.querySelectorAll('.form-wrapper--2 .radio');
-  const etkinlikTypeRadios = document.querySelectorAll('.radios--etkinlik-type .radio');
-  const etkinlikTypeOtherRadio = document.querySelector('.radios--etkinlik-type .radio--other');
-  const etkinlikTypeOtherField = document.querySelector('.radios--etkinlik-type .field--other');
-  const etkinlikSubjectRadios = document.querySelectorAll('.radios--etkinlik-subject .radio');
-  const etkinlikSubjectOtherRadio = document.querySelector('.radios--etkinlik-subject .radio--other');
-  const etkinlikSubjectOtherField = document.querySelector('.radios--etkinlik-subject .field--other');
+  const typeRadios = document.querySelectorAll('.radios--type .radio');
+  const typeOtherRadio = document.querySelector('.radios--type .radio--other');
+  const typeOtherField = document.querySelector('.radios--type .field--other');
+  const subjectRadios = document.querySelectorAll('.radios--subject .radio');
+  const subjectOtherRadio = document.querySelector('.radios--subject .radio--other');
+  const subjectOtherField = document.querySelector('.radios--subject .field--other');
   const modalWrapper = document.querySelector('.error-modal-wrapper');
   const closeModalButtons = document.querySelectorAll('.close-error-modal');
   const submitButton = document.querySelector('.button--submit');
@@ -232,11 +231,11 @@ window.onload = () => {
   nextButtons.forEach(nextButton => {
     nextButton.onclick = () => {currentForm = nextForm(forms, currentForm, formsBack, userType)};
   });
-  etkinlikTypeRadios.forEach(etkinlikTypeRadio => {
-    etkinlikTypeRadio.onchange = () => toggleDisplay(etkinlikTypeOtherField, etkinlikTypeOtherRadio.checked, .5);
+  typeRadios.forEach(typeRadio => {
+    typeRadio.onchange = () => toggleDisplay(typeOtherField, typeOtherRadio.checked, .5);
   });
-  etkinlikSubjectRadios.forEach(etkinlikSubjectRadio => {
-    etkinlikSubjectRadio.onchange = () => toggleDisplay(etkinlikSubjectOtherField, etkinlikSubjectOtherRadio.checked, .5);
+  subjectRadios.forEach(subjectRadio => {
+    subjectRadio.onchange = () => toggleDisplay(subjectOtherField, subjectOtherRadio.checked, .5);
   });
 
   submitButton.onclick = () => {
@@ -248,9 +247,9 @@ window.onload = () => {
       const surname = document.querySelector('input[name="surname"]').value;
       const email = document.querySelector('input[name="email"]').value;
       const etkinlikname = document.querySelector('input[name="etkinlikname"]').value;
-      const etkinlikstart = document.querySelector('input[name="etkinlikstart"]').value;
-      const etkinlikend = document.querySelector('input[name="etkinlikend"]').value;
-      const etkinlikplace = document.querySelector('input[name="etkinlikplace"]').value;
+      const start = document.querySelector('input[name="start"]').value;
+      const end = document.querySelector('input[name="end"]').value;
+      const location = document.querySelector('input[name="location"]').value;
       const phone = document.querySelector('input[name="phone"]').value;
       const password = document.querySelector('input[name="password"]').value;
       const password2 = document.querySelector('input[name="password2"]').value;
@@ -259,13 +258,13 @@ window.onload = () => {
         document.querySelectorAll('input[name="sponsorshiptype"]:checked')
       ).map(el => el.value);
 
-      let etkinliktype = document.querySelector('input[name="etkinliktype"]:checked').value;
-      const otherEtkinliktype = document.querySelector('.radios--etkinlik-type .field--other').value;
-      etkinliktype = etkinliktype === 'Diğer' ? otherEtkinliktype : etkinliktype;
+      let type = document.querySelector('input[name="type"]:checked').value;
+      const othertype = document.querySelector('.radios--type .field--other').value;
+      type = type === 'Diğer' ? othertype : type;
 
-      let etkinliksubject = document.querySelector('input[name="etkinliksubject"]:checked').value;
-      const otherEtkinliksubject = document.querySelector('.radios--etkinlik-subject .field--other').value;
-      etkinliksubject = etkinliksubject === 'Diğer' ? otherEtkinliksubject : etkinliksubject;
+      let subject = document.querySelector('input[name="subject"]:checked').value;
+      const othersubject = document.querySelector('.radios--subject .field--other').value;
+      subject = subject === 'Diğer' ? othersubject : subject;
 
       let formData = {
         name,
@@ -276,11 +275,11 @@ window.onload = () => {
         password2,
         sponsorshiptype,
         etkinlikname,
-        etkinlikstart,
-        etkinlikend,
-        etkinlikplace,
-        etkinliktype,
-        etkinliksubject
+        start,
+        end,
+        location,
+        type,
+        subject
       };
 
       fetch('/auth/register', {
