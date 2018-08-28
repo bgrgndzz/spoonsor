@@ -13,67 +13,73 @@ block content
         p.user-description= user.description
   .user-details-wrapper.user-details-wrapper--current
     .user-details.user-details-current
-      .user-detail-half-wrapper
-        .user-detail.user-detail__half.user-detail__left-half
-          img.user-detail-image(src="/res/images/profile/date.svg")
+      if user.userType === 'etkinlik'
+        .user-detail-half-wrapper
+          .user-detail.user-detail__half.user-detail__left-half
+            img.user-detail-image(src="/res/images/profile/date.svg")
+            .user-detail-content
+              span.user-detail-name Tarih
+              span.user-detail-value
+                | #{user.date.start}
+                br
+                | #{user.date.end}
+          .user-detail.user-detail__half.user-detail__right-half
+            img.user-detail-image(src="/res/images/profile/location.svg")
+            .user-detail-content
+              span.user-detail-name Mekan
+              span.user-detail-value= user.location
+        .user-detail
+          img.user-detail-image(src="/res/images/profile/subject.svg")
           .user-detail-content
-            span.user-detail-name Tarih
-            span.user-detail-value
-              | #{user.date.start}
-              br
-              | #{user.date.end}
-        .user-detail.user-detail__half.user-detail__right-half
-          img.user-detail-image(src="/res/images/profile/location.svg")
+            span.user-detail-name Etkinlik Konusu
+            span.user-detail-value= user.subject
+        .user-detail
+          img.user-detail-image(src="/res/images/profile/type.svg")
           .user-detail-content
-            span.user-detail-name Mekan
-            span.user-detail-value= user.location
-      .user-detail
-        img.user-detail-image(src="/res/images/profile/subject.svg")
-        .user-detail-content
-          span.user-detail-name Etkinlik Konusu
-          span.user-detail-value= user.subject
-      .user-detail
-        img.user-detail-image(src="/res/images/profile/type.svg")
-        .user-detail-content
-          span.user-detail-name Etkinlik Türü
-          span.user-detail-value= user.etkinlikType
+            span.user-detail-name Etkinlik Türü
+            span.user-detail-value= user.etkinlikType
       .user-detail
         img.user-detail-image(src="/res/images/profile/sponsorshiptype.svg")
         .user-detail-content
-          span.user-detail-name Sponsorluk İhtiyacı
+          span.user-detail-name 
+            if user.userType === 'etkinlik'
+              | Sponsorluk İhtiyacı
+            else
+              | Verebileceği Sponsorluk
           ul.user-detail-value.sponsorships
             each sponsorship in user.sponsorshipType
               li.sponsorship= sponsorship
-      .user-detail-half-wrapper
-        .user-detail.user-detail__half.user-detail__left-half
-          img.user-detail-image(src="/res/images/profile/target.svg")
+      if user.userType === 'etkinlik'
+        .user-detail-half-wrapper
+          .user-detail.user-detail__half.user-detail__left-half
+            img.user-detail-image(src="/res/images/profile/target.svg")
+            .user-detail-content
+              span.user-detail-name Hedef Kitle
+              span.user-detail-value= user.target
+          .user-detail.user-detail__half.user-detail__right-half
+            img.user-detail-image(src="/res/images/profile/gender.svg")
+            .user-detail-content
+              span.user-detail-name Cinsiyet Oranları
+              span.user-detail-value
+                | % #{user.gender.male} Erkek
+                br
+                | % #{user.gender.female} Kadın
+        .user-detail-half-wrapper
+          .user-detail.user-detail__half.user-detail__left-half
+            img.user-detail-image(src="/res/images/profile/age.svg")
+            .user-detail-content
+              span.user-detail-name Yaş Grubu
+              span.user-detail-value= user.age
+          .user-detail.user-detail__half.user-detail__right-half
+            img.user-detail-image(src="/res/images/profile/people.svg")
+            .user-detail-content
+              span.user-detail-name Ulaşılacak Kişi Sayısı
+              span.user-detail-value= user.expectedAttendance
+        .user-detail
+          img.user-detail-image(src="/res/images/profile/sponsors.svg")
           .user-detail-content
-            span.user-detail-name Hedef Kitle
-            span.user-detail-value= user.target
-        .user-detail.user-detail__half.user-detail__right-half
-          img.user-detail-image(src="/res/images/profile/gender.svg")
-          .user-detail-content
-            span.user-detail-name Cinsiyet Oranları
-            span.user-detail-value
-              | % #{user.gender.male} Erkek
-              br
-              | % #{user.gender.female} Kadın
-      .user-detail-half-wrapper
-        .user-detail.user-detail__half.user-detail__left-half
-          img.user-detail-image(src="/res/images/profile/age.svg")
-          .user-detail-content
-            span.user-detail-name Yaş Grubu
-            span.user-detail-value= user.age
-        .user-detail.user-detail__half.user-detail__right-half
-          img.user-detail-image(src="/res/images/profile/people.svg")
-          .user-detail-content
-            span.user-detail-name Ulaşılacak Kişi Sayısı
-            span.user-detail-value= user.expectedAttendance
-      .user-detail
-        img.user-detail-image(src="/res/images/profile/sponsors.svg")
-        .user-detail-content
-          span.user-detail-name Kesinleşmiş Sponsorlar
-          span.user-detail-value #{user.sponsors.join(', ')}
+            span.user-detail-name Kesinleşmiş Sponsorlar
+            span.user-detail-value #{user.sponsors.join(', ')}
   .user-details-wrapper.user-details-wrapper--online
     .user-details.user-details--online
       .user-detail
@@ -87,30 +93,31 @@ block content
         .user-detail-content
           span.user-detail-name Sosyal Medya
           span.user-detail-value= user.social.instagram
-  .user-details-wrapper.user-details-wrapper--old
-    h2.user-detail-old-heading Önceki yıla ait
-    .user-details.user-details-old
-      .user-detail-half-wrapper
-        .user-detail.user-detail__half.user-detail__left-half
-          img.user-detail-image(src="/res/images/profile/people2.svg")
+  if user.userType === 'etkinlik'
+    .user-details-wrapper.user-details-wrapper--old
+      h2.user-detail-old-heading Önceki yıla ait
+      .user-details.user-details-old
+        .user-detail-half-wrapper
+          .user-detail.user-detail__half.user-detail__left-half
+            img.user-detail-image(src="/res/images/profile/people2.svg")
+            .user-detail-content
+              span.user-detail-name Katılımcı Sayısı
+              span.user-detail-value= user.old.attendance
+          .user-detail.user-detail__half.user-detail__right-half
+            img.user-detail-image(src="/res/images/profile/target2.svg")
+            .user-detail-content
+              span.user-detail-name Katılımcı Profili
+              span.user-detail-value= user.old.audience
+        .user-detail
+          img.user-detail-image(src="/res/images/profile/promotion.svg")
           .user-detail-content
-            span.user-detail-name Katılımcı Sayısı
-            span.user-detail-value= user.old.attendance
-        .user-detail.user-detail__half.user-detail__right-half
-          img.user-detail-image(src="/res/images/profile/target2.svg")
+            span.user-detail-name Tanıtım Kaynakları
+            span.user-detail-value= user.old.promotion
+        .user-detail
+          img.user-detail-image(src="/res/images/profile/sponsors.svg")
           .user-detail-content
-            span.user-detail-name Katılımcı Profili
-            span.user-detail-value= user.old.audience
-      .user-detail
-        img.user-detail-image(src="/res/images/profile/promotion.svg")
-        .user-detail-content
-          span.user-detail-name Tanıtım Kaynakları
-          span.user-detail-value= user.old.promotion
-      .user-detail
-        img.user-detail-image(src="/res/images/profile/sponsors.svg")
-        .user-detail-content
-          span.user-detail-name Sponsorlar
-          span.user-detail-value #{user.old.sponsors.join(', ')}
+            span.user-detail-name Sponsorlar
+            span.user-detail-value #{user.old.sponsors.join(', ')}
   if edit
     .modal-wrapper
       .overlay.close-modal
@@ -129,65 +136,101 @@ block content
                 i.fas.fa-chevron-down.setting-reveal
               .setting-content
                 textarea.field(name="description", placeholder="Açıklama")= user.description
-            .setting
-              span.setting-heading 
-                | İstenilen Sponsorluk
-                i.fas.fa-chevron-down.setting-reveal
-              .setting-content
-                .radios
-                  label.radio-wrapper.radio-wrapper--small-font
-                    input.radio(type="checkbox", name="sponsorshiptype", value="İçerik/Konuşmacı", checked=user.sponsorshipType.includes('İçerik/Konuşmacı')) 
-                    .styled-radio
-                    span.radio-label İçerik/Konuşmacı
-                  label.radio-wrapper.radio-wrapper--small-font
-                    input.radio(type="checkbox", name="sponsorshiptype", value="İndirim/Hediye Kuponu", checked=user.sponsorshipType.includes('İndirim/Hediye Kuponu'))
-                    .styled-radio
-                    span.radio-label İndirim/Hediye Kuponu
-                  label.radio-wrapper
-                    input.radio(type="checkbox", name="sponsorshiptype", value="Mekan", checked=user.sponsorshipType.includes('Mekan')) 
-                    .styled-radio
-                    span.radio-label Mekan
-                  label.radio-wrapper
-                    input.radio(type="checkbox", name="sponsorshiptype", value="Nakit", checked=user.sponsorshipType.includes('Nakit')) 
-                    .styled-radio
-                    span.radio-label Nakit
-                  label.radio-wrapper
-                    input.radio(type="checkbox", name="sponsorshiptype", value="Stand", checked=user.sponsorshipType.includes('Stand')) 
-                    .styled-radio
-                    span.radio-label Stand
-                  label.radio-wrapper
-                    input.radio(type="checkbox", name="sponsorshiptype", value="Tanıtım", checked=user.sponsorshipType.includes('Tanıtım')) 
-                    .styled-radio
-                    span.radio-label Tanıtım
-                  label.radio-wrapper
-                    input.radio(type="checkbox", name="sponsorshiptype", value="Ürün", checked=user.sponsorshipType.includes('Ürün')) 
-                    .styled-radio
-                    span.radio-label Ürün
-            .setting
-              span.setting-heading 
-                | Hedef Kitle
-                i.fas.fa-chevron-down.setting-reveal
-              .setting-content
-                input.field(type="text", name="target", placeholder="Hedef kitle açıklaması", value=user.target)
-                input.field(type="text", name="expectedAttendance", placeholder="Ulaşılacak kişi sayısı", value=user.expectedAttendance)
-                select.field(name="age")
-                  option(value="", disabled, selected=!['0-6', '7-14', '15-17', '18-24', '25-34', '35-44', '45-65', '65+'].some(age => age === user.age)) Yaş Grubu
-                  option(value="0-6", selected=user.age==='0-6') 0-6
-                  option(value="7-14", selected=user.age==='7-14') 7-14
-                  option(value="15-17", selected=user.age==='15-17') 15-17
-                  option(value="18-24", selected=user.age==='18-24') 18-24
-                  option(value="25-34", selected=user.age==='25-34') 25-34
-                  option(value="35-44", selected=user.age==='35-44') 35-44
-                  option(value="45-65", selected=user.age==='45-65') 45-65
-                  option(value="65+", selected=user.age==='65+') 65+
-                input.field.field__half.field__left-half(type="text", name="male", placeholder="Erkek oranı", value=user.male)
-                input.field.field__half.field__right-half(type="text", name="female", placeholder="Kadın oranı", value=user.female)
-            .setting
-              span.setting-heading 
-                | Kesinleşmiş Sponsorlar
-                i.fas.fa-chevron-down.setting-reveal
-              .setting-content
-                input.field(type="text", name="sponsors", placeholder="Sponsorlar (virgülle ayırın)", value=user.sponsors.join(','))
+            if user.userType === 'sponsor'
+              .setting
+                span.setting-heading 
+                  | Verilebilecek Sponsorluk
+                  i.fas.fa-chevron-down.setting-reveal
+                .setting-content
+                  .radios
+                    label.radio-wrapper.radio-wrapper--small-font
+                      input.radio(type="checkbox", name="sponsorshiptype", value="İçerik/Konuşmacı", checked=user.sponsorshipType.includes('İçerik/Konuşmacı')) 
+                      .styled-radio
+                      span.radio-label İçerik/Konuşmacı
+                    label.radio-wrapper.radio-wrapper--small-font
+                      input.radio(type="checkbox", name="sponsorshiptype", value="İndirim/Hediye Kuponu", checked=user.sponsorshipType.includes('İndirim/Hediye Kuponu'))
+                      .styled-radio
+                      span.radio-label İndirim/Hediye Kuponu
+                    label.radio-wrapper
+                      input.radio(type="checkbox", name="sponsorshiptype", value="Mekan", checked=user.sponsorshipType.includes('Mekan')) 
+                      .styled-radio
+                      span.radio-label Mekan
+                    label.radio-wrapper
+                      input.radio(type="checkbox", name="sponsorshiptype", value="Nakit", checked=user.sponsorshipType.includes('Nakit')) 
+                      .styled-radio
+                      span.radio-label Nakit
+                    label.radio-wrapper
+                      input.radio(type="checkbox", name="sponsorshiptype", value="Stand", checked=user.sponsorshipType.includes('Stand')) 
+                      .styled-radio
+                      span.radio-label Stand
+                    label.radio-wrapper
+                      input.radio(type="checkbox", name="sponsorshiptype", value="Tanıtım", checked=user.sponsorshipType.includes('Tanıtım')) 
+                      .styled-radio
+                      span.radio-label Tanıtım
+                    label.radio-wrapper
+                      input.radio(type="checkbox", name="sponsorshiptype", value="Ürün", checked=user.sponsorshipType.includes('Ürün')) 
+                      .styled-radio
+                      span.radio-label Ürün
+            if user.userType === 'etkinlik'
+              .setting
+                span.setting-heading 
+                  | İstenilen Sponsorluk
+                  i.fas.fa-chevron-down.setting-reveal
+                .setting-content
+                  .radios
+                    label.radio-wrapper.radio-wrapper--small-font
+                      input.radio(type="checkbox", name="sponsorshiptype", value="İçerik/Konuşmacı", checked=user.sponsorshipType.includes('İçerik/Konuşmacı')) 
+                      .styled-radio
+                      span.radio-label İçerik/Konuşmacı
+                    label.radio-wrapper.radio-wrapper--small-font
+                      input.radio(type="checkbox", name="sponsorshiptype", value="İndirim/Hediye Kuponu", checked=user.sponsorshipType.includes('İndirim/Hediye Kuponu'))
+                      .styled-radio
+                      span.radio-label İndirim/Hediye Kuponu
+                    label.radio-wrapper
+                      input.radio(type="checkbox", name="sponsorshiptype", value="Mekan", checked=user.sponsorshipType.includes('Mekan')) 
+                      .styled-radio
+                      span.radio-label Mekan
+                    label.radio-wrapper
+                      input.radio(type="checkbox", name="sponsorshiptype", value="Nakit", checked=user.sponsorshipType.includes('Nakit')) 
+                      .styled-radio
+                      span.radio-label Nakit
+                    label.radio-wrapper
+                      input.radio(type="checkbox", name="sponsorshiptype", value="Stand", checked=user.sponsorshipType.includes('Stand')) 
+                      .styled-radio
+                      span.radio-label Stand
+                    label.radio-wrapper
+                      input.radio(type="checkbox", name="sponsorshiptype", value="Tanıtım", checked=user.sponsorshipType.includes('Tanıtım')) 
+                      .styled-radio
+                      span.radio-label Tanıtım
+                    label.radio-wrapper
+                      input.radio(type="checkbox", name="sponsorshiptype", value="Ürün", checked=user.sponsorshipType.includes('Ürün')) 
+                      .styled-radio
+                      span.radio-label Ürün
+              .setting
+                span.setting-heading 
+                  | Hedef Kitle
+                  i.fas.fa-chevron-down.setting-reveal
+                .setting-content
+                  input.field(type="text", name="target", placeholder="Hedef kitle açıklaması", value=user.target)
+                  input.field(type="text", name="expectedAttendance", placeholder="Ulaşılacak kişi sayısı", value=user.expectedAttendance)
+                  select.field(name="age")
+                    option(value="", disabled, selected=!['0-6', '7-14', '15-17', '18-24', '25-34', '35-44', '45-65', '65+'].some(age => age === user.age)) Yaş Grubu
+                    option(value="0-6", selected=user.age==='0-6') 0-6
+                    option(value="7-14", selected=user.age==='7-14') 7-14
+                    option(value="15-17", selected=user.age==='15-17') 15-17
+                    option(value="18-24", selected=user.age==='18-24') 18-24
+                    option(value="25-34", selected=user.age==='25-34') 25-34
+                    option(value="35-44", selected=user.age==='35-44') 35-44
+                    option(value="45-65", selected=user.age==='45-65') 45-65
+                    option(value="65+", selected=user.age==='65+') 65+
+                  input.field.field__half.field__left-half(type="text", name="male", placeholder="Erkek oranı", value=user.male)
+                  input.field.field__half.field__right-half(type="text", name="female", placeholder="Kadın oranı", value=user.female)
+              .setting
+                span.setting-heading 
+                  | Kesinleşmiş Sponsorlar
+                  i.fas.fa-chevron-down.setting-reveal
+                .setting-content
+                  input.field(type="text", name="sponsors", placeholder="Sponsorlar (virgülle ayırın)", value=user.sponsors.join(','))
             .setting
               span.setting-heading 
                 | Sosyal Medya
@@ -195,13 +238,17 @@ block content
               .setting-content
                 input.field(type="text", name="website", placeholder="İnternet sitesi", value=user.social.website)
                 input.field(type="text", name="instagram", placeholder="Instagram kullanıcı adı", value=user.social.instagram)
-            .setting
-              span.setting-heading 
-                | Önceki yılın verileri
-                i.fas.fa-chevron-down.setting-reveal
-              .setting-content
-                input.field(type="text", name="attendance", placeholder="Katılımcı sayısı", value=user.old.attendance)
-                input.field(type="text", name="audience", placeholder="Katılımcı profili", value=user.old.audience)
-                input.field(type="text", name="promotion", placeholder="Tanıtım kaynakları", value=user.old.promotion)
-                input.field(type="text", name="oldsponsors", placeholder="Sponsorlar (virgülle ayırın)", value=user.old.sponsors.join(','))
+            if user.userType === 'etkinlik'
+              .setting
+                span.setting-heading 
+                  | Önceki yılın verileri
+                  i.fas.fa-chevron-down.setting-reveal
+                .setting-content
+                  input.field(type="text", name="attendance", placeholder="Katılımcı sayısı", value=user.old.attendance)
+                  input.field(type="text", name="audience", placeholder="Katılımcı profili", value=user.old.audience)
+                  input.field(type="text", name="promotion", placeholder="Tanıtım kaynakları", value=user.old.promotion)
+                  input.field(type="text", name="oldsponsors", placeholder="Sponsorlar (virgülle ayırın)", value=user.old.sponsors.join(','))
         input.button.submit-button(type="submit", value="Kaydet")    
+  script. 
+    let userType = '#{user.userType}';
+    let edit = #{edit};
