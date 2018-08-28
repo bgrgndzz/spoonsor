@@ -23,6 +23,8 @@ window.onload = () => {
 
   const settingReveals = document.querySelectorAll('.setting-reveal');
   const settingSubmit = document.querySelector('.submit-button');
+  const ppField = document.querySelector('input[name="profilepicture"]');
+  const ppDisplay = document.querySelector('.profile-picture-display');
 
   const errorModalWrapper = document.querySelector('.error-modal-wrapper');
   const closeErrorModalButtons = document.querySelectorAll('.close-error-modal');
@@ -64,6 +66,25 @@ window.onload = () => {
       }
     };
   });
+  ppField.onchange = () => {
+    const formData = new FormData();
+    formData.append('profilepicture', ppField.files[0], ppField.files[0].name);
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/app/profile/profilepicture', true);
+    xhr.onload = () => {
+      const data = JSON.parse(xhr.response);
+      if (data.success) {
+        const fileurl = window.URL.createObjectURL(ppField.files[0]);
+        const userImage = document.querySelector('.user-image');
+        ppDisplay.style.backgroundImage = `url('${fileurl}')`;
+        userImage.style.backgroundImage = `url('${fileurl}')`;
+      } else if (data.errors && data.errors.length > 0) {
+        displayErrors(data.errors);
+      }
+    };
+    xhr.send(formData);
+  };
+
   settingSubmit.onclick = () => {
     const description = document.querySelector('textarea[name="description"]').value;
     const target = document.querySelector('input[name="target"]').value;

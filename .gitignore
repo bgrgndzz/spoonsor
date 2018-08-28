@@ -62,3 +62,7 @@ typings/
 
 # system files
 .DS_Store
+
+# custom files
+public/res/uploads/*
+!public/res/uploads/default.jpg
