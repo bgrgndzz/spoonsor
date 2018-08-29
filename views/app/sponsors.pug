@@ -1,18 +1,10 @@
 extends ../partials/head
 block content
-  .filters
-    span.filter.button--filter 
+  .filters-wrapper
+    span.filter.button--filter.open-filter-modal
       i.fas.fa-plus.button--add-filter 
       | Filtre ekle
-    span.filter 
-      i.fas.fa-times.button--delete-filter
-      | İçerik
-    span.filter 
-      i.fas.fa-times.button--delete-filter
-      | Yeme&amp;İçme
-    span.filter 
-      i.fas.fa-times.button--delete-filter
-      | Nakit
+    .filters
   .items-wrapper
     .items
       each user in users
@@ -39,4 +31,45 @@ block content
         .modal-sponsorships
         p.modal-description
         button.button.modal-contact-button İletişime Geç
+    .filter-modal-wrapper
+      .overlay.close-filter-modal
+      .filter-modal
+        i.fas.fa-times.modal-close-button.close-filter-modal
+        h2.filter-modal-heading Filtrele
+        .modal-filters
+          .modal-filter
+            span.modal-filter-heading 
+              | Verebileceği sponsorluğa göre filtrele
+              i.fas.fa-chevron-left.modal-filter-reveal
+            .modal-filter-content
+              .radios
+                label.radio-wrapper.radio-wrapper--small-font
+                  input.radio(type="checkbox", name="sponsorshiptype", value="İçerik/Konuşmacı") 
+                  .styled-radio
+                  span.radio-label İçerik/Konuşmacı
+                label.radio-wrapper.radio-wrapper--small-font
+                  input.radio(type="checkbox", name="sponsorshiptype", value="İndirim/Hediye Kuponu")
+                  .styled-radio
+                  span.radio-label İndirim/Hediye Kuponu
+                label.radio-wrapper
+                  input.radio(type="checkbox", name="sponsorshiptype", value="Mekan") 
+                  .styled-radio
+                  span.radio-label Mekan
+                label.radio-wrapper
+                  input.radio(type="checkbox", name="sponsorshiptype", value="Nakit") 
+                  .styled-radio
+                  span.radio-label Nakit
+                label.radio-wrapper
+                  input.radio(type="checkbox", name="sponsorshiptype", value="Stand") 
+                  .styled-radio
+                  span.radio-label Stand
+                label.radio-wrapper
+                  input.radio(type="checkbox", name="sponsorshiptype", value="Tanıtım") 
+                  .styled-radio
+                  span.radio-label Tanıtım
+                label.radio-wrapper
+                  input.radio(type="checkbox", name="sponsorshiptype", value="Ürün") 
+                  .styled-radio
+                  span.radio-label Ürün
+        input.button.filter-submit-button(type="submit", value="Filtrele")   
     script let users = !{JSON.stringify(users).replace(/<\//g, '<\\/')}

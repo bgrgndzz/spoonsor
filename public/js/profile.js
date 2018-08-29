@@ -35,7 +35,6 @@ window.onload = () => {
     const settingSubmit = document.querySelector('.submit-button');
     const ppField = document.querySelector('input[name="profilepicture"]');
     const ppDisplay = document.querySelector('.profile-picture-display');
-    
 
     const errorModalWrapper = document.querySelector('.error-modal-wrapper');
     const closeErrorModalButtons = document.querySelectorAll('.close-error-modal');
@@ -95,28 +94,15 @@ window.onload = () => {
         document.querySelectorAll('input[name="sponsorshiptype"]:checked')
       ).map(el => el.value);
 
-      if (userType === 'etkinlik') {
-        const target = document.querySelector('input[name="target"]').value;
-        const expectedAttendance = document.querySelector('input[name="expectedAttendance"]').value;
-        const age = document.querySelector('select[name="age"]').value;
-        const male = document.querySelector('input[name="male"]').value;
-        const female = document.querySelector('input[name="female"]').value;
-        let sponsors = document.querySelector('input[name="sponsors"]').value.split(',');
-        if (!sponsors[0]) {
-          sponsors = [];
-        }
-        const attendance = document.querySelector('input[name="attendance"]').value;
-        const audience = document.querySelector('input[name="audience"]').value;
-        const promotion = document.querySelector('input[name="promotion"]').value;
-        let oldsponsors = document.querySelector('input[name="oldsponsors"]').value.split(',');
-        if (!oldsponsors[0]) {
-          oldsponsors = [];
-        }
-      }
-
       const urlRegex = /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_\+.~#?&/=]*$/;
 
       let errors = [];
+      let formData = {
+        description,
+        website,
+        instagram,
+        sponsorshiptype
+      };
 
       if (
         sponsorshiptype &&
@@ -147,6 +133,23 @@ window.onload = () => {
       }
 
       if (userType === 'etkinlik') {
+        const target = document.querySelector('input[name="target"]').value;
+        const expectedAttendance = document.querySelector('input[name="expectedAttendance"]').value;
+        const age = document.querySelector('select[name="age"]').value;
+        const male = document.querySelector('input[name="male"]').value;
+        const female = document.querySelector('input[name="female"]').value;
+        let sponsors = document.querySelector('input[name="sponsors"]').value.split(',');
+        if (!sponsors[0]) {
+          sponsors = [];
+        }
+        const attendance = document.querySelector('input[name="attendance"]').value;
+        const audience = document.querySelector('input[name="audience"]').value;
+        const promotion = document.querySelector('input[name="promotion"]').value;
+        let oldsponsors = document.querySelector('input[name="oldsponsors"]').value.split(',');
+        if (!oldsponsors[0]) {
+          oldsponsors = [];
+        }
+
         if (
           age &&
           !validator.isIn(
@@ -168,33 +171,25 @@ window.onload = () => {
             error: 'Seçtiğiniz yaş grubu geçerli değil.'
           });
         }
+
+        formData = {
+          ...formData, 
+          target,
+          expectedAttendance,
+          age,
+          male,
+          female,
+          sponsors,
+          attendance,
+          audience,
+          promotion,
+          oldsponsors
+        };
       }
       
       if (errors.length > 0) {
         displayErrors(errors);
       } else {
-        let formData = {
-          description,
-          sponsorshiptype,
-          website,
-          instagram
-        };
-        if (userType === 'etkinlik') {
-          formData = {
-            ...formData, 
-            target,
-            expectedAttendance,
-            age,
-            male,
-            female,
-            sponsors,
-            attendance,
-            audience,
-            promotion,
-            oldsponsors
-          };
-        }
-
         fetch('/app/profile/edit', {
           headers: {
             'Accept': 'application/json',
@@ -205,7 +200,6 @@ window.onload = () => {
         })
         .then((data) => data.json())
         .then((data) => {
-          console.log(data);
           if (data.success) {
             location.reload();
           } else if (data.errors && data.errors.length > 0) {
