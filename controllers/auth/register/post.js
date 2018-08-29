@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const User = require('../../../models/User/User');
 
+const sendMail = require('../../../utils/sendMail');
+
 module.exports = (req, res, next) => {
   let newUserData = {
     auth: {
@@ -36,6 +38,14 @@ module.exports = (req, res, next) => {
       email: newUser.person.email,
       id: newUser._id
     };
-    return res.status(200).json({success: true});
+
+    sendMail({
+      name: newUser.user.name,
+      email: newUser.person.email
+    }, 'etkinlikRegister', (err, info) => {
+      if (err) return console.log(err);
+      
+      res.status(200).json({success: true});
+    });
   });
 };

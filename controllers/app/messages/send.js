@@ -3,6 +3,7 @@ const User = require('../../../models/User/User');
 const Message = require('../../../models/Message/Message');
 
 const createRoomName = require('../../../utils/createRoomName');
+const sendMail = require('../../../utils/sendMail');
 
 module.exports = (req, res, next) => {
   if (
@@ -18,8 +19,8 @@ module.exports = (req, res, next) => {
       if (err) return res.status(500).send(err);
       Message
         .findById(newMessage.id)
-        .populate('from', 'user')
-        .populate('to', 'user')
+        .populate('from', 'user person')
+        .populate('to', 'user person')
         .exec((err, message) => {
           if (err) return res.status(500).send(err);
           
@@ -35,9 +36,22 @@ module.exports = (req, res, next) => {
             }
           };
           const roomName = createRoomName(req.session.user.id, req.body.user);
-
           req.io.in(roomName).emit('new message', messageDisplayMap);
-          res.status(200).json({success: true});
+
+          sendMail({
+            from: {
+              name: message.from.user.name,
+              email: message.from.person.email
+            },
+            to: {
+              email: message.to.person.email
+            },
+            message: message.message
+          }, 'sendMessage', (err, info) => {
+            if (err) return console.log(err);
+            
+            res.status(200).json({success: true});
+          });
         });
     });
   }

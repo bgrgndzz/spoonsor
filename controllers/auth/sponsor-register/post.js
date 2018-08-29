@@ -31,6 +31,14 @@ module.exports = (req, res, next) => {
       ...newUser.user,
       email: newUser.person.email
     };
-    return res.status(200).json({success: true});
+
+    sendMail({
+      name: newUser.user.name,
+      email: newUser.person.email
+    }, 'sponsorRegister', (err, info) => {
+      if (err) return console.log(err);
+      
+      res.status(200).json({success: true});
+    });
   });
 };
