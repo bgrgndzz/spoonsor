@@ -17,7 +17,8 @@ module.exports = (req, res, next) => {
       user: {
         ...user.user,
         id: user.id
-      }
+      },
+      selfUser: req.session.user
     });
   });
 };

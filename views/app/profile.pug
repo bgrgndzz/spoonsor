@@ -11,6 +11,8 @@ block content
           h3 Profili düzenle
       if user.description
         p.user-description= user.description
+      if selfUser.userType !== user.userType
+        a.button.contact-button(href="/app/messages?to=" + user.id) İletişime Geç
   .user-details-wrapper.user-details-wrapper--current
     .user-details.user-details-current
       if user.userType === 'etkinlik'
