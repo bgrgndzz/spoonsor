@@ -62,6 +62,10 @@ html(lang="tr")
             ul.nav.nav--auth
               li.button-wrapper.login-wrapper
                 a.button.button--login(href="/auth/login") Giriş Yap
+          if headerType === '404'
+            .logo-wrapper
+              a(href="/")
+                img.logo(src="/res/images/logo.svg")
           if headerType === 'app'
             ul.nav.nav--left
               li
