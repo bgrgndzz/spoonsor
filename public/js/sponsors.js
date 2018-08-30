@@ -1,25 +1,3 @@
-const changeModal = (data, modalWrapper) => {
-  const modalImage = modalWrapper.querySelector('.modal-image');
-  const modalTitle = modalWrapper.querySelector('.modal-title');
-  const modalSponsorships = modalWrapper.querySelector('.modal-sponsorships');
-  const modalDescription = modalWrapper.querySelector('.modal-description');
-  const modalContactButton = modalWrapper.querySelector('.modal-contact-button');
-
-  modalImage.style.backgroundImage = `url('/res/uploads/${data.profilepicture}')`;
-  modalTitle.innerHTML = data.name;
-  modalDescription.innerHTML = data.description || '';
-  modalSponsorships.innerHTML = '';
-  
-  data.sponsorshipType.forEach((sponsorship) => {
-    const sponsorshipNode = document.createElement('span');
-    sponsorshipNode.classList.add('modal-sponsorship');
-    sponsorshipNode.innerHTML = sponsorship;
-
-    modalSponsorships.appendChild(sponsorshipNode);
-  });
-
-  modalContactButton.onclick = () => window.location.href = '/app/messages?to=' + data.id;
-};
 const displayUsers = (users, filters = []) => {
   const items = document.querySelector('.items');
   items.innerHTML = '';
@@ -40,11 +18,11 @@ const displayUsers = (users, filters = []) => {
     itemId.value = user.id;
 
     const itemName = document.createElement('h2');
-    itemName.classList.add('item-name', 'open-modal');
+    itemName.classList.add('item-name', 'open-profile');
     itemName.innerHTML = user.name;
 
     const itemImage = document.createElement('div');
-    itemImage.classList.add('item-image', 'open-modal');
+    itemImage.classList.add('item-image', 'open-profile');
     itemImage.style.backgroundImage = `url('/res/uploads/${user.profilepicture}')`;
     
     let itemDescription;
@@ -54,13 +32,13 @@ const displayUsers = (users, filters = []) => {
       itemDescription.innerHTML = user.shortenedDescription;
       if (user.shortenedDescription !== user.description) {
         itemDescription.innerHTML += '...';
+
+        const openProfile = document.createElement('a');
+        openProfile.classList.add('open-profile');
+        openProfile.innerHTML = ' Daha fazla gör';
+        
+        itemDescription.appendChild(openProfile);
       }
-      
-      const openModal = document.createElement('a');
-      openModal.classList.add('open-modal');
-      openModal.innerHTML = ' Daha fazla gör';
-      
-      itemDescription.appendChild(openModal);
     }
     const itemSponsorships = document.createElement('div');
     itemSponsorships.classList.add('item-sponsorships');
@@ -103,15 +81,9 @@ window.onload = () => {
   };
   document.addEventListener('click', (event) => {
     if (event.target) {
-      const modalWrapper = document.querySelector('.modal-wrapper');
-      if (event.target.classList.contains('open-modal')) {
+      if (event.target.classList.contains('open-profile')) {
         const itemId = event.target.closest('.item').querySelector('.item-id').value;
-        const item = users.find(user => user.id === itemId);
-
-        changeModal(item, modalWrapper);
-        toggleDisplay(modalWrapper, true);
-      } else if (event.target.classList.contains('close-modal')) {
-        toggleDisplay(modalWrapper, false);
+        location.href = '/app/profile/' + itemId;
       }
     }
   });

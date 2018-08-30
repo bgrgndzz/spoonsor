@@ -10,27 +10,17 @@ block content
       each user in users
         .item
           input.item-id(type="hidden", value=user.id)
-          h2.item-name.open-modal= user.name
-          .item-image.open-modal(style="background-image: url('/res/uploads/" + user.profilepicture + "')")
+          h2.item-name.open-profile= user.name
+          .item-image.open-profile(style="background-image: url('/res/uploads/" + user.profilepicture + "')")
           if user.description
             p.item-description
               =user.shortenedDescription
               if user.shortenedDescription !== user.description
                 |...
-              a.open-modal  Daha fazla gör 
+                a.open-profile  Daha fazla gör 
           .item-sponsorships
             each sponsorship in user.sponsorshipType
               span.item-sponsorship= sponsorship
-    .modal-wrapper
-      .overlay.close-modal
-      .modal
-        i.fas.fa-times.modal-close-button.close-modal
-        .modal-image-wrapper
-          .modal-image(style="background-image: url('')")
-          h2.modal-title
-        .modal-sponsorships
-        p.modal-description
-        button.button.modal-contact-button İletişime Geç
     .filter-modal-wrapper
       .overlay.close-filter-modal
       .filter-modal
