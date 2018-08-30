@@ -19,6 +19,7 @@ const profileEditValidator = require('../controllers/app/profile/validate');
 
 // require middleware
 const loggedIn = require('../middleware/loggedIn');
+const active = require('../middleware/active');
 const uploadProfilePicture = require('../middleware/uploadProfilePicture');
 router.use(loggedIn);
 
@@ -27,12 +28,24 @@ router.use(loggedIn);
 router.get('/', indexController);
 router.get('/sponsors', sponsorsController);
 router.get('/events', eventsController);
-router.get('/messages', messagesIndexController);
-router.get('/messages/:user', messagesUserController);
+router.get(
+  '/messages', 
+    active, 
+    messagesIndexController
+);
+router.get(
+  '/messages/:user', 
+    active, 
+    messagesUserController
+);
 router.get('/profile', profileIndexController);
 router.get('/profile/:user', profileUserController);
 // post
-router.post('/messages/send', messagesSendController);
+router.post(
+  '/messages/send', 
+    active, 
+    messagesSendController
+);
 router.post(
   '/profile/edit', 
     profileEditValidator, 
