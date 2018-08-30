@@ -3,7 +3,10 @@ module.exports = (req, res, next) => {
     page: 'index',
     title: 'Sponsor Bulmanın En Kolay Yolu',
     includes: {
-      external: ['animate.css'],
+      external: [
+        'animate.css',
+        'fontawesome'
+      ],
       js: ['index']
     },
     headerType: 'landing'
