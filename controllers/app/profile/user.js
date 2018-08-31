@@ -11,7 +11,10 @@ module.exports = (req, res, next) => {
       title: 'Profil',
       includes: {
         external: ['fontawesome'],
-        js: ['utils/toggleDisplay']
+        js: [
+          'app/profile',
+          'utils/toggleDisplay'
+        ]
       },
       headerType: 'app',
       user: {
