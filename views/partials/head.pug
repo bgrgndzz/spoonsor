@@ -44,7 +44,7 @@ html(lang="tr")
                 a.link(href="#") Sponsorlar
               if headerType === 'landing'
                 li
-                  a.link.link--highlighted(href="#nasil") Nasıl Çalışır
+                  a.link.link--highlighted(href= (page === 'index' ? "#nasil" : "/#nasil")) Nasıl Çalışır
             .logo-wrapper
               a(href="/")
                 img.logo(src="/res/images/logo.svg")
@@ -69,12 +69,12 @@ html(lang="tr")
           if headerType === 'app'
             ul.nav.nav--left
               li
-                if page === 'sponsors'
+                if page === 'app/sponsors'
                   a.link.link--highlighted(href="/app/sponsors") Sponsorlar
                 else
                   a.link(href="/app/sponsors") Sponsorlar
               li
-                if page === 'events'
+                if page === 'app/events'
                   a.link.link--highlighted(href="/app/events") Etkinlikler
                 else
                   a.link(href="/app/events") Etkinlikler
@@ -83,14 +83,14 @@ html(lang="tr")
                 img.logo(src="/res/images/logo.svg")
             ul.nav.nav--right 
               li
-                if page === 'messages'
+                if page === 'app/messages'
                   a.link.link--highlighted(href="/app/messages")
                     img.nav-img(src="/res/images/messages2.svg")
                 else
                   a.link(href="/app/messages")
                     img.nav-img(src="/res/images/messages.svg")
               li
-                if page === 'profile'
+                if page === 'app/profile'
                   a.link.link--highlighted(href="/app/profile")
                     img.nav-img(src="/res/images/user2.svg")
                 else
@@ -104,22 +104,22 @@ html(lang="tr")
               .hamburger-overlay
               ul.hamburger-wrapper
                 li
-                  if page === 'sponsors'
+                  if page === 'app/sponsors'
                     a.link.link--highlighted(href="/app/sponsors") Sponsorlar
                   else
                     a.link(href="/app/sponsors") Sponsorlar
                 li
-                  if page === 'events'
+                  if page === 'app/events'
                     a.link.link--highlighted(href="/app/events") Etkinlikler
                   else
                     a.link(href="/app/events") Etkinlikler
                 li
-                  if page === 'messages'
+                  if page === 'app/messages'
                     a.link.link--highlighted(href="/app/messages") Görüşmeler
                   else
                     a.link(href="/app/messages") Görüşmeler
                 li
-                  if page === 'profile'
+                  if page === 'app/profile'
                     a.link.link--highlighted(href="/app/profile") Profil
                   else
                     a.link(href="/app/profile") Profil

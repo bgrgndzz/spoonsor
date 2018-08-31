@@ -3,7 +3,7 @@ const User = require('../../../models/User/User');
 
 module.exports = (req, res, next) => {
   res.render('app/profile', {
-    page: 'profile',
+    page: 'app/profile',
     title: 'Profil',
     includes: {
       external: [
@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
         'validator'
       ],
       js: [
-        'profile',
+        'app/profile',
         'utils/toggleDisplay'
       ]
     },

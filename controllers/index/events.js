@@ -3,22 +3,15 @@ const User = require('../../models/User/User');
 
 module.exports = (req, res, next) => {
   User
-    .find({ _id: { $ne: req.session.user.id } })
+    .find()
     .byType('etkinlik')
     .exec((err, users) => {
       if (err) return res.status(500).send(err);
 
-      res.render('app/events', {
-        page: 'app/events',
+      res.render('events', {
+        page: 'events',
         title: 'Etkinlikler',
-        includes: {
-          external: ['fontawesome'],
-          js: [
-            'app/events',
-            'utils/toggleDisplay'
-          ]
-        },
-        headerType: 'app',
+        headerType: 'landing',
         users: users.map(user => ({
           ...user.user,
           id: user.id,

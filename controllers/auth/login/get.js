@@ -1,6 +1,6 @@
 module.exports = (req, res, next) => {
-  res.render('login', {
-    page: 'login',
+  res.render('auth/login', {
+    page: 'auth/login',
     title: 'Giriş Yap',
     headerType: 'login',
     includes: {
@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
       ],
       js: [
         'utils/toggleDisplay',
-        'login'
+        'auth/login'
       ]
     }
   });

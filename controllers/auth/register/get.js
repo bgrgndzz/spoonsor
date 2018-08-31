@@ -1,6 +1,6 @@
 module.exports = (req, res, next) => {
-  res.render('register', {
-    page: 'register',
+  res.render('auth/register', {
+    page: 'auth/register',
     title: 'Kayıt Ol',
     includes: {
       external: [
@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
         'fontawesome'
       ],
       js: [
-        'register',
+        'auth/register',
         'utils/toggleDisplay',
         'utils/scrollTo'
       ],
