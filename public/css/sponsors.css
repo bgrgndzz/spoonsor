@@ -28,9 +28,9 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
 }
 .item-name {
   font-family: "PT Serif", serif;
@@ -39,7 +39,6 @@
   text-align: center;
   -webkit-transition: 0.25s ease all;
   transition: 0.25s ease all;
-  margin-bottom: auto;
 }
 .item-image {
   background-color: white;
@@ -83,6 +82,7 @@
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  margin-top: auto;
 }
 .item-sponsorship {
   border-radius: 10px;
