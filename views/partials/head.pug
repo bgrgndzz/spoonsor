@@ -44,7 +44,7 @@ html(lang="tr")
                 a.link(href="#") Sponsorlar
               if headerType === 'landing'
                 li
-                  a.link.link--highlighted(href="#nasil") Nasıl Çalışır
+                  a.link.link--highlighted(href= (page === 'index' ? "#nasil" : "/#nasil")) Nasıl Çalışır
             .logo-wrapper
               a(href="/")
                 img.logo(src="/res/images/logo.svg")

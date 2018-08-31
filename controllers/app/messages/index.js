@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
   Message.findMessagedUsers(req.session.user.id, (err, messagedUsers) => {
     if (err) res.status(500).send(err);
     res.render('app/messages', {
-      page: 'messages',
+      page: 'app/messages',
       title: 'Mesajlar',
       headerType: 'app',
       includes: {
@@ -15,7 +15,7 @@ module.exports = (req, res, next) => {
           'socket.io'
         ],
         js: [
-          'messages',
+          'app/messages',
           'utils/toggleDisplay'
         ]
       },

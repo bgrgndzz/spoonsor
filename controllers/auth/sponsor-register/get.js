@@ -1,6 +1,6 @@
 module.exports = (req, res, next) => {
-  res.render('sponsor-register', {
-    page: 'sponsor-register',
+  res.render('auth/sponsor-register', {
+    page: 'auth/sponsor-register',
     title: 'Kayıt Ol',
     includes: {
       external: [
@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
         'fontawesome'
       ],
       js: [
-        'sponsor-register',
+        'auth/sponsor-register',
         'utils/toggleDisplay',
         'utils/scrollTo'
       ],

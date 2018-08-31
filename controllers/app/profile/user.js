@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
     if (!user) return res.status(500).send('Böyle bir kullanıcı yok');
 
     res.render('app/profile', {
-      page: 'profile',
+      page: 'app/profile',
       title: 'Profil',
       includes: {
         external: ['fontawesome'],
