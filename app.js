@@ -13,7 +13,7 @@ const path = require('path');
 const socketio = require('socket.io');
 
 // dotenv config
-dotenv.config(path.join(__dirname, '.env'));
+dotenv.config({path: path.join(__dirname, '.env')});
 
 // require utils
 const logger = require('./utils/logger');
@@ -68,7 +68,7 @@ app.use(morgan('combined', {'stream': logger.stream}));
 // const store = new expressBrute.MemoryStore();
 // const bruteforce = new expressBrute(store);
 // app.use(bruteforce.prevent);
-// app.use(helmet());
+app.use(helmet());
 
 // routing
 app.use('/auth', authRoute);
