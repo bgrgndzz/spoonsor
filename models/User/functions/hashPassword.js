@@ -5,7 +5,7 @@ module.exports = function(next) {
     bcrypt.hash(this.auth.password, 10, (err, hash) => {
       if (err) return next(err);
 
-      user.auth.password = hash;
+      this.auth.password = hash;
       next();
     });
   } else {
