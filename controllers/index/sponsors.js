@@ -5,6 +5,7 @@ module.exports = (req, res, next) => {
   User
     .find()
     .byType('sponsor')
+    .sort('-user.priority')
     .exec((err, users) => {
       if (err) return res.status(500).send(err);
 

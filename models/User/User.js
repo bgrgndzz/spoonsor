@@ -56,6 +56,10 @@ const UserSchema = new Schema({
       required: true, 
       default: false
     },
+    priority: {
+      type: Number,
+      default: 0
+    },
     description: String,
     sponsorshipType: [String],
     date: {

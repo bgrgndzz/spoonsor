@@ -8,9 +8,7 @@ block content
           .item-image(style="background-image: url('/res/uploads/" + user.profilepicture + "')")
           if user.description
             p.item-description
-              =user.shortenedDescription
-              if user.shortenedDescription !== user.description
-                |...
+              =user.description
           .item-sponsorships
             each sponsorship in user.sponsorshipType
               span.item-sponsorship= sponsorship
