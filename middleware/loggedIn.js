@@ -4,7 +4,7 @@ const User = require('../models/User/User');
 module.exports = (req, res, next) => {
   if (req.session && req.session.user) {
     User.findOne({'auth.email': req.session.user.email}, (err, userRes) => {
-      if (err) return res.status(500).send('noppe');
+      if (err) return console.log(err);
       if (userRes) {
         next();
       } else {

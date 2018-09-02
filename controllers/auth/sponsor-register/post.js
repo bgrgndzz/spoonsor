@@ -37,8 +37,7 @@ module.exports = (req, res, next) => {
       email: newUser.person.email
     }, 'sponsorRegister', (err, info) => {
       if (err) return console.log(err);
-      
-      res.status(200).json({success: true});
+      res.redirect('/app');
     });
   });
 };

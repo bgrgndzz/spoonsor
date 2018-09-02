@@ -158,6 +158,7 @@ const nextForm = (forms, currentForm, formsBack, type = 'front') => {
 };
 
 window.onload = () => {
+  if (errors.length > 0) displayErrors(errors);
   let currentForm = 0;
   const formsBack = document.querySelector('.forms-back');
   const forms = document.querySelectorAll('.form-wrapper');
@@ -174,53 +175,12 @@ window.onload = () => {
     nextButton.onclick = () => {currentForm = nextForm(forms, currentForm, formsBack)};
   });
 
-  submitButton.onclick = () => {
+  submitButton.onclick = (event) => {
     if (
       Array.from({length: 10}, (_, i) => i)
-        .every((formCursor) => validateCurrentForm(formCursor))
+        .some((formCursor) => !validateCurrentForm(formCursor, userType))
     ) {
-      const name = document.querySelector('input[name="name"]').value;
-      const surname = document.querySelector('input[name="surname"]').value;
-      const email = document.querySelector('input[name="email"]').value;
-      const sponsorname = document.querySelector('input[name="sponsorname"]').value;
-      const sponsordescription = document.querySelector('textarea[name="sponsordescription"]').value;
-      const phone = document.querySelector('input[name="phone"]').value;
-      const password = document.querySelector('input[name="password"]').value;
-      const password2 = document.querySelector('input[name="password2"]').value;
-
-      const sponsorshiptype = Array.prototype.slice.call(
-        document.querySelectorAll('input[name="sponsorshiptype"]:checked')
-      ).map(el => el.value);
-
-      let formData = {
-        name,
-        surname,
-        email,
-        sponsorname,
-        sponsordescription,
-        sponsorshiptype,
-        phone,
-        password,
-        password2
-      };
-
-      fetch('/auth/sponsor-register', {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: 'POST',
-        body: JSON.stringify(formData)
-      })
-      .then((data) => data.json())
-      .then((data) => {
-        if (data.success) {
-          window.location.href = '/app/';
-        } else if (data.errors && data.errors.length > 0) {
-          displayErrors(data.errors);
-        }
-      })
-      .catch((err) => displayErrors([{error: 'Bilinmeyen bir hata oluştu.'}]));
+      event.preventDefault();
     }
   };
 };

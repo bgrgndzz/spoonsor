@@ -44,8 +44,7 @@ module.exports = (req, res, next) => {
       email: newUser.person.email
     }, 'etkinlikRegister', (err, info) => {
       if (err) return console.log(err);
-      
-      res.status(200).json({success: true});
+      res.redirect('/app');
     });
   });
 };

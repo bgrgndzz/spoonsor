@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 
 const User = require('../../../models/User/User');
 
+const renderLogin = require('./get');
+
 module.exports = (req, res, next) => {
   let errors = [];
 
@@ -25,7 +27,8 @@ module.exports = (req, res, next) => {
   }
 
   if (errors.length > 0) {
-    return res.status(422).json({errors});
+    req.errors = errors;
+    renderLogin(req, res, next);
   } else {
     User.findOne({'auth.email': req.body.email}, (err, userRes) => {
       if (err) errors.push({
@@ -40,7 +43,8 @@ module.exports = (req, res, next) => {
               param: 'password',
               error: 'Girdiğiniz şifre yanlış.'
             });
-            return res.status(422).json({errors});
+            req.errors = errors;
+            renderLogin(req, res, next);
           } else {
             req.validatedUser = userRes;
             next();
@@ -51,7 +55,8 @@ module.exports = (req, res, next) => {
           param: 'email',
           error: 'Bu e-mail ile kayıtlı bir hesap yok.'
         });
-        return res.status(422).json({errors});
+        req.errors = errors;
+        renderLogin(req, res, next);
       }
     });
   }

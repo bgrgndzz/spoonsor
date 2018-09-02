@@ -7,5 +7,5 @@ module.exports = (req, res, next) => {
     email: req.validatedUser.person.email,
     id: req.validatedUser._id
   };
-  return res.status(200).json({success: true});
+  res.redirect('/app');
 };

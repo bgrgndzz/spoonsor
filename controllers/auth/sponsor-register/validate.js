@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 
 const User = require('../../../models/User/User');
 
+const renderSponsorRegister = require('./get');
+
 module.exports = (req, res, next) => {
   const phoneRegex = /^(?:(?:\+?([1-9]|[0-9][0-9]|[0-9][0-9][0-9])\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([0-9][1-9]|[0-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
 
@@ -110,7 +112,8 @@ module.exports = (req, res, next) => {
       });
     }
     if (errors.length > 0) {
-      return res.status(422).json({errors});
+      req.errors = errors;
+      renderSponsorRegister(req, res, next);
     } else {
       next();
     }

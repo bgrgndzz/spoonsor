@@ -48,6 +48,7 @@ const validateCurrentForm = () => {
 }
 
 window.onload = () => {
+  if (errors.length > 0) displayErrors(errors);
   const modalWrapper = document.querySelector('.error-modal-wrapper');
   const closeModalButtons = document.querySelectorAll('.close-error-modal');
   const submitButton = document.querySelector('.button--submit');
@@ -57,33 +58,8 @@ window.onload = () => {
   });
 
   submitButton.onclick = (event) => {
-    event.preventDefault();
-    if (validateCurrentForm()) {
-      const email = document.querySelector('input[name="email"]').value;
-      const password = document.querySelector('input[name="password"]').value;
-
-      let formData = {
-        email,
-        password
-      };
-
-      fetch('/auth/login', {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: 'POST',
-        body: JSON.stringify(formData)
-      })
-      .then((data) => data.json())
-      .then((data) => {
-        if (data.success) {
-          window.location.href = '/app/';
-        } else if (data.errors && data.errors.length > 0) {
-          displayErrors(data.errors);
-        }
-      })
-      .catch((err) => displayErrors([{error: 'Bilinmeyen bir hata oluştu.'}]));
+    if (!validateCurrentForm()) {
+      event.preventDefault();
     }
   };
 };

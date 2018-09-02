@@ -14,6 +14,7 @@ module.exports = (req, res, next) => {
         'utils/scrollTo'
       ],
     },
-    headerType: 'register'
+    headerType: 'register',
+    errors: req.errors || []
   });
 };

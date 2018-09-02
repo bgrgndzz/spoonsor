@@ -209,11 +209,12 @@ const nextForm = (forms, currentForm, formsBack, userType, type = 'front') => {
 };
 
 window.onload = () => {
+  if (errors.length > 0) displayErrors(errors);
+
   let userType = '';
   let currentForm = 0;
   const formsBack = document.querySelector('.forms-back');
   const forms = document.querySelectorAll('.form-wrapper');
-  const nextButtons = document.querySelectorAll('.button--next');
   const typeRadios = document.querySelectorAll('.radios--type .radio');
   const typeOtherRadio = document.querySelector('.radios--type .radio--other');
   const typeOtherField = document.querySelector('.radios--type .field--other');
@@ -228,9 +229,11 @@ window.onload = () => {
     closeModalButton.onclick = () => toggleDisplay(modalWrapper, false);
   });
   formsBack.onclick = () => {currentForm = nextForm(forms, currentForm, formsBack, userType, 'back')};
-  nextButtons.forEach(nextButton => {
-    nextButton.onclick = () => {currentForm = nextForm(forms, currentForm, formsBack, userType)};
-  });
+  document.addEventListener('click', (event) => {
+    if (event.target && event.target.closest('.button--next')) {
+      currentForm = nextForm(forms, currentForm, formsBack, userType);
+    }
+  })
   typeRadios.forEach(typeRadio => {
     typeRadio.onchange = () => toggleDisplay(typeOtherField, typeOtherRadio.checked, .5);
   });
@@ -238,67 +241,12 @@ window.onload = () => {
     subjectRadio.onchange = () => toggleDisplay(subjectOtherField, subjectOtherRadio.checked, .5);
   });
 
-  submitButton.onclick = () => {
+  submitButton.onclick = (event) => {
     if (
       Array.from({length: 10}, (_, i) => i)
-        .every((formCursor) => validateCurrentForm(formCursor, userType))
+        .some((formCursor) => !validateCurrentForm(formCursor, userType))
     ) {
-      const name = document.querySelector('input[name="name"]').value;
-      const surname = document.querySelector('input[name="surname"]').value;
-      const email = document.querySelector('input[name="email"]').value;
-      const etkinlikname = document.querySelector('input[name="etkinlikname"]').value;
-      const start = document.querySelector('input[name="start"]').value;
-      const end = document.querySelector('input[name="end"]').value;
-      const location = document.querySelector('input[name="location"]').value;
-      const phone = document.querySelector('input[name="phone"]').value;
-      const password = document.querySelector('input[name="password"]').value;
-      const password2 = document.querySelector('input[name="password2"]').value;
-
-      const sponsorshiptype = Array.prototype.slice.call(
-        document.querySelectorAll('input[name="sponsorshiptype"]:checked')
-      ).map(el => el.value);
-
-      let type = document.querySelector('input[name="type"]:checked').value;
-      const othertype = document.querySelector('.radios--type .field--other').value;
-      type = type === 'Diğer' ? othertype : type;
-
-      let subject = document.querySelector('input[name="subject"]:checked').value;
-      const othersubject = document.querySelector('.radios--subject .field--other').value;
-      subject = subject === 'Diğer' ? othersubject : subject;
-
-      let formData = {
-        name,
-        surname,
-        email,
-        phone,
-        password,
-        password2,
-        sponsorshiptype,
-        etkinlikname,
-        start,
-        end,
-        location,
-        type,
-        subject
-      };
-
-      fetch('/auth/register', {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: 'POST',
-        body: JSON.stringify(formData)
-      })
-      .then((data) => data.json())
-      .then((data) => {
-        if (data.success) {
-          window.location.href = '/app/';
-        } else if (data.errors && data.errors.length > 0) {
-          displayErrors(data.errors);
-        }
-      })
-      .catch((err) => displayErrors([{error: 'Bilinmeyen bir hata oluştu.'}]));
+      event.preventDefault();
     }
   };
 };

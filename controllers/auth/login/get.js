@@ -12,6 +12,7 @@ module.exports = (req, res, next) => {
         'utils/toggleDisplay',
         'auth/login'
       ]
-    }
+    },
+    errors: req.errors || []
   });
 };
