@@ -17,7 +17,7 @@ select {
 }
 h1 {
   font-family: "PT Serif", serif;
-  color: rgba(0, 0, 0, 0.75);
+  color: #4a4a4a;
   font-weight: 300;
 }
 h2 {
@@ -84,14 +84,14 @@ input {
   top: 0;
   right: 0;
   padding: 5px 10px;
-  color: rgba(0, 0, 0, 0.75);
+  color: #4a4a4a;
   z-index: 5;
   font-size: 1.5em;
   cursor: pointer;
 }
 .error-title {
   text-align: center;
-  color: rgba(0, 0, 0, 0.75);
+  color: #4a4a4a;
   font-weight: 900;
   font-size: 3em;
 }

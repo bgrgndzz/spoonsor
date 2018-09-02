@@ -160,7 +160,7 @@
   margin-bottom: 5px;
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  color: rgba(0, 0, 0, 0.75);
+  color: #4a4a4a;
 }
 /* modal */
 .modal-wrapper {
@@ -341,7 +341,7 @@
   font-size: 2em;
 }
 .filter-modal .modal-close-button {
-  color: rgba(0, 0, 0, 0.75);
+  color: #4a4a4a;
 }
 .filter-submit-button {
   height: 50px;

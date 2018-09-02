@@ -23,7 +23,7 @@
   transition: 0.25s ease all;
   outline: none;
   border: none;
-  color: rgba(0, 0, 0, 0.75);
+  color: #4a4a4a;
 }
 .search-users:hover .field,
 .search-users:hover i,
@@ -84,7 +84,7 @@
 }
 .users-wrapper .user-name {
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.75);
+  color: #4a4a4a;
 }
 .users-wrapper .user-message {
   color: rgba(0, 0, 0, 0.5);
@@ -125,7 +125,7 @@
   background-color: white;
 }
 .messages-user {
-  color: rgba(0, 0, 0, 0.75);
+  color: #4a4a4a;
   font-weight: 500;
   -webkit-transition: 0.25s ease all;
   transition: 0.25s ease all;
@@ -202,7 +202,7 @@
   font-weight: 100;
 }
 .message-sender {
-  color: rgba(0, 0, 0, 0.75);
+  color: #4a4a4a;
   font-weight: 700;
   font-size: 1.1em;
   line-height: 30px;
@@ -248,7 +248,7 @@
   resize: none;
   line-height: 20px;
   height: 50px;
-  color: rgba(0, 0, 0, 0.75);
+  color: #4a4a4a;
 }
 .message-field:hover,
 .message-field:focus {
@@ -306,7 +306,7 @@
 }
 .user-wrapper .user-name {
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.75);
+  color: #4a4a4a;
 }
 .user-description {
   overflow: scroll;
@@ -348,7 +348,7 @@
   margin-bottom: 5px;
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  color: rgba(0, 0, 0, 0.75);
+  color: #4a4a4a;
 }
 .modal-wrapper {
   width: 100vw;
