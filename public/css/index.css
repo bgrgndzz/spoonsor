@@ -41,6 +41,7 @@
   position: absolute;
   top: 25px;
   left: 50%;
+  -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
 .ana-content h1 {
@@ -97,6 +98,7 @@
   -ms-flex-align: center;
   align-items: center;
   overflow-x: auto;
+  overflow-y: hidden;
 }
 .brands li {
   margin: 0 10px;
@@ -402,15 +404,19 @@
   background-color: rgba(0, 0, 0, 0.75);
   color: white;
   padding: 25px;
+  -webkit-box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.25);
   box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.25);
   position: relative;
 }
 .footer-cols {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 .footer-col-35 {
   width: 35%;
+  -ms-flex-preferred-size: 35%;
   flex-basis: 35%;
   margin-right: 25px;
 }
@@ -427,8 +433,14 @@
   font-weight: 100;
 }
 .footer-row-right {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
   justify-content: flex-end;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
   align-items: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 .footer-social-media {
@@ -447,7 +459,7 @@
   height: 50px;
   float: right;
 }
-.loy-logo span{
+.loy-logo span {
   line-height: 55px;
   font-size: 1.5em;
   font-weight: 100;
@@ -784,10 +796,12 @@
     transform: none;
   }
   .footer-cols {
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
   }
   .footer-col-35 {
     width: 100%;
+    -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
   }
   .footer-col-35:first-of-type .footer-row:not(:first-of-type) {
