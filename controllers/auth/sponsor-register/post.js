@@ -30,7 +30,8 @@ module.exports = (req, res, next) => {
     
     req.session.user = {
       ...newUser.user,
-      email: newUser.person.email
+      email: newUser.person.email,
+      id: newUser._id
     };
 
     sendMail({

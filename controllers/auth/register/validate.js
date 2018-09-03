@@ -40,18 +40,26 @@ module.exports = (req, res, next) => {
       error: 'Lütfen istediğiniz sponsorluk tipini seçin.'
     });
   } else if (
-    !req.body.sponsorshiptype.every(
-      value => isIn(
-        value, 
-        [
-          'İçerik/Konuşmacı', 
-          'İndirim/Hediye Kuponu', 
-          'Mekan', 
-          'Nakit', 
-          'Stand', 
-          'Tanıtım', 
-          'Ürün'
-        ])
+    (
+      typeof req.body.sponsorshiptype === 'string' &&
+      isEmpty(req.body.sponsorshiptype)
+    )
+    ||
+    (
+      Array.isArray(req.body.sponsorshiptype) &&
+      !req.body.sponsorshiptype.every(
+        value => isIn(
+          value, 
+          [
+            'İçerik/Konuşmacı', 
+            'İndirim/Hediye Kuponu', 
+            'Mekan', 
+            'Nakit', 
+            'Stand', 
+            'Tanıtım', 
+            'Ürün'
+          ])
+      )
     )
   ) {
     errors.push({
