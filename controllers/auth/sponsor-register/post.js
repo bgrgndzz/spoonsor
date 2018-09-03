@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const User = require('../../../models/User/User');
 
+const sendMail = require('../../../utils/sendMail');
+
 module.exports = (req, res, next) => {
   let newUserData = {
     auth: {
@@ -15,9 +17,8 @@ module.exports = (req, res, next) => {
     },
     user: {
       name: req.body.sponsorname,
-      description: req.body.sponsordescription,
       userType: 'sponsor',
-      sponsorDescription: req.body.sponsordescription,
+      description: req.body.sponsordescription,
       sponsorshipType: req.body.sponsorshiptype,
       active: true
     }
