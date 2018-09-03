@@ -154,45 +154,30 @@
   color: #4a4a4a;
 }
 .content-box--nasil .description p {
-  margin-top: -15px;
   font-size: 1.25em;
   color: rgba(0, 0, 0, 0.5);
 }
-.nasil-image {
-  width: 400px;
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+.nasils {
+  padding: 25px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
-.nasil-box {
-  width: 250px;
+.nasil {
+  width: 25%;
+  flex-basis: 25%;
+  padding: 25px;
+  margin: 0 auto;
 }
-.nasil-arrow {
-  width: 20px;
-}
-.nasil-box--1 {
-  position: absolute;
-  top: 50%;
-  left: 25%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-.nasil-box--2 {
-  position: absolute;
-  top: 57.5%;
-  left: 75%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-.nasil-heading {
-  font-size: 1.75em;
+.nasil-heading:not(.pink) {
   color: #4a4a4a;
 }
 .nasil-description {
-  font-size: 1.25em;
   color: rgba(0, 0, 0, 0.5);
+}
+.nasil-image {
+  width: 75%;
+  margin: 0 auto;
 }
 .neden-content {
   width: 1000px;
@@ -477,10 +462,6 @@
     margin-right: -15%;
   }
 
-  .content-box--nasil {
-    text-align: center;
-    padding-top: 50px;
-  }
   .nasil-box-wrapper {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -492,20 +473,6 @@
     -ms-flex-pack: center;
     justify-content: center;
     height: 80%;
-  }
-  .nasil-box {
-    -webkit-box-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    -webkit-transform: none;
-    transform: none;
-    position: static;
-  }
-  .nasil-image {
-    width: 400px;
-    position: static;
-    -webkit-transform: none;
-    transform: none;
   }
   .content-box--testimonials .background {
     width: 140%;
@@ -548,6 +515,11 @@
     margin: 0;
   }
 }
+@media only screen and (max-width: 1000px) {
+  .nasils, .nasil {
+    padding: 10px;
+  }
+}
 @media only screen and (max-width: 900px) {
   .brands ul {
     width: 100%;
@@ -555,18 +527,11 @@
     -ms-flex-pack: start;
     justify-content: flex-start;
   }
-  .nasil-image {
-    -webkit-box-flex: 0.75;
-    -ms-flex: 0.75;
-    flex: 0.75;
-  }
   .nasil-heading {
     font-size: 1.25em;
-    color: #4a4a4a;
   }
   .nasil-description {
     font-size: 1em;
-    color: rgba(0, 0, 0, 0.5);
   }
   .neden-box-wrapper {
     margin: 0 auto;
@@ -700,7 +665,7 @@
     -webkit-box-flex: 0;
     -ms-flex: 0;
     flex: 0;
-    margin: 0;
+    margin: 0 auto;
     -ms-flex-preferred-size: 30vw;
     flex-basis: 30vw;
     width: 30vw;
@@ -732,6 +697,13 @@
     font-size: 1.1em;
     color: rgba(0, 0, 0, 0.5);
   }
+  .nasil {
+    width: 33.3%;
+    flex-basis: 33.3%;
+  }
+  .content-box--nasil {
+    height: auto;
+  }
 }
 @media only screen and (max-width: 700px) {
   .testimonials-content {
@@ -743,37 +715,9 @@
   .ana-content {
     width: 95vw;
   }
-  .nasil-box-wrapper {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    height: 80%;
-  }
-  .nasil-arrow {
-    display: none;
-  }
-  .nasil-box {
-    -webkit-box-flex: 0;
-    -ms-flex: 0;
-    flex: 0;
-    margin-bottom: 20px;
-  }
-  .nasil-image {
-    -webkit-box-flex: 0;
-    -ms-flex: 0;
-    flex: 0;
-    width: 100%;
-    margin-bottom: 20px;
+  .nasil {
+    width: 40%;
+    flex-basis: 40%;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -845,5 +789,13 @@
   }
   .content-box--veriler {
     height: auto;
+  }
+  .nasil {
+    width: 300px;
+    flex-basis: 300px;
+    margin-bottom: 20px;
+  }
+  .nasil-image {
+    width: 65%;
   }
 }
