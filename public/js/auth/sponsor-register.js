@@ -88,7 +88,7 @@ const validateCurrentForm = (currentForm) => {
       });
     } else if (
       !sponsorshiptype.every(
-        value => validator.isIn(
+        value => isIn(
           value, 
           [
             'İçerik/Konuşmacı', 
@@ -171,14 +171,16 @@ window.onload = () => {
     closeModalButton.onclick = () => toggleDisplay(modalWrapper, false);
   });
   formsBack.onclick = () => {currentForm = nextForm(forms, currentForm, formsBack, 'back')};
-  nextButtons.forEach(nextButton => {
-    nextButton.onclick = () => {currentForm = nextForm(forms, currentForm, formsBack)};
+  document.addEventListener('click', (event) => {
+    if (event.target && event.target.closest('.button--next')) {
+      event.preventDefault();
+      currentForm = nextForm(forms, currentForm, formsBack);
+    }
   });
-
   submitButton.onclick = (event) => {
     if (
       Array.from({length: 10}, (_, i) => i)
-        .some((formCursor) => !validateCurrentForm(formCursor, userType))
+        .some((formCursor) => !validateCurrentForm(formCursor))
     ) {
       event.preventDefault();
     }

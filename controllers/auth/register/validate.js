@@ -122,13 +122,13 @@ module.exports = (req, res, next) => {
       error: 'Lütfen etkinliğinizin olacağı yeri girin.'
     });
   }
-  if (!req.body.type || isEmpty(req.body.type)) {
+  if (!req.body.type || !req.body.type[0] || isEmpty(req.body.type[0])) {
     errors.push({
       param: 'type',
       error: 'Lütfen etkinliğinizin türünü girin.'
     });
   }
-  if (!req.body.subject || isEmpty(req.body.subject)) {
+  if (!req.body.subject || !req.body.subject[0] || isEmpty(req.body.subject[0])) {
     errors.push({
       param: 'subject',
       error: 'Lütfen etkinliğinizin konusunu girin.'

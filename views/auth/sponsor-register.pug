@@ -1,68 +1,69 @@
 extends ../partials/head
 block content
-  .forms-back
-  .form-wrapper.form-wrapper--1
-    .form-description
-      h1 Selam! Ben Dilara. Birazdan sana harika etkinlikler bulacağım. Hazır mısın?
-      h2 Seni tanıyabilmem için adını ve e-mail adresini yaz.
-    .form
-      input.field.field__half(type="text", name="name", placeholder="Ad")
-      input.field.field__half(type="text", name="surname", placeholder="Soyad")
-      input.field(type="email", name="email", placeholder="E-mail")
-      input.button.button--next.button--email-submit(type="submit", value="Başla")
-  .form-wrapper.form-wrapper--2
-    .form-description
-      h1 Şirketinin adı nedir?
-    .form
-      input.field(type="text", name="sponsorname", placeholder="Şirket Adı")
-      input.button.button--next(type="submit", value="Devam")
-  .form-wrapper.form-wrapper--3
-    .form-description
-      h1 Şirketini birkaç cümleyle açıklar mısın?
-    .form
-      textarea.textarea.field(name="sponsordescription", placeholder="Şirket Açıklaması")
-      input.button.button--next(type="submit", value="Devam")
-  .form-wrapper.form-wrapper--4
-    .form-description
-      h1 Ne tür sponsorluk sağlayabilirsin?
-    .form
-      .radios--sponsorship-type
-        label.radio-wrapper
-          input.radio(type="checkbox", name="sponsorshiptype", value="İçerik/Konuşmacı") 
-          .styled-radio
-          span.radio-label İçerik/Konuşmacı
-        label.radio-wrapper
-          input.radio(type="checkbox", name="sponsorshiptype", value="İndirim/Hediye Kuponu") 
-          .styled-radio
-          span.radio-label İndirim/Hediye Kuponu
-        label.radio-wrapper
-          input.radio(type="checkbox", name="sponsorshiptype", value="Mekan") 
-          .styled-radio
-          span.radio-label Mekan
-        label.radio-wrapper
-          input.radio(type="checkbox", name="sponsorshiptype", value="Nakit") 
-          .styled-radio
-          span.radio-label Nakit
-        label.radio-wrapper
-          input.radio(type="checkbox", name="sponsorshiptype", value="Stand") 
-          .styled-radio
-          span.radio-label Stand
-        label.radio-wrapper
-          input.radio(type="checkbox", name="sponsorshiptype", value="Tanıtım") 
-          .styled-radio
-          span.radio-label Tanıtım
-        label.radio-wrapper
-          input.radio(type="checkbox", name="sponsorshiptype", value="Ürün") 
-          .styled-radio
-          span.radio-label Ürün
-      input.button.button--next(type="submit", value="Devam")
-  .form-wrapper.form-wrapper--5
-    .form-description
-      h1 Neredeyse bitti! 
-      h2 Sana ulaşabilmem için telefon numaranı ve hesabına erişebilmen için şifreni yaz.
-    .form
-      input.field(type="tel", name="phone", placeholder="Telefon Numarası")
-      input.field(type="password", name="password", placeholder="Şifre")
-      input.field(type="password", name="password2", placeholder="Şifre Doğrulaması")
-      input.button.button--submit(type="submit", value="Kaydını tamamla")
+  form(method="POST", action="/auth/sponsor-register")
+    .forms-back
+    .form-wrapper.form-wrapper--1
+      .form-description
+        h1 Selam! Ben Dilara. Birazdan sana harika etkinlikler bulacağım. Hazır mısın?
+        h2 Seni tanıyabilmem için adını ve e-mail adresini yaz.
+      .form
+        input.field.field__half(type="text", name="name", placeholder="Ad")
+        input.field.field__half(type="text", name="surname", placeholder="Soyad")
+        input.field(type="email", name="email", placeholder="E-mail")
+        input.button.button--next.button--email-submit(type="submit", value="Başla")
+    .form-wrapper.form-wrapper--2
+      .form-description
+        h1 Şirketinin adı nedir?
+      .form
+        input.field(type="text", name="sponsorname", placeholder="Şirket Adı")
+        input.button.button--next(type="submit", value="Devam")
+    .form-wrapper.form-wrapper--3
+      .form-description
+        h1 Şirketini birkaç cümleyle açıklar mısın?
+      .form
+        textarea.textarea.field(name="sponsordescription", placeholder="Şirket Açıklaması")
+        input.button.button--next(type="submit", value="Devam")
+    .form-wrapper.form-wrapper--4
+      .form-description
+        h1 Ne tür sponsorluk sağlayabilirsin?
+      .form
+        .radios--sponsorship-type
+          label.radio-wrapper
+            input.radio(type="checkbox", name="sponsorshiptype", value="İçerik/Konuşmacı") 
+            .styled-radio
+            span.radio-label İçerik/Konuşmacı
+          label.radio-wrapper
+            input.radio(type="checkbox", name="sponsorshiptype", value="İndirim/Hediye Kuponu") 
+            .styled-radio
+            span.radio-label İndirim/Hediye Kuponu
+          label.radio-wrapper
+            input.radio(type="checkbox", name="sponsorshiptype", value="Mekan") 
+            .styled-radio
+            span.radio-label Mekan
+          label.radio-wrapper
+            input.radio(type="checkbox", name="sponsorshiptype", value="Nakit") 
+            .styled-radio
+            span.radio-label Nakit
+          label.radio-wrapper
+            input.radio(type="checkbox", name="sponsorshiptype", value="Stand") 
+            .styled-radio
+            span.radio-label Stand
+          label.radio-wrapper
+            input.radio(type="checkbox", name="sponsorshiptype", value="Tanıtım") 
+            .styled-radio
+            span.radio-label Tanıtım
+          label.radio-wrapper
+            input.radio(type="checkbox", name="sponsorshiptype", value="Ürün") 
+            .styled-radio
+            span.radio-label Ürün
+        input.button.button--next(type="submit", value="Devam")
+    .form-wrapper.form-wrapper--5
+      .form-description
+        h1 Neredeyse bitti! 
+        h2 Sana ulaşabilmem için telefon numaranı ve hesabına erişebilmen için şifreni yaz.
+      .form
+        input.field(type="tel", name="phone", placeholder="Telefon Numarası")
+        input.field(type="password", name="password", placeholder="Şifre")
+        input.field(type="password", name="password2", placeholder="Şifre Doğrulaması")
+        input.button.button--submit(type="submit", value="Kaydını tamamla")
   script let errors = !{JSON.stringify(errors).replace(/<\//g, '<\\/')}
