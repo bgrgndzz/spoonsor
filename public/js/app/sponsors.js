@@ -65,9 +65,6 @@ window.onload = () => {
   const hamburger = document.querySelector('.hamburger');
   const hamburgerIcon = document.querySelector('.hamburger-icon');
 
-  const filterModalWrapper = document.querySelector('.filter-modal-wrapper');
-  const openFilterModalButtons = document.querySelectorAll('.open-filter-modal');
-  const closeFilterModalButtons = document.querySelectorAll('.close-filter-modal');
   const filterSubmitButton = document.querySelector('.filter-submit-button');
   
   hamburgerIcon.onclick = () => {
@@ -81,17 +78,17 @@ window.onload = () => {
   };
   document.addEventListener('click', (event) => {
     if (event.target) {
-      if (event.target.classList.contains('open-profile')) {
+      if (event.target.closest('.open-profile')) {
         const itemId = event.target.closest('.item').querySelector('.item-id').value;
         location.href = '/app/profile/' + itemId;
+      } else if (event.target.closest('.open-filter-modal')) {
+        const filterModalWrapper = document.querySelector('.filter-modal-wrapper');
+        toggleDisplay(filterModalWrapper, true);
+      } else if (event.target.closest('.close-filter-modal')) {
+        const filterModalWrapper = document.querySelector('.filter-modal-wrapper');
+        toggleDisplay(filterModalWrapper, false);
       }
     }
-  });
-  openFilterModalButtons.forEach(openFilterModalButton => {
-    openFilterModalButton.onclick = () => toggleDisplay(filterModalWrapper, true);
-  });
-  closeFilterModalButtons.forEach(closeFilterModalButton => {
-    closeFilterModalButton.onclick = () => toggleDisplay(filterModalWrapper, false);
   });
   filterSubmitButton.onclick = () => {
     const sponsorshipTypeCheckboxes = document.querySelectorAll('.filter-modal .radio-wrapper');

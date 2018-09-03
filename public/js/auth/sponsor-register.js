@@ -162,19 +162,18 @@ window.onload = () => {
   let currentForm = 0;
   const formsBack = document.querySelector('.forms-back');
   const forms = document.querySelectorAll('.form-wrapper');
-  const nextButtons = document.querySelectorAll('.button--next');
-  const modalWrapper = document.querySelector('.error-modal-wrapper');
-  const closeModalButtons = document.querySelectorAll('.close-error-modal');
   const submitButton = document.querySelector('.button--submit');
 
-  closeModalButtons.forEach(closeModalButton => {
-    closeModalButton.onclick = () => toggleDisplay(modalWrapper, false);
-  });
   formsBack.onclick = () => {currentForm = nextForm(forms, currentForm, formsBack, 'back')};
   document.addEventListener('click', (event) => {
-    if (event.target && event.target.closest('.button--next')) {
-      event.preventDefault();
-      currentForm = nextForm(forms, currentForm, formsBack);
+    if (event.target) {
+      if (event.target.closest('.button--next')) {
+        event.preventDefault();
+        currentForm = nextForm(forms, currentForm, formsBack, userType);
+      } else if (event.target.closest('.close-error-modal')) {
+        const errorModalWrapper = document.querySelector('.error-modal-wrapper');
+        toggleDisplay(errorModalWrapper, false);
+      }
     }
   });
   submitButton.onclick = (event) => {

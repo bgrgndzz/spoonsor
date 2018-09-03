@@ -48,150 +48,147 @@ const createMessage = (messages, message) => {
   messages.appendChild(messageNode);
 };
 const loadMessages = (user) => {
-  fetch('/app/messages/' + user)
-    .then(data => data.json())
-    .then(data => {
-      // messages wrapper
-      (() => {
-        const content = document.querySelector('.content');
-        
-        const messagesWrapper = document.querySelector('.messages-wrapper');
-        messagesWrapper.innerHTML = '';
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', '/app/messages/' + user, true);
+  xhr.onload = () => {
+    const data = JSON.parse(xhr.response);
+    
+    // messages wrapper
+    (() => {
+      const content = document.querySelector('.content');
+      
+      const messagesWrapper = document.querySelector('.messages-wrapper');
+      messagesWrapper.innerHTML = '';
 
-        // messages header
-        const messagesHeader = document.createElement('div');
-        messagesHeader.classList.add('messages-header');
-        
-        const closeMessages = document.createElement('i');
-        closeMessages.classList.add('fas', 'fa-chevron-left', 'close-messages');
-        closeMessages.onclick = () => {
-          const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-          if (vw <= 700) {
-            content.style.marginLeft = '0';
-            document.querySelector('.user__active').classList.remove('user__active');
-            resetMessages();
-          }
+      // messages header
+      const messagesHeader = document.createElement('div');
+      messagesHeader.classList.add('messages-header');
+      
+      const closeMessages = document.createElement('i');
+      closeMessages.classList.add('fas', 'fa-chevron-left', 'close-messages');
+      closeMessages.onclick = () => {
+        const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        if (vw <= 700) {
+          content.style.marginLeft = '0';
+          document.querySelector('.user__active').classList.remove('user__active');
+          resetMessages();
         }
+      }
 
-        const messagesUser = document.createElement('h2');
-        messagesUser.classList.add('messages-user', 'open-modal');
-        messagesUser.innerHTML = data.user.name;
+      const messagesUser = document.createElement('h2');
+      messagesUser.classList.add('messages-user', 'open-modal');
+      messagesUser.innerHTML = data.user.name;
 
-        messagesHeader.appendChild(closeMessages);
-        messagesHeader.appendChild(messagesUser);
+      messagesHeader.appendChild(closeMessages);
+      messagesHeader.appendChild(messagesUser);
 
-        // messages
-        const messages = document.createElement('div');
-        messages.classList.add('messages');
+      // messages
+      const messages = document.createElement('div');
+      messages.classList.add('messages');
 
-        data.messages.forEach(message => createMessage(messages, message));
+      data.messages.forEach(message => createMessage(messages, message));
 
-        // message form
-        const messageForm = document.createElement('form');
-        messageForm.classList.add('message-form');
+      // message form
+      const messageForm = document.createElement('form');
+      messageForm.classList.add('message-form');
 
-        const messageField = document.createElement('textarea');
-        messageField.classList.add('field', 'message-field');
-        messageField.name = 'message';
-        messageField.placeholder = 'Bir mesaj yazın';
+      const messageField = document.createElement('textarea');
+      messageField.classList.add('field', 'message-field');
+      messageField.name = 'message';
+      messageField.placeholder = 'Bir mesaj yazın';
 
-        const messageButton = document.createElement('input');
-        messageButton.classList.add('button', 'message-button');
-        messageButton.type = 'submit';
-        messageButton.value = '';
+      const messageButton = document.createElement('input');
+      messageButton.classList.add('button', 'message-button');
+      messageButton.type = 'submit';
+      messageButton.value = '';
 
-        messageForm.appendChild(messageField);
-        messageForm.appendChild(messageButton);
-        messageForm.onsubmit = (event) => {
-          event.preventDefault();
-          fetch(
-            '/app/messages/send', 
-            {
-              method: 'POST',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                message: messageField.value,
-                user
-              })
-            })
-            .then(data => data.json())
-            .then(data => {
-              messages.scrollTop = messages.scrollHeight;
-              messageField.value = '';
-            });
+      messageForm.appendChild(messageField);
+      messageForm.appendChild(messageButton);
+      messageForm.onsubmit = (event) => {
+        event.preventDefault();
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST','/app/messages/send', true);
+        xhr.setRequestHeader('Content-type', 'application/json');
+        xhr.setRequestHeader('Accept', 'application/json');
+        xhr.onload = () => {
+          messages.scrollTop = messages.scrollHeight;
+          messageField.value = '';
         };
+        xhr.send(JSON.stringify({
+          message: messageField.value,
+          user
+        }));
+      };
 
-        // append everything to the wrapper
-        messagesWrapper.appendChild(messagesHeader);
-        messagesWrapper.appendChild(messages);
-        messagesWrapper.appendChild(messageForm);
+      // append everything to the wrapper
+      messagesWrapper.appendChild(messagesHeader);
+      messagesWrapper.appendChild(messages);
+      messagesWrapper.appendChild(messageForm);
 
-        messages.scrollTop = messages.scrollHeight;
-      })();
+      messages.scrollTop = messages.scrollHeight;
+    })();
 
-      // user wrapper
-      (() => {
-        const userWrapper = document.querySelector('.user-wrapper');
-        userWrapper.innerHTML = '';
-        
-        const userContent = document.createElement('div');
-        userContent.classList.add('user-content');
+    // user wrapper
+    (() => {
+      const userWrapper = document.querySelector('.user-wrapper');
+      userWrapper.innerHTML = '';
+      
+      const userContent = document.createElement('div');
+      userContent.classList.add('user-content');
 
-        const userImage = document.createElement('div');
-        userImage.classList.add('user-image');
-        userImage.style.backgroundImage = `url('/res/uploads/${data.user.profilepicture}')`;
+      const userImage = document.createElement('div');
+      userImage.classList.add('user-image');
+      userImage.style.backgroundImage = `url('/res/uploads/${data.user.profilepicture}')`;
 
-        const userName = document.createElement('h2');
-        userName.classList.add('user-name');
-        userName.innerHTML = data.user.name;
+      const userName = document.createElement('h2');
+      userName.classList.add('user-name');
+      userName.innerHTML = data.user.name;
 
-        const userDescription = document.createElement('p');
-        userDescription.classList.add('user-description');
-        userDescription.innerHTML = data.user.description || '';
+      const userDescription = document.createElement('p');
+      userDescription.classList.add('user-description');
+      userDescription.innerHTML = data.user.description || '';
 
-        const userSponsorships = document.createElement('div');
-        userSponsorships.classList.add('user-sponsorships');
+      const userSponsorships = document.createElement('div');
+      userSponsorships.classList.add('user-sponsorships');
 
-        data.user.sponsorshipType.forEach(userSponsorship => {
-          const userSponsorshipNode = document.createElement('span');
-          userSponsorshipNode.classList.add('user-sponsorship');
-          userSponsorshipNode.innerHTML = userSponsorship;
+      data.user.sponsorshipType.forEach(userSponsorship => {
+        const userSponsorshipNode = document.createElement('span');
+        userSponsorshipNode.classList.add('user-sponsorship');
+        userSponsorshipNode.innerHTML = userSponsorship;
 
-          userSponsorships.appendChild(userSponsorshipNode);
-        });
+        userSponsorships.appendChild(userSponsorshipNode);
+      });
 
-        userContent.appendChild(userImage);
-        userContent.appendChild(userName);
-        userContent.appendChild(userDescription);
-        userContent.appendChild(userSponsorships);
+      userContent.appendChild(userImage);
+      userContent.appendChild(userName);
+      userContent.appendChild(userDescription);
+      userContent.appendChild(userSponsorships);
 
-        userWrapper.appendChild(userContent);
-      })();
+      userWrapper.appendChild(userContent);
+    })();
 
-      // user modal
-      (() => {
-        const modalImage = document.querySelector('.modal-image');
-        modalImage.style.backgroundImage = `url('/res/uploads/${data.user.profilepicture}')`;
+    // user modal
+    (() => {
+      const modalImage = document.querySelector('.modal-image');
+      modalImage.style.backgroundImage = `url('/res/uploads/${data.user.profilepicture}')`;
 
-        const modalTitle = document.querySelector('.modal-title');
-        modalTitle.innerHTML = data.user.name;
+      const modalTitle = document.querySelector('.modal-title');
+      modalTitle.innerHTML = data.user.name;
 
-        const modalDescription = document.querySelector('.modal-description');
-        modalDescription.innerHTML = data.user.description || '';
+      const modalDescription = document.querySelector('.modal-description');
+      modalDescription.innerHTML = data.user.description || '';
 
-        const modalSponsorships = document.querySelector('.modal-sponsorships');
-        data.user.sponsorshipType.forEach(modalSponsorship => {
-          const modalSponsorshipNode = document.createElement('span');
-          modalSponsorshipNode.classList.add('user-sponsorship');
-          modalSponsorshipNode.innerHTML = modalSponsorship;
+      const modalSponsorships = document.querySelector('.modal-sponsorships');
+      data.user.sponsorshipType.forEach(modalSponsorship => {
+        const modalSponsorshipNode = document.createElement('span');
+        modalSponsorshipNode.classList.add('user-sponsorship');
+        modalSponsorshipNode.innerHTML = modalSponsorship;
 
-          modalSponsorships.appendChild(modalSponsorshipNode);
-        });
-      })();
-    });
+        modalSponsorships.appendChild(modalSponsorshipNode);
+      });
+    })();
+  };
+  xhr.send();
 };
 
 const createUser = (data, target = 'user') => {
@@ -281,9 +278,9 @@ window.onload = () => {
   document.addEventListener('click', (event) => {
     if (event.target) {
       const modalWrapper = document.querySelector('.modal-wrapper');
-      if (event.target.classList.contains('open-modal')) {
+      if (event.target.closest('.open-modal')) {
         toggleDisplay(modalWrapper, true);
-      } else if (event.target.classList.contains('close-modal')) {
+      } else if (event.target.closest('.close-modal')) {
         toggleDisplay(modalWrapper, false);
       }
 

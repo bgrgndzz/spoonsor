@@ -27,45 +27,33 @@ window.onload = () => {
     }
   };
   if (edit) {
-    const modalWrapper = document.querySelector('.modal-wrapper');
-    const openModalButtons = document.querySelectorAll('.open-modal');
-    const closeModalButtons = document.querySelectorAll('.close-modal');
-  
-    const settingReveals = document.querySelectorAll('.setting-reveal');
     const settingSubmit = document.querySelector('.submit-button');
     const ppField = document.querySelector('input[name="profilepicture"]');
     const ppDisplay = document.querySelector('.profile-picture-display');
 
-    const errorModalWrapper = document.querySelector('.error-modal-wrapper');
-    const closeErrorModalButtons = document.querySelectorAll('.close-error-modal');
-
-    closeErrorModalButtons.forEach(closeModalButton => {
-      closeModalButton.onclick = () => toggleDisplay(errorModalWrapper, false);
-    });
-    openModalButtons.forEach(openModalButton => {
-      openModalButton.onclick = () => {
-        document.body.style.overflow = 'hidden';
-        toggleDisplay(modalWrapper, true);
-      };
-    });
-    closeModalButtons.forEach(closeModalButton => {
-      closeModalButton.onclick = () => {
-        document.body.style.overflow = 'auto';
-        toggleDisplay(modalWrapper, false);
-      };
-    });
-    settingReveals.forEach(settingReveal => {
-      settingReveal.onclick = () => {
-        if (settingReveal.classList.contains('fa-chevron-down')) {
-          settingReveal.classList.remove('fa-chevron-down');
-          settingReveal.classList.add('fa-chevron-left');
-          toggleDisplay(settingReveal.parentNode.parentNode.querySelector('.setting-content'), true);
-        } else {
-          settingReveal.classList.remove('fa-chevron-left');
-          settingReveal.classList.add('fa-chevron-down');
-          toggleDisplay(settingReveal.parentNode.parentNode.querySelector('.setting-content'), false);
+    document.addEventListener('click', (event) => {
+      if (event.target) {
+        if (event.target.closest('.close-error-modal')) {
+          const errorModalWrapper = document.querySelector('.error-modal-wrapper');
+          toggleDisplay(errorModalWrapper, false);
+        } else if (event.target.closest('.open-modal')) {
+          const modalWrapper = document.querySelector('.modal-wrapper');
+          toggleDisplay(modalWrapper, true);
+        } else if (event.target.closest('.close-modal')) {
+          const modalWrapper = document.querySelector('.modal-wrapper');
+          toggleDisplay(modalWrapper, false);
+        } else if (event.target.closest('.setting-reveal')) {
+          if (event.target.classList.contains('fa-chevron-down')) {
+            event.target.classList.remove('fa-chevron-down');
+            event.target.classList.add('fa-chevron-left');
+            toggleDisplay(event.target.parentNode.parentNode.querySelector('.setting-content'), true);
+          } else {
+            event.target.classList.remove('fa-chevron-left');
+            event.target.classList.add('fa-chevron-down');
+            toggleDisplay(event.target.parentNode.parentNode.querySelector('.setting-content'), false);
+          }
         }
-      };
+      }
     });
     ppField.onchange = () => {
       const formData = new FormData();
@@ -190,25 +178,19 @@ window.onload = () => {
       if (errors.length > 0) {
         displayErrors(errors);
       } else {
-        fetch('/app/profile/edit', {
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          method: 'POST',
-          body: JSON.stringify(formData)
-        })
-        .then((data) => data.json())
-        .then((data) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/app/profile/edit', true);
+        xhr.setRequestHeader('Content-type', 'application/json');
+        xhr.setRequestHeader('Accept', 'application/json');
+        xhr.onload = () => {
+          const data = JSON.parse(xhr.response);
           if (data.success) {
             location.reload();
           } else if (data.errors && data.errors.length > 0) {
             displayErrors(data.errors);
           }
-        })
-        .catch((err) => {
-          displayErrors([{error: 'Bilinmeyen bir hata oluştu.'}]);
-        });
+        };
+        xhr.send(JSON.stringify(formData));
       }
     };
   }

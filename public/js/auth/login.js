@@ -49,14 +49,16 @@ const validateCurrentForm = () => {
 
 window.onload = () => {
   if (errors.length > 0) displayErrors(errors);
-  const modalWrapper = document.querySelector('.error-modal-wrapper');
-  const closeModalButtons = document.querySelectorAll('.close-error-modal');
   const submitButton = document.querySelector('.button--submit');
 
-  closeModalButtons.forEach(closeModalButton => {
-    closeModalButton.onclick = () => toggleDisplay(modalWrapper, false);
+  document.addEventListener('click', (event) => {
+    if (event.target) {
+      if (event.target.classList.contains('close-error-modal')) {
+        const errorModalWrapper = document.querySelector('.error-modal-wrapper');
+        toggleDisplay(errorModalWrapper, false);
+      }
+    }
   });
-
   submitButton.onclick = (event) => {
     if (!validateCurrentForm()) {
       event.preventDefault();

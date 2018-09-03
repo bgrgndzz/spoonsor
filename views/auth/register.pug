@@ -214,4 +214,4 @@ block content
         input.field(type="password", name="password", placeholder="Şifre")
         input.field(type="password", name="password2", placeholder="Şifre Doğrulaması")
         input.button.button--submit(type="submit", value="Kaydını tamamla")
-  script let errors = !{JSON.stringify(errors).replace(/<\//g, '<\\/')}
+  script var errors = !{JSON.stringify(errors).replace(/<\//g, '<\\/')}

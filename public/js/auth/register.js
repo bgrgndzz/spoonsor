@@ -215,31 +215,32 @@ window.onload = () => {
   let currentForm = 0;
   const formsBack = document.querySelector('.forms-back');
   const forms = document.querySelectorAll('.form-wrapper');
-  const typeRadios = document.querySelectorAll('.radios--type .radio');
-  const typeOtherRadio = document.querySelector('.radios--type .radio--other');
-  const typeOtherField = document.querySelector('.radios--type .field--other');
-  const subjectRadios = document.querySelectorAll('.radios--subject .radio');
-  const subjectOtherRadio = document.querySelector('.radios--subject .radio--other');
-  const subjectOtherField = document.querySelector('.radios--subject .field--other');
-  const modalWrapper = document.querySelector('.error-modal-wrapper');
-  const closeModalButtons = document.querySelectorAll('.close-error-modal');
   const submitButton = document.querySelector('.button--submit');
 
-  closeModalButtons.forEach(closeModalButton => {
-    closeModalButton.onclick = () => toggleDisplay(modalWrapper, false);
-  });
   formsBack.onclick = () => {currentForm = nextForm(forms, currentForm, formsBack, userType, 'back')};
   document.addEventListener('click', (event) => {
-    if (event.target && event.target.closest('.button--next')) {
-      event.preventDefault();
-      currentForm = nextForm(forms, currentForm, formsBack, userType);
+    if (event.target) {
+      if (event.target.closest('.button--next')) {
+        event.preventDefault();
+        currentForm = nextForm(forms, currentForm, formsBack, userType);
+      } else if (event.target.closest('.close-error-modal')) {
+        const errorModalWrapper = document.querySelector('.error-modal-wrapper');
+        toggleDisplay(errorModalWrapper, false);
+      }
     }
   });
-  typeRadios.forEach(typeRadio => {
-    typeRadio.onchange = () => toggleDisplay(typeOtherField, typeOtherRadio.checked, .5);
-  });
-  subjectRadios.forEach(subjectRadio => {
-    subjectRadio.onchange = () => toggleDisplay(subjectOtherField, subjectOtherRadio.checked, .5);
+  document.addEventListener('change', (event) => {
+    if (event.target) {
+      if (event.target.closest('.radios--type') && event.target.classList.contains('.radio')) {
+        const typeOtherRadio = document.querySelector('.radios--type .radio--other');
+        const typeOtherField = document.querySelector('.radios--type .field--other');
+        toggleDisplay(typeOtherField, typeOtherRadio.checked, .5);
+      } else if (event.target.closest('.radios--subject') && event.target.classList.contains('.radio')) {
+        const subjectOtherRadio = document.querySelector('.radios--subject .radio--other');
+        const subjectOtherField = document.querySelector('.radios--subject .field--other');
+        toggleDisplay(subjectOtherField, subjectOtherRadio.checked, .5);
+      }
+    }
   });
 
   submitButton.onclick = (event) => {
