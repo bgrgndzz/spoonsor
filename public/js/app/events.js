@@ -134,7 +134,7 @@ window.onload = () => {
       filterList.push({param, value});
     };
 
-
+    const filterModalWrapper = document.querySelector('.filter-modal-wrapper');
     const sponsorshiptypes = Array.prototype.slice.call(
       document.querySelectorAll('.radios--sponsorshiptype input[name="sponsorshiptype"]:checked')
     ).map(el => el.value);

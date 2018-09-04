@@ -91,6 +91,7 @@ window.onload = () => {
     }
   });
   filterSubmitButton.onclick = () => {
+    const filterModalWrapper = document.querySelector('.filter-modal-wrapper');
     const sponsorshipTypeCheckboxes = document.querySelectorAll('.filter-modal .radio-wrapper');
     const sponsorshiptype = Array.prototype.slice.call(
       document.querySelectorAll('.filter-modal input[name="sponsorshiptype"]:checked')
