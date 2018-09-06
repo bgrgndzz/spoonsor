@@ -169,7 +169,7 @@ window.onload = () => {
     if (event.target) {
       if (event.target.closest('.button--next')) {
         event.preventDefault();
-        currentForm = nextForm(forms, currentForm, formsBack, userType);
+        currentForm = nextForm(forms, currentForm, formsBack);
       } else if (event.target.closest('.close-error-modal')) {
         const errorModalWrapper = document.querySelector('.error-modal-wrapper');
         toggleDisplay(errorModalWrapper, false);
