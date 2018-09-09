@@ -25,7 +25,7 @@ const templates = {
       Giriş yapıp hesabınızı düzenlemek ve mesajlarınızı görmek için aşağıdaki linke tıklayın:
       <br />
       <a href='https://www.spoonsor.com'>https://www.spoonsor.com</a>
-    `,
+    `
   }),
   etkinlikRegister: (data) => ({
     to: data.email,
@@ -38,7 +38,7 @@ const templates = {
       Hesabını aktifleştirmek için aşağıdaki linke tıkla:
       <br />
       <a href='https://www.spoonsor.com/activate'>https://www.spoonsor.com/activate</a>
-    `,
+    `
   }),
   sendMessage: (data) => ({
     to: data.to.email,
@@ -50,6 +50,17 @@ const templates = {
       <br />
       <strong>Mesaj:</strong> 
       <blockquote>${data.message}</blockquote>
+    `
+  }),
+  resetPassword: (data) => ({
+    to: data.email,
+    subject: 'Spoonsor.com: Şifre sıfırlama talebi',
+    html: `
+      <a href='https://www.spoonsor.com'><strong>Spoonsor.com</strong></a> hesabınızın şifresini sıfırlamak için bir talepte bulundunuz. Şifrenizi sıfırlamak için aşağıdaki linke tıklayın:
+      <br />
+      <a href='https://www.spoonsor.com/auth/lost-password/${data.id}/${data.hash}'>https://www.spoonsor.com/auth/lost-password/${data.id}/${data.hash}</a>
+      <br />
+      Bu talebi siz göndermediyseniz lütfen görmezden gelin.
     `
   })
 };

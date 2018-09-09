@@ -15,5 +15,5 @@ block content
         .field-icon.field-icon--password
         input.field.field--password(type="password", name="password", placeholder="Şifre")
       input.button.button--submit(type="submit", value="Giriş Yap")
-      a.link.link__highlighted.reset-password(href="#") Şifreni mi unuttun?
+      a.link.link__highlighted.reset-password(href="/auth/lost-password") Şifreni mi unuttun?
   script var errors = !{JSON.stringify(errors).replace(/<\//g, '<\\/')}
