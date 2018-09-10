@@ -5,10 +5,14 @@ block content
       .user-image(style="background-image: url('/res/uploads/" + user.profilepicture + "')")
       h1.user-name= user.name
       if edit
-        a(href="#").edit-button.open-modal
+        a(href="#").profile-button.edit-button.open-modal
           i.fas.fa-pen
           |  
           h3 Profili düzenle
+        a(href="/auth/logout").profile-button.logout-button
+          i.fas.fa-sign-out-alt
+          |  
+          h3 Çıkış yap
       if user.description
         p.user-description= user.description
       if !edit && selfUser.userType !== user.userType

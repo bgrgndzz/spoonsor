@@ -63,27 +63,29 @@ h2 {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
 }
-.edit-button {
-  margin-bottom: 10px;
+.profile-button {
   display: block;
 }
-.edit-button i,
-.edit-button h3 {
+.profile-button i,
+.profile-button h3 {
   display: inline-block;
   color: rgba(0, 0, 0, 0.5);
   -webkit-transition: 0.25s ease all;
   transition: 0.25s ease all;
 }
-.edit-button i {
+.profile-button i {
   font-size: 1em;
 }
-.edit-button h3 {
+.profile-button h3 {
   font-weight: 500;
   font-size: 1.2em;
 }
-.edit-button:hover i,
-.edit-button:hover h3 {
+.profile-button:hover i,
+.profile-button:hover h3 {
   color: #ff0083;
+}
+.logout-button {
+  margin-bottom: 10px;
 }
 .user-description {
   width: 75%;
