@@ -19,11 +19,11 @@ window.onload = () => {
   setInterval(() => {
     testimonials[currentTestimonial].classList.remove('fadeInRight');
     testimonials[currentTestimonial].classList.add('fadeOutLeft');
-    currentTestimonial = currentTestimonial === 1 ? 0 : currentTestimonial + 1;
+    currentTestimonial = currentTestimonial === 2 ? 0 : currentTestimonial + 1;
     setTimeout(() => {
       testimonials[currentTestimonial].classList.remove('testimonial__hidden');
       testimonials[currentTestimonial].classList.remove('fadeOutLeft');
       testimonials[currentTestimonial].classList.add('fadeInRight');
     }, 250);
-  }, 15000);
+  }, 7500);
 };
