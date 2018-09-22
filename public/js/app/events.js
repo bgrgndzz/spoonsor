@@ -6,7 +6,7 @@ const displayUsers = (users, filters = []) => {
     filters.length === 0 ? 
     users : 
     users.filter(
-      user => filters.some(filter => user[filter.param].includes(filter.value))
+      user => filters.some(filter => user[filter.param] && user[filter.param].includes(filter.value))
     );
   filteredUsers.forEach(user => {
     const item = document.createElement('div');
@@ -65,8 +65,6 @@ window.onload = () => {
   const hamburger = document.querySelector('.hamburger');
   const hamburgerIcon = document.querySelector('.hamburger-icon');
 
-  const filterSubmitButton = document.querySelector('.filter-submit-button');
-
   hamburgerIcon.onclick = () => {
     if (hamburger.classList.contains('hamburger-open')) {
       hamburger.classList.remove('hamburger-open');
@@ -83,76 +81,100 @@ window.onload = () => {
         location.href = '/app/profile/' + itemId;
       } else if (event.target.closest('.open-filter-modal')) {
         const filterModalWrapper = document.querySelector('.filter-modal-wrapper');
+        const filterModalTypes = document.querySelector('.filter-modal-types');
+        const filterModal1 = document.querySelector('.filter-modal-1');
+        const filterModal2 = document.querySelector('.filter-modal-2');
+        const filterModal3 = document.querySelector('.filter-modal-3');
+        event.target.closest('.open-filter-modal').classList.add('close-filter-modal');
+        event.target.closest('.open-filter-modal').classList.remove('open-filter-modal');
         toggleDisplay(filterModalWrapper, true);
+        toggleDisplay(filterModalTypes, true);
+        toggleDisplay(filterModal1, false);
+        toggleDisplay(filterModal2, false);
+        toggleDisplay(filterModal3, false);
       } else if (event.target.closest('.close-filter-modal')) {
         const filterModalWrapper = document.querySelector('.filter-modal-wrapper');
+        document.querySelector('.close-filter-modal').classList.add('open-filter-modal');
+        document.querySelector('.close-filter-modal').classList.remove('close-filter-modal');
         toggleDisplay(filterModalWrapper, false);
-      } else if (event.target.closest('.modal-filter-reveal')) {
-        if (event.target.classList.contains('fa-chevron-down')) {
-          event.target.classList.remove('fa-chevron-down');
-          event.target.classList.add('fa-chevron-left');
-          toggleDisplay(event.target.parentNode.parentNode.querySelector('.modal-filter-content'), true);
-        } else {
-          event.target.classList.remove('fa-chevron-left');
-          event.target.classList.add('fa-chevron-down');
-          toggleDisplay(event.target.parentNode.parentNode.querySelector('.modal-filter-content'), false);
+      } else if (event.target.closest('.filter-modal-type')) {
+        const filterModalTypes = document.querySelector('.filter-modal-types');
+        const filterModal1 = document.querySelector('.filter-modal-1');
+        const filterModal2 = document.querySelector('.filter-modal-2');
+        const filterModal3 = document.querySelector('.filter-modal-3');
+
+        toggleDisplay(filterModalTypes, false);
+
+        if (event.target.closest('.filter-modal-type').classList.contains('filter-modal-type--1')) {
+          toggleDisplay(filterModal2, false);
+          toggleDisplay(filterModal3, false);
+          toggleDisplay(filterModal1, true);
+        } else if (event.target.closest('.filter-modal-type').classList.contains('filter-modal-type--2')) {
+          toggleDisplay(filterModal3, false);
+          toggleDisplay(filterModal1, false);
+          toggleDisplay(filterModal2, true);
+        } else if (event.target.closest('.filter-modal-type').classList.contains('filter-modal-type--3')) {
+          toggleDisplay(filterModal1, false);
+          toggleDisplay(filterModal2, false);
+          toggleDisplay(filterModal3, true);
         }
+      } else if (event.target.closest('.filter-submit-button')) {
+        const filters = document.querySelector('.filters');
+        filters.innerHTML = '';
+
+        let filterList = [];
+
+        const createFilterNode = (param, value, inputName) => {
+          const radios = document.querySelectorAll(`.radios--${inputName} .radio-wrapper`);
+
+          const newFilter = document.createElement('span');
+          newFilter.classList.add('filter');
+
+          const filterContent = document.createTextNode(value);
+
+          const deleteFilterButton = document.createElement('i');
+          deleteFilterButton.classList.add('fas', 'fa-times', 'button--delete-filter');
+          deleteFilterButton.onclick = () => {
+            [...radios]
+              .find(radio => radio.querySelector('.radio-label').innerHTML.replace(/&amp;/g, '&') === value)
+              .querySelector(`input[name="${inputName}"]`)
+              .checked = false;
+            newFilter.parentNode.removeChild(newFilter);
+
+            filterList = filterList.filter(filter => !(filter.param === param && filter.value === value));
+            displayUsers(users, filterList);
+          };
+          
+          newFilter.appendChild(deleteFilterButton);
+          newFilter.appendChild(filterContent);
+
+          filters.appendChild(newFilter);
+          filterList.push({param, value});
+        };
+
+        const filterModalWrapper = document.querySelector('.filter-modal-wrapper');
+        const sponsorshiptypes = Array.prototype.slice.call(
+          document.querySelectorAll('.radios--sponsorshiptype input[name="sponsorshiptype"]:checked')
+        ).map(el => el.value);
+        const types = Array.prototype.slice.call(
+          document.querySelectorAll('.radios--type input[name="type"]:checked')
+        ).map(el => el.value);
+        const subjects = Array.prototype.slice.call(
+          document.querySelectorAll('.radios--subject input[name="subject"]:checked')
+        ).map(el => el.value);
+
+        sponsorshiptypes
+          .forEach(sponsorshiptype => createFilterNode('sponsorshipType', sponsorshiptype, 'sponsorshiptype'));
+        types
+          .forEach(type => createFilterNode('etkinlikType', type, 'type'));
+        subjects
+          .forEach(subject => createFilterNode('subject', subject, 'subject'));
+
+        document.querySelector('.close-filter-modal').classList.add('open-filter-modal');
+        document.querySelector('.close-filter-modal').classList.remove('close-filter-modal');
+        toggleDisplay(filterModalWrapper, false);
+        displayUsers(users, filterList);
       }
     }
   });
-  filterSubmitButton.onclick = () => {
-    const filters = document.querySelector('.filters');
-    filters.innerHTML = '';
-
-    let filterList = [];
-
-    const createFilterNode = (param, value, inputName) => {
-      const radios = document.querySelectorAll(`.radios--${inputName} .radio-wrapper`);
-
-      const newFilter = document.createElement('span');
-      newFilter.classList.add('filter');
-
-      const filterContent = document.createTextNode(value);
-
-      const deleteFilterButton = document.createElement('i');
-      deleteFilterButton.classList.add('fas', 'fa-times', 'button--delete-filter');
-      deleteFilterButton.onclick = () => {
-        [...radios]
-          .find(radio => radio.querySelector('.radio-label').innerHTML.replace(/&amp;/g, '&') === value)
-          .querySelector(`input[name="${inputName}"]`)
-          .checked = false;
-        newFilter.parentNode.removeChild(newFilter);
-
-        filterList = filterList.filter(filter => !(filter.param === param && filter.value === value));
-        displayUsers(users, filterList);
-      };
-      
-      newFilter.appendChild(deleteFilterButton);
-      newFilter.appendChild(filterContent);
-
-      filters.appendChild(newFilter);
-      filterList.push({param, value});
-    };
-
-    const filterModalWrapper = document.querySelector('.filter-modal-wrapper');
-    const sponsorshiptypes = Array.prototype.slice.call(
-      document.querySelectorAll('.radios--sponsorshiptype input[name="sponsorshiptype"]:checked')
-    ).map(el => el.value);
-    const types = Array.prototype.slice.call(
-      document.querySelectorAll('.radios--type input[name="type"]:checked')
-    ).map(el => el.value);
-    const subjects = Array.prototype.slice.call(
-      document.querySelectorAll('.radios--subject input[name="subject"]:checked')
-    ).map(el => el.value);
-
-    sponsorshiptypes
-      .forEach(sponsorshiptype => createFilterNode('sponsorshipType', sponsorshiptype, 'sponsorshiptype'));
-    types
-      .forEach(type => createFilterNode('etkinlikType', type, 'type'));
-    subjects
-      .forEach(subject => createFilterNode('subject', subject, 'subject'));
-
-    toggleDisplay(filterModalWrapper, false);
-    displayUsers(users, filterList);
-  };
 };

@@ -5,6 +5,40 @@ block content
       i.fas.fa-plus.button--add-filter 
       | Filtre ekle
     .filters
+  .filter-modal-wrapper
+    .filter-modal
+      span.modal-filter-heading Verebileceği sponsorluğa göre filtrele
+      .modal-filter-content
+        .radios
+          label.radio-wrapper.radio-wrapper--small-font
+            input.radio(type="checkbox", name="sponsorshiptype", value="İçerik/Konuşmacı") 
+            .styled-radio
+            span.radio-label İçerik/Konuşmacı
+          label.radio-wrapper.radio-wrapper--small-font
+            input.radio(type="checkbox", name="sponsorshiptype", value="İndirim/Hediye Kuponu")
+            .styled-radio
+            span.radio-label İndirim/Hediye Kuponu
+          label.radio-wrapper
+            input.radio(type="checkbox", name="sponsorshiptype", value="Mekan") 
+            .styled-radio
+            span.radio-label Mekan
+          label.radio-wrapper
+            input.radio(type="checkbox", name="sponsorshiptype", value="Nakit") 
+            .styled-radio
+            span.radio-label Nakit
+          label.radio-wrapper
+            input.radio(type="checkbox", name="sponsorshiptype", value="Stand") 
+            .styled-radio
+            span.radio-label Stand
+          label.radio-wrapper
+            input.radio(type="checkbox", name="sponsorshiptype", value="Tanıtım")
+            .styled-radio
+            span.radio-label Tanıtım
+          label.radio-wrapper
+            input.radio(type="checkbox", name="sponsorshiptype", value="Ürün") 
+            .styled-radio
+            span.radio-label Ürün
+      input.button.filter-submit-button(type="submit", value="Filtrele")   
   .items-wrapper
     .items
       each user in users
@@ -21,45 +55,4 @@ block content
           .item-sponsorships
             each sponsorship in user.sponsorshipType
               span.item-sponsorship= sponsorship
-    .filter-modal-wrapper
-      .overlay.close-filter-modal
-      .filter-modal
-        i.fas.fa-times.modal-close-button.close-filter-modal
-        h2.filter-modal-heading Filtrele
-        .modal-filters
-          .modal-filter
-            span.modal-filter-heading 
-              | Verebileceği sponsorluğa göre filtrele
-              i.fas.fa-chevron-left.modal-filter-reveal
-            .modal-filter-content
-              .radios
-                label.radio-wrapper.radio-wrapper--small-font
-                  input.radio(type="checkbox", name="sponsorshiptype", value="İçerik/Konuşmacı") 
-                  .styled-radio
-                  span.radio-label İçerik/Konuşmacı
-                label.radio-wrapper.radio-wrapper--small-font
-                  input.radio(type="checkbox", name="sponsorshiptype", value="İndirim/Hediye Kuponu")
-                  .styled-radio
-                  span.radio-label İndirim/Hediye Kuponu
-                label.radio-wrapper
-                  input.radio(type="checkbox", name="sponsorshiptype", value="Mekan") 
-                  .styled-radio
-                  span.radio-label Mekan
-                label.radio-wrapper
-                  input.radio(type="checkbox", name="sponsorshiptype", value="Nakit") 
-                  .styled-radio
-                  span.radio-label Nakit
-                label.radio-wrapper
-                  input.radio(type="checkbox", name="sponsorshiptype", value="Stand") 
-                  .styled-radio
-                  span.radio-label Stand
-                label.radio-wrapper
-                  input.radio(type="checkbox", name="sponsorshiptype", value="Tanıtım") 
-                  .styled-radio
-                  span.radio-label Tanıtım
-                label.radio-wrapper
-                  input.radio(type="checkbox", name="sponsorshiptype", value="Ürün") 
-                  .styled-radio
-                  span.radio-label Ürün
-        input.button.filter-submit-button(type="submit", value="Filtrele")   
     script var users = !{JSON.stringify(users).replace(/<\//g, '<\\/')}

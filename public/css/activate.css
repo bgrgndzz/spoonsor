@@ -1,9 +1,7 @@
-.wrapper,
-.content {
+html, body {
   background-color: #f9f9f9;
-  overflow: hidden;
-  width: 100vw;
-  height: 100vh;
+  height: auto;
+  overflow-y: scroll;
 }
 .activate {
   position: absolute;
@@ -98,5 +96,6 @@
   }
   .wrapper, .content {
     overflow-y: auto;
+    background-color: white;
   }
 }

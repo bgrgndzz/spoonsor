@@ -56,8 +56,8 @@ input {
   z-index: 3;
   display: none;
   opacity: 0;
-  -webkit-transition: 0.5s ease all;
-  transition: 0.5s ease all;
+  -webkit-transition: 0.25s ease all;
+  transition: 0.25s ease all;
 }
 .error-overlay {
   width: 100vw;
