@@ -28,9 +28,7 @@ const showForm = (forms, currentForm, type = 'front') => {
   scrollTo(document.querySelector('html'), 0, 500);
 };
 const validateCurrentForm = (currentForm) => {
-  const {isEmpty, isEmail, isIn, equals, matches} = validator;
-
-  const phoneRegex = /^(?:(?:\+?([1-9]|[0-9][0-9]|[0-9][0-9][0-9])\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([0-9][1-9]|[0-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
+  const {isEmpty, isEmail, isIn, equals} = validator;
 
   let errors = [];
 
@@ -114,11 +112,6 @@ const validateCurrentForm = (currentForm) => {
       errors.push({
         param: 'phone',
         error: 'Lütfen telefon numaranızı yazın.'
-      });
-    } else if (!matches(phone, phoneRegex)) {
-      errors.push({
-        param: 'phone',
-        error: 'Girdiğiniz telefon numarası geçerli değil.'
       });
     }
     if (!password || isEmpty(password)) {

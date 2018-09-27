@@ -7,7 +7,6 @@ const renderRegister = require('./get');
 
 module.exports = (req, res, next) => {
   const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-  const phoneRegex = /^(?:(?:\+?([1-9]|[0-9][0-9]|[0-9][0-9][0-9])\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([0-9][1-9]|[0-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
 
   let errors = [];
 
@@ -71,11 +70,6 @@ module.exports = (req, res, next) => {
     errors.push({
       param: 'phone',
       error: 'Lütfen telefon numaranızı yazın.'
-    });
-  } else if (!matches(req.body.phone, phoneRegex)) {
-    errors.push({
-      param: 'phone',
-      error: 'Girdiğiniz telefon numarası geçerli değil.'
     });
   }
   if (!req.body.password || isEmpty(req.body.password)) {

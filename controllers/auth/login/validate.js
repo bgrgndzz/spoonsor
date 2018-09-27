@@ -1,4 +1,4 @@
-const {isEmpty, isEmail, isIn, equals, matches} = require('validator');
+const {isEmpty, isEmail} = require('validator');
 const mongoose = require('mongoose');
 
 const User = require('../../../models/User/User');
