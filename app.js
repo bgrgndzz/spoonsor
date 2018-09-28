@@ -22,6 +22,7 @@ const logger = require('./utils/logger');
 const indexRoute = require('./routes/index');
 const authRoute = require('./routes/auth');
 const appRoute = require('./routes/app');
+const adminRoute = require('./routes/admin');
 
 // require sockets
 const sockets = require('./sockets/sockets');
@@ -73,6 +74,7 @@ app.use(helmet());
 // routing
 app.use('/auth', authRoute);
 app.use('/app', appRoute);
+app.use('/admin', adminRoute);
 app.use('/', indexRoute);
 
 // setup socket.io
