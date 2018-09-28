@@ -12,8 +12,10 @@ module.exports = (req, res, next) => {
           .populate('from')
           .exec(
             (err, messages) => {
-              const etkinlikCount = users.filter(user => user.user.userType === 'etkinlik').length;
-              const sponsorCount = users.filter(user => user.user.userType === 'sponsor').length;
+              const etkinlik = users.filter(user => user.user.userType === 'etkinlik');
+              const etkinlikCount = etkinlik.length;
+              const sponsor = users.filter(user => user.user.userType === 'sponsor');
+              const sponsorCount = sponsor.length;
               const messageCount = messages.length;
               
               const messageSenders = 
@@ -38,7 +40,9 @@ module.exports = (req, res, next) => {
                   ]
                 },
                 data: {
+                  etkinlik,
                   etkinlikCount,
+                  sponsor,
                   sponsorCount,
                   messageCount,
                   etkinlikSenders,
