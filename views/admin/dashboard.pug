@@ -1,0 +1,27 @@
+extends ../partials/admin
+block main
+  .dashboard
+    .dashboard-item
+      span.dashboard-item-heading Etkinlik
+      span.dashboard-item-content= data.etkinlikCount
+    .dashboard-item
+      span.dashboard-item-heading Aktif etkinlikler
+      span.dashboard-item-content= data.etkinlik.filter(etkinlik => etkinlik.user.active).length
+    .dashboard-item
+      span.dashboard-item-heading Sponsor
+      span.dashboard-item-content= data.sponsorCount
+    .dashboard-item
+      span.dashboard-item-heading Mesaj
+      span.dashboard-item-content= data.messageCount 
+    .dashboard-item
+      span.dashboard-item-heading Mesaj atan etkinlik
+      span.dashboard-item-content= data.etkinlikSenderCount
+    .dashboard-item
+      span.dashboard-item-heading Etkinlik tarafından atılan mesaj
+      span.dashboard-item-content= data.etkinlikMessageCount
+    .dashboard-item
+      span.dashboard-item-heading Mesaj atan sponsor
+      span.dashboard-item-content= data.sponsorSenderCount
+    .dashboard-item
+      span.dashboard-item-heading Sponsor tarafından atılan mesaj
+      span.dashboard-item-content= data.sponsorMessageCount

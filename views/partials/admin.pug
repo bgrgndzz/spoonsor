@@ -1,0 +1,20 @@
+extends ../partials/head
+block content
+  .sidebar
+    img.logo(src="/res/images/logo.svg")
+    .nav
+      if page === 'admin/dashboard'
+        a.sidebar-link.active(href="/admin/dashboard") Anasayfa
+      else
+        a.sidebar-link(href="/admin/dashboard") Anasayfa
+      if page === 'admin/users'
+        a.sidebar-link.active(href="/admin/users") Kullanıcı Bilgileri
+      else
+        a.sidebar-link(href="/admin/users") Kullanıcı Bilgileri
+      if page === 'admin/messages'
+        a.sidebar-link.active(href="/admin/messages") Mesaj Geçmişi
+      else
+        a.sidebar-link(href="/admin/messages") Mesaj Geçmişi
+      a.sidebar-link(href="/admin/logout") Çıkış
+  .main
+    block main
