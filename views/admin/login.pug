@@ -1,0 +1,9 @@
+extends ../partials/head
+block content
+  .form-wrapper
+    .form-description
+      h1 Admin Olarak Giriş Yap
+      h2 Admin şifren ile yönetim paneline eriş.
+    form.form(method="POST", action="/admin/login")
+      input.field.field--password(type="password", name="password", placeholder="Şifreyi girin", autofocus)
+      input.button.button--submit(type="submit", value="Giriş Yap")
