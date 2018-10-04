@@ -1,5 +1,11 @@
 extends ../partials/admin
 block main
+  .dashboard-date
+    select
+      option(value="day") Gün
+      option(value="week") Hafta
+      option(value="month") Ay
+      option(value="year") Yıl
   .dashboard
     .dashboard-item
       span.dashboard-item-heading Etkinlik
