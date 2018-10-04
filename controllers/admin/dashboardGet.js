@@ -20,7 +20,11 @@ module.exports = (req, res, next) => {
               
               const messageSenders = 
                 messages
-                  .filter((message, index, array) => !array.includes(message.from.user.name))
+                  .filter(
+                    (message, index, array) =>
+                      array
+                        .map(mappedMessage => mappedMessage.from._id)
+                        .indexOf(message.from._id) === index)
                   .map(message => message.from);
 
               const etkinlikSenders = messageSenders.filter(sender => sender.user.userType === 'etkinlik');

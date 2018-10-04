@@ -29,6 +29,7 @@
   grid-column-gap: 20px;
   padding: 25px;
   overflow: scroll;
+  height: 100vh;
 }
 .dashboard-item {
   background-color: white;
